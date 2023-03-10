@@ -6,12 +6,14 @@ import 'package:nestify/navigation/navigation_service.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:redux/redux.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FirstScreen extends StatelessWidget {
   const FirstScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final localized = AppLocalizations.of(context)!;
     return StoreConnector(
       builder: (BuildContext context, vm) {
         return Scaffold(
@@ -22,6 +24,7 @@ class FirstScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(localized.testString),
               const Text('First screen'),
               const SizedBox(
                 height: 8,
