@@ -16,12 +16,15 @@ dependencies:
   redux: ^5.0.0
   flutter_redux: ^0.10.0
 
-  #DI
+  # DI
   get_it: ^7.2.0
 
-  #Freezed
+  # Freezed
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.0
+
+  # Navigation
+  go_router: ^6.2.0
 
 dev_dependencies:
   flutter_test:
