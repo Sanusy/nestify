@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "150543360145",
+    "project_id": "nestify-e2a8e",
+    "storage_bucket": "nestify-e2a8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150543360145:android:0a7e7a7caea506edff1f30",
+        "android_client_info": {
+          "package_name": "com.gmail.ivan.morozyk.nestify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150543360145-o881l9d8kkk3madb27j45tkd0bcn9ln3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.ivan.morozyk.nestify",
+            "certificate_hash": "a980437979ce7f246dc2513f37912f5295d0143b"
+          }
+        },
+        {
+          "client_id": "150543360145-85ai0pl7hmach9u0e8msq359ppaffuip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcOKkeUXNJEU_uiycLfIdJXkktCP9d5y8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150543360145-85ai0pl7hmach9u0e8msq359ppaffuip.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "150543360145-foilj61qj96hom60aabs9m0rq1q36798.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gmail.ivan.morozyk.nestify"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
