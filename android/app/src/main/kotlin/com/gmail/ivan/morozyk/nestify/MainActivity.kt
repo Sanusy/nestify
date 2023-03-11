@@ -1,4 +1,4 @@
-package com.example.nestify
+package com.gmail.ivan.morozyk.nestify
 
 import io.flutter.embedding.android.FlutterActivity
 
