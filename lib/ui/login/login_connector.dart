@@ -3,6 +3,7 @@ import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/login/login_screen.dart';
 import 'package:nestify/ui/login/login_view_model.dart';
+import 'package:nestify/ui/login/view/login_button_view_model.dart';
 import 'package:redux/redux.dart';
 
 class LoginConnector extends BaseConnector<LoginViewModel> {
@@ -10,7 +11,10 @@ class LoginConnector extends BaseConnector<LoginViewModel> {
 
   @override
   LoginViewModel convert(Store<AppState> store) {
-    return const LoginViewModel(onLogInWithGoogle: null);
+    return const LoginViewModel(
+      googleLoginViewModel: LoginButtonViewModel.loading(),
+      isFailed: true,
+    );
   }
 
   @override

@@ -32,6 +32,8 @@ abstract class AppColors {
 
   static const outlineColor = Color(0xFF79747E);
   static const outlineVariantColor = Color(0xFFCAC4D0);
+
+  static const subtitleColor = Color(0xFF979797);
 }
 
 const lightColorSchema = ColorScheme.light(
