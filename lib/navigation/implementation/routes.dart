@@ -8,9 +8,9 @@ import 'package:nestify/ui/root_tab_bar/root_tab_bar_screen.dart';
 final goRouter = GoRouter(
   redirect: (_, __) {
     if (FirebaseAuth.instance.currentUser == null) {
-      return const AppRoute.login().routeName;
+      return const AppRoute.login().routePath;
     }
-    const AppRoute.rootTebBar().routeName;
+    return const AppRoute.rootTebBar().routePath;
   },
   routes: [
     NestifyGoRoute(
@@ -26,8 +26,13 @@ final goRouter = GoRouter(
   ],
 );
 
-extension on AppRoute {
+extension AppRouteExtensionForGoRouter on AppRoute {
   String get routeName => when(
+        login: () => '/login',
+        rootTebBar: () => '/rootTabBar',
+      );
+
+  String get routePath => when(
         login: () => '/login',
         rootTebBar: () => '/rootTabBar',
       );
