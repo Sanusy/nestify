@@ -6,14 +6,11 @@ part 'app_route.freezed.dart';
 class AppRoute with _$AppRoute {
   const AppRoute._();
 
-  const factory AppRoute.first() = _First;
+  const factory AppRoute.login() = _Login;
 
-  const factory AppRoute.second() = _Second;
-
-  const factory AppRoute.third() = _Third;
+  const factory AppRoute.rootTebBar() = _RootTebBar;
 
   bool get fullscreenDialog => maybeWhen(
         orElse: () => false,
-        third: () => true,
       );
 }

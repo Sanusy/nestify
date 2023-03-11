@@ -30,8 +30,7 @@ class GoRouteNavigationService implements NavigationService {
 
 extension on AppRoute {
   String get routePath => when(
-        first: () => '/',
-        second: () => '/second',
-        third: () => '/second/third',
+        login: () => '/login',
+        rootTebBar: () => '/rootTabBar',
       );
 }
