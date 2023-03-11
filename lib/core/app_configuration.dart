@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:get_it/get_it.dart';
@@ -12,6 +13,8 @@ import 'package:redux/redux.dart';
 
 class AppConfiguration {
   Future<void> _initializeDependencies() async {
+    await Firebase.initializeApp();
+
     final serviceLocator = GetIt.instance;
 
     serviceLocator.registerSingleton<NavigationService>(
@@ -28,6 +31,7 @@ class AppConfiguration {
       );
 
   Future<void> run() async {
+    WidgetsFlutterBinding.ensureInitialized();
     await _initializeDependencies();
 
     runApp(
