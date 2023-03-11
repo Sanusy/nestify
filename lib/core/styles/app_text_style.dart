@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nestify/core/styles/app_colors.dart';
 
 abstract class AppTextStyles {
   static const displayLarge = TextStyle(fontSize: 57);
@@ -12,8 +13,11 @@ abstract class AppTextStyles {
   static const titleLarge = TextStyle(fontSize: 22);
   static const titleMedium =
       TextStyle(fontSize: 16, fontWeight: FontWeight.w500);
-  static const titleSmall =
-      TextStyle(fontSize: 14, fontWeight: FontWeight.w500);
+  static const titleSmall = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.subtitleColor,
+  );
 
   static const labelLarge =
       TextStyle(fontSize: 14, fontWeight: FontWeight.w500);

@@ -1,3 +1,6 @@
 {
-  "testString": "Тестовая строка"
+  "loginWelcomeToNestify": "Добро пожаловать в Nestify!",
+  "loginToStartLoginWith": "Для того, что-бы начать, войдите:",
+  "loginLoginWithGoogle": "Войти через Google",
+  "loginFailedToLogin": "Ошибка входа :("
 }

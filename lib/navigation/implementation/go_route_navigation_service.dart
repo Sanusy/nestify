@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:nestify/navigation/app_route.dart';
+import 'package:nestify/navigation/implementation/routes.dart';
 import 'package:nestify/navigation/navigation_service.dart';
 
 class GoRouteNavigationService implements NavigationService {
@@ -26,12 +27,4 @@ class GoRouteNavigationService implements NavigationService {
   void setPath(AppRoute finalRoute) {
     _router.go(finalRoute.routePath);
   }
-}
-
-extension on AppRoute {
-  String get routePath => when(
-        first: () => '/',
-        second: () => '/second',
-        third: () => '/second/third',
-      );
 }
