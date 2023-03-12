@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "761356519653",
+    "project_id": "nestify-dev",
+    "storage_bucket": "nestify-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761356519653:android:f4b19294f4f9049ca12c0c",
+        "android_client_info": {
+          "package_name": "com.gmail.ivan.morozyk.nestify.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761356519653-l9m31bfiaj78fj8a1s7t3ko1gbr48qmf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.ivan.morozyk.nestify.dev",
+            "certificate_hash": "a980437979ce7f246dc2513f37912f5295d0143b"
+          }
+        },
+        {
+          "client_id": "761356519653-n19m5k808m27sgrthobf73h09nf1dhh5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-5QNAFE3zsmzOOs5yAc6kukvNFaTSYlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761356519653-n19m5k808m27sgrthobf73h09nf1dhh5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -56,6 +56,20 @@ android {
         multiDexEnabled true
     }
 
+    flavorDimensions "app"
+    productFlavors {
+        dev {
+            dimension "app"
+            resValue "string", "app_name", "Nestify Dev"
+            applicationIdSuffix ".dev"
+            versionNameSuffix "-dev"
+        }
+        prod {
+            dimension "app"
+            resValue "string", "app_name", "Nestify"
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
