@@ -13,7 +13,18 @@ import 'package:nestify/service/user_service/firebase_user_service.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 import 'package:redux/redux.dart';
 
+enum Environment {
+  dev,
+  prod,
+}
+
 class AppConfiguration {
+  final Environment environment;
+
+  AppConfiguration({
+    required this.environment,
+  });
+
   Future<void> _initializeDependencies() async {
     await Firebase.initializeApp();
 
