@@ -2,7 +2,7 @@ default_platform(:android)
 
 platform :android do
 
-  FIREBASE_APP_ID = ENV["FIREBASE_APP_ID"]
+  FIREBASE_APP_ID_ANDROID = ENV["FIREBASE_APP_ID_ANDROID"]
 
   lane :release do
     previous_build_number = google_play_track_version_codes(
