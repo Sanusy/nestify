@@ -32,7 +32,10 @@ platform :android do
   end
 
   lane :firebase do
-    latest_release = firebase_app_distribution_get_latest_release(app: FIREBASE_APP_ID)
+    latest_release = firebase_app_distribution_get_latest_release(
+      app: FIREBASE_APP_ID,
+      service_credentials_file: "secrets/nestify-dev-01aa131c1b9f.json",
+    )
 
     increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
 
