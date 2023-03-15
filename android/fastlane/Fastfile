@@ -44,6 +44,7 @@ platform :android do
     firebase_app_distribution(
       app: FIREBASE_APP_ID_ANDROID,
       android_artifact_type: "APK",
+      groups: "friends",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-dev-release.apk",
       service_credentials_file: "secrets/nestify-dev-01aa131c1b9f.json"
     )
