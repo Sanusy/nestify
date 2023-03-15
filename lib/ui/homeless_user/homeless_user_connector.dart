@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/login/login_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_screen.dart';
@@ -14,6 +15,7 @@ class HomelessUserConnector extends BaseConnector<HomelessUserViewModel> {
     return HomelessUserViewModel(
       onCreateHome: Command.stub,
       onScanQrCode: Command.stub,
+      onLogout: store.dispatchAction(LogoutAction()),
     );
   }
 

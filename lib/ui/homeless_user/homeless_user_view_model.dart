@@ -8,5 +8,6 @@ abstract class HomelessUserViewModel with _$HomelessUserViewModel {
   const factory HomelessUserViewModel({
     required Command onCreateHome,
     required Command onScanQrCode,
+    required Command onLogout,
   }) = _HomelessUserViewModel;
 }

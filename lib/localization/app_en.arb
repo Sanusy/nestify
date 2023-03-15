@@ -1,6 +1,10 @@
 {
+  "commonLogout": "Log out",
   "loginWelcomeToNestify": "Welcome to Nestify!",
   "loginToStartLoginWith": "To start using app login with:",
   "loginLoginWithGoogle": "Log In with Google",
-  "loginFailedToLogin": "Failed to log in :("
+  "loginFailedToLogin": "Failed to log in :(",
+  "homelessUserDescription": "You are not a member of any home yet. You can create your home or ask your homemate to invite you to existing home with QR code or invitation link.",
+  "homelessUserCreateHome": "Create your home",
+  "homelessUserScanQrCode": "Scan QR code"
 }

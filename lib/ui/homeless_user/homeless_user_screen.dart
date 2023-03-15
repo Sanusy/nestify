@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nestify/gen/assets.gen.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_view_model.dart';
 
 class HomelessUserScreen extends StatelessWidget {
@@ -11,9 +13,40 @@ class HomelessUserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('homeless user screen'),
+    final localization = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 32),
+              Assets.images.appPicture.image(),
+              const SizedBox(height: 32),
+              Text(
+                localization.homelessUserDescription,
+                style: theme.textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 16),
+              OutlinedButton(
+                onPressed: viewModel.onCreateHome,
+                child: Text(localization.homelessUserCreateHome),
+              ),
+              const SizedBox(height: 8),
+              OutlinedButton(
+                onPressed: viewModel.onScanQrCode,
+                child: Text(localization.homelessUserScanQrCode),
+              ),
+              const Spacer(),
+              TextButton(
+                onPressed: viewModel.onLogout,
+                child: Text(localization.commonLogout),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

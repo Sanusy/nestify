@@ -1,6 +1,10 @@
 {
+  "commonLogout": "Выйти",
   "loginWelcomeToNestify": "Добро пожаловать в Nestify!",
   "loginToStartLoginWith": "Для того, что-бы начать, войдите:",
   "loginLoginWithGoogle": "Войти через Google",
-  "loginFailedToLogin": "Ошибка входа :("
+  "loginFailedToLogin": "Ошибка входа :(",
+  "homelessUserDescription": "Пока что вы не присоеденились к дому. Вы можете создать свой дом или попросить друга пригласить вас в существующий с помощью QR кода или ссылки.",
+  "homelessUserCreateHome": "Создать дом",
+  "homelessUserScanQrCode": "Сканировать QR код"
 }
