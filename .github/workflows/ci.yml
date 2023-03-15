@@ -42,6 +42,7 @@ jobs:
               echo keyPassword=\${{ secrets.SIGNING_STORE_PASSWORD }} > ${{env.PROPERTIES_PATH}}
               echo storePassword=\${{ secrets.SIGNING_KEY_PASSWORD }} >> ${{env.PROPERTIES_PATH}}
               echo keyAlias=\${{ secrets.SIGNING_KEY_ALIAS }} >> ${{env.PROPERTIES_PATH}}
+              echo storeFile=\${{ secrets.STORE_FILE }} >> ${{env.PROPERTIES_PATH}}
             env:
               PROPERTIES_PATH: "${{ github.workspace }}/android/key.properties"
 
