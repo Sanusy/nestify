@@ -1,21 +1,8 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
-
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
-
 default_platform(:android)
 
 platform :android do
+
+  FIREBASE_APP_ID = ENV["FIREBASE_APP_ID"]
 
   lane :release do
     previous_build_number = google_play_track_version_codes(
@@ -43,4 +30,19 @@ platform :android do
       release_status: 'draft'
     )
   end
+
+  lane :firebase do
+    latest_release = firebase_app_distribution_get_latest_release(app: FIREBASE_APP_ID)
+
+    increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
+
+    sh("flutter build apk --flavor dev -t lib/main_dev.dart")
+
+    firebase_app_distribution(
+      app: FIREBASE_APP_ID,
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-dev-release.apk",
+      service_credentials_file: "secrets/nestify-dev-01aa131c1b9f.json"
+    )
+    end
 end
