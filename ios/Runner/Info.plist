@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Nestify</string>
+	<string>$(APP_DISPLAY_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -54,7 +54,7 @@
     		<string>Editor</string>
     		<key>CFBundleURLSchemes</key>
     		<array>
-    			<string>com.googleusercontent.apps.150543360145-foilj61qj96hom60aabs9m0rq1q36798</string>
+    			<string>$(FIREBASE_REVERSED_CLIENT_ID)</string>
     		</array>
     	</dict>
     </array>

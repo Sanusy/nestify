@@ -1,0 +1,48 @@
+default_platform(:android)
+
+platform :android do
+
+  FIREBASE_APP_ID = ENV["FIREBASE_APP_ID"]
+
+  lane :release do
+    previous_build_number = google_play_track_version_codes(
+      package_name: 'com.gmail.ivan.morozyk.nestify',
+      track: "internal",
+    )[0]
+
+    current_build_number = previous_build_number + 1
+
+    increment_version_code(
+      gradle_file_path: "./app/build.gradle",
+      version_code: current_build_number
+    )
+
+    gradle(
+      flavor: "prod",
+      task: "bundle",
+      flags: "-Ptarget=lib/main_prod.dart"
+    )
+
+    upload_to_play_store(
+      package_name: "com.gmail.ivan.morozyk.nestify",
+      aab: "../build/app/outputs/bundle/prodRelease/app-prod-release.aab",
+      track: 'internal',
+      release_status: 'draft'
+    )
+  end
+
+  lane :firebase do
+    latest_release = firebase_app_distribution_get_latest_release(app: FIREBASE_APP_ID)
+
+    increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
+
+    sh("flutter build apk --flavor dev -t lib/main_dev.dart")
+
+    firebase_app_distribution(
+      app: FIREBASE_APP_ID,
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-dev-release.apk",
+      service_credentials_file: "secrets/nestify-dev-01aa131c1b9f.json"
+    )
+    end
+end

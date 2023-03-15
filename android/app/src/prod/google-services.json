@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "150543360145-bd3k0l9k243ote4k4tqe5tubq2dc70ms.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.ivan.morozyk.nestify",
+            "certificate_hash": "701359261e7443cb6862d227f05f17076955b75f"
+          }
+        },
+        {
           "client_id": "150543360145-o881l9d8kkk3madb27j45tkd0bcn9ln3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -22,7 +30,7 @@
           }
         },
         {
-          "client_id": "150543360145-85ai0pl7hmach9u0e8msq359ppaffuip.apps.googleusercontent.com",
+          "client_id": "150543360145-8q7jeo97l8rjpfe5mk16nvq6fmjqrem8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

@@ -44,3 +44,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /lib/gen/
+/android/secrets/
+/android/fastlane/README.md
+/android/fastlane/report.xml
