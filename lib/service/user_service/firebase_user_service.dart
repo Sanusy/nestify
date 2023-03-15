@@ -45,4 +45,12 @@ class FirebaseUserService implements UserService {
   Future<void> logOut() async {
     await _firebaseAuth.signOut();
   }
+
+  @override
+  Future<String?> userHomeId(String userId) async {
+    final userSnapshot =
+        await _firestore.collection(_usersCollectionId).doc(userId).get();
+
+    return userSnapshot.data()?['homeId'];
+  }
 }

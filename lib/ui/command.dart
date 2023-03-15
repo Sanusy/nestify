@@ -14,4 +14,6 @@ class Command {
 
   @override
   int get hashCode => command.hashCode;
+
+  static Command stub = Command(() { });
 }
