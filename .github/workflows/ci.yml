@@ -29,6 +29,9 @@ jobs:
           - name: Flutter run build runner
             working-directory: ${{ github.workspace }}
             run: flutter pub run build_runner build --delete-conflicting-outputs
+            
+          - name: Create secrets directory
+            run: mkdir -p ${{ github.workspace }}/android/secrets
 
           - name: Decode Keystore
             run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > ${{ github.workspace }}/android/secrets/upload-keystore.jks
