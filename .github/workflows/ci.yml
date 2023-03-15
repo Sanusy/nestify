@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-    jobs:
+jobs:
       build_apk:
         runs-on: macos-latest
         steps:
