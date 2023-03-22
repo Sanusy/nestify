@@ -1,5 +1,6 @@
 {
   "commonLogout": "Выйти",
+  "commonError": "Упс... Что-то пошло не так:(",
   "loginWelcomeToNestify": "Добро пожаловать в Nestify!",
   "loginToStartLoginWith": "Для того, что-бы начать, войдите:",
   "loginLoginWithGoogle": "Войти через Google",

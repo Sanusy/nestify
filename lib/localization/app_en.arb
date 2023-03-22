@@ -1,5 +1,6 @@
 {
   "commonLogout": "Log out",
+  "commonError": "Oops... Something went wrong:(",
   "loginWelcomeToNestify": "Welcome to Nestify!",
   "loginToStartLoginWith": "To start using app login with:",
   "loginLoginWithGoogle": "Log In with Google",

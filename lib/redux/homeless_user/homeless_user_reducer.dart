@@ -1,3 +1,4 @@
+import 'package:nestify/redux/homeless_user/homeless_user_action.dart';
 import 'package:nestify/redux/homeless_user/homeless_user_state.dart';
 import 'package:redux/redux.dart';
 
@@ -7,14 +8,6 @@ final homelessUserStateReducer = combineReducers<HomelessUserState>([
   TypedReducer(_failedToCreateHomeDraft),
   TypedReducer(_errorProcessed),
 ]);
-
-class OnCreateHomeAction {}
-
-class CreatedHomeDraftAction {}
-
-class FailedToOpenCreateHomeAction {}
-
-class HomelessUserErrorProcessedAction {}
 
 HomelessUserState _onCreateHome(
   HomelessUserState state,
@@ -46,7 +39,7 @@ HomelessUserState _failedToCreateHomeDraft(
 
 HomelessUserState _errorProcessed(
   HomelessUserState state,
-  FailedToOpenCreateHomeAction action,
+  HomelessUserErrorProcessedAction action,
 ) {
   return state.copyWith(
     error: null,

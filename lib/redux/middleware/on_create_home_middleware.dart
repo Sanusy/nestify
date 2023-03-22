@@ -19,6 +19,7 @@ class OnCreateHomeMiddleware extends BaseMiddleware<OnCreateHomeAction> {
   ) async {
     try {
       await _homeService.createHomeDraft();
+
       store.dispatch(CreatedHomeDraftAction());
     } on NetworkError {
       store.dispatch(FailedToOpenCreateHomeAction());
