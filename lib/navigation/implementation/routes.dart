@@ -16,17 +16,17 @@ final goRouter = GoRouter(
       fullscreenDialog: const AppRoute.rootTebBar().fullscreenDialog,
       redirect: (_, __) async {
         final userService = GetIt.instance.get<UserService>();
-        final userId = userService.currentUserId();
 
-        if (userId == null) {
+        if (!userService.isLoggedIn()) {
           return const AppRoute.login().routePath;
         }
 
-        final userHomeId = await userService.userHomeId(userId);
+        final isHomeMember = (await userService.homeId()) != null;
 
-        if (userHomeId == null) {
+        if (!isHomeMember) {
           return const AppRoute.homelessUser().routePath;
         }
+
         return null;
       },
     ),

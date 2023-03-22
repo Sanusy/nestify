@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:nestify/service/dto/user_profile_dto.dart';
 import 'package:nestify/service/network_error.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 
@@ -11,8 +12,8 @@ class FirebaseUserService implements UserService {
   final _firestore = FirebaseFirestore.instance;
 
   @override
-  String? currentUserId() {
-    return _firebaseAuth.currentUser?.uid;
+  bool isLoggedIn() {
+    return _firebaseAuth.currentUser?.uid != null;
   }
 
   @override
@@ -47,10 +48,36 @@ class FirebaseUserService implements UserService {
   }
 
   @override
-  Future<String?> userHomeId(String userId) async {
-    final userSnapshot =
-        await _firestore.collection(_usersCollectionId).doc(userId).get();
+  Future<UserProfileDto> userProfile() async {
+    final userId = _firebaseAuth.currentUser?.uid;
 
-    return userSnapshot.data()?['homeId'];
+    if (userId == null) throw const NetworkError.notAuthenticated();
+
+    try {
+      final userSnapshot =
+          await _firestore.collection(_usersCollectionId).doc(userId).get();
+
+      return UserProfileDto.fromJson(userSnapshot.data()?['userProfile']);
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
+
+  @override
+  Future<String?> homeId() async {
+    final userId = _firebaseAuth.currentUser?.uid;
+
+    if (userId == null) throw const NetworkError.notAuthenticated();
+
+    try {
+      final userSnapshot =
+          await _firestore.collection(_usersCollectionId).doc(userId).get();
+
+      return userSnapshot.data()?['userProfile'] == null
+          ? null
+          : userSnapshot.data()?['userProfile']['homeId'];
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
   }
 }

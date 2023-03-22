@@ -1,7 +1,11 @@
-abstract class UserService {
-  String? currentUserId();
+import 'package:nestify/service/dto/user_profile_dto.dart';
 
-  Future<String?> userHomeId(String userId);
+abstract class UserService {
+  bool isLoggedIn();
+
+  Future<String?> homeId();
+
+  Future<UserProfileDto?> userProfile();
 
   Future<String> logInWithGoogle();
 
