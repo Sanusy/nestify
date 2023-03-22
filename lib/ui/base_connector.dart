@@ -16,6 +16,7 @@ abstract class BaseConnector<VM> extends StatelessWidget {
         return screen(viewModel);
       },
       converter: (store) => convert(context, store),
+      onDidChange: (_, viewModel) => processEvent(context, viewModel),
     );
   }
 
@@ -26,4 +27,6 @@ abstract class BaseConnector<VM> extends StatelessWidget {
   VM convert(BuildContext context, Store<AppState> store);
 
   Widget screen(VM viewModel);
+
+  void processEvent(BuildContext context, VM viewModel) {}
 }

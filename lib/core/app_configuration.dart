@@ -9,6 +9,8 @@ import 'package:nestify/navigation/navigation_service.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/middleware.dart';
 import 'package:nestify/redux/reducer.dart';
+import 'package:nestify/service/home_service/firebase_home_service.dart';
+import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/user_service/firebase_user_service.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 import 'package:redux/redux.dart';
@@ -34,6 +36,7 @@ class AppConfiguration {
       GoRouteNavigationService(goRouter),
     );
     serviceLocator.registerSingleton<UserService>(FirebaseUserService());
+    serviceLocator.registerSingleton<HomeService>(FirebaseHomeService());
 
     await serviceLocator.allReady();
   }

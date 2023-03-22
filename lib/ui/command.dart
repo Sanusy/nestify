@@ -22,7 +22,7 @@ class Command {
 }
 
 extension StoreCommandExtension on Store<AppState> {
-  Command dispatchAction(dynamic action) {
+  Command createCommand(dynamic action) {
     return Command(() {
       dispatch(action);
     });
