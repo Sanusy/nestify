@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nestify/ui/common/avatar_picker/avatar_picker.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field.dart';
 import 'package:nestify/ui/create_home/create_home_app_bar_actions.dart';
 import 'package:nestify/ui/create_home/create_home_view_model.dart';
@@ -43,15 +44,20 @@ class CreateHomeScreen extends StatelessWidget {
                   break;
               }
             },
-          )
+          ),
         ],
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              AvatarPicker(
+                viewModel: viewModel.homeAvatarViewModel,
+                backgroundIcon: Icons.home_outlined,
+              ),
+              const SizedBox(height: 32),
               NestifyTextField(
                 viewModel: viewModel.homeNameViewModel,
                 label: localization.createHomeName,
@@ -79,7 +85,7 @@ class CreateHomeScreen extends StatelessWidget {
                         ),
                       )
                     : Text(localization.createHomeSaveProfile),
-              )
+              ),
             ],
           ),
         ),

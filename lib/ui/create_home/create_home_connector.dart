@@ -5,6 +5,7 @@ import 'package:nestify/redux/create_home/create_home_action.dart';
 import 'package:nestify/redux/login/login_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
+import 'package:nestify/ui/common/avatar_picker/avatar_picker_view_model.dart';
 import 'package:nestify/ui/common/popup_mixin.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field_view_model.dart';
 import 'package:nestify/ui/create_home/create_home_screen.dart';
@@ -21,6 +22,7 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
     return CreateHomeViewModel(
       onDiscard: store.createCommand(DiscardCreateHomeAction()),
       onLogout: store.createCommand(LogoutAction()),
+      homeAvatarViewModel: AvatarPickerViewModel(picture: null, onClick: Command.stub,),
       homeNameViewModel: NestifyTextFieldViewModel(
         text: createHomeState.homeName,
         onTextChanged: store.createCommandWith(
