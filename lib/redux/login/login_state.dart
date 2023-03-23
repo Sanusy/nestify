@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'login_state.freezed.dart';
 
 @freezed
-abstract class LoginState with _$LoginState {
+class LoginState with _$LoginState {
   const factory LoginState({
     required bool isGoogleLoginInProgress,
     required bool isFailed,
