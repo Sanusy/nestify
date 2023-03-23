@@ -17,7 +17,11 @@ class CreateHomeViewModel with _$CreateHomeViewModel {
 
 @Freezed(copyWith: false)
 class CreateHomeEvent with _$CreateHomeEvent {
-  const factory CreateHomeEvent.failedToCreateHomeDraft({
+  const factory CreateHomeEvent.failedToObtainPhoto({
     required Command onProcessed,
-  }) = _CreateHomeEvent;
+  }) = _FailedToObtainPhoto;
+
+  const factory CreateHomeEvent.failedToCreateHome({
+    required Command onProcessed,
+  }) = _FailedToCreateHome;
 }

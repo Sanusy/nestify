@@ -5,11 +5,17 @@ part 'create_home_state.freezed.dart';
 @freezed
 class CreateHomeState with _$CreateHomeState {
   const factory CreateHomeState({
+    required String homeName,
+    required String homeAddress,
+    required String about,
     required bool isLoading,
     required CreateHomeError? error,
   }) = _CreateHomeState;
 
   factory CreateHomeState.initial() => const CreateHomeState(
+        homeName: '',
+        homeAddress: '',
+        about: '',
         isLoading: false,
         error: null,
       );
@@ -17,9 +23,7 @@ class CreateHomeState with _$CreateHomeState {
 
 @freezed
 class CreateHomeError with _$CreateHomeError {
-  const factory CreateHomeError.failedToObtainPhoto() =
-  _FailedToObrainPhoto;
+  const factory CreateHomeError.failedToObtainPhoto() = _FailedToObrainPhoto;
 
-  const factory CreateHomeError.failedToCreate() =
-      _FailedToCreate;
+  const factory CreateHomeError.failedToCreate() = _FailedToCreate;
 }
