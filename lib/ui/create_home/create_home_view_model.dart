@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/ui/command.dart';
+import 'package:nestify/ui/common/text_field/nestify_text_field_view_model.dart';
 
 part 'create_home_view_model.freezed.dart';
 
@@ -8,9 +9,9 @@ class CreateHomeViewModel with _$CreateHomeViewModel {
   const factory CreateHomeViewModel({
     required Command onDiscard,
     required Command onLogout,
-    required String homeName,
-    required String address,
-    required String about,
+    required NestifyTextFieldViewModel homeNameViewModel,
+    required NestifyTextFieldViewModel homeAddressViewModel,
+    required NestifyTextFieldViewModel homeAboutViewModel,
     required Command? onCreateHome,
     required bool isLoading,
     required CreateHomeEvent? event,

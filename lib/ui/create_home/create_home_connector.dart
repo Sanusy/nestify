@@ -6,6 +6,7 @@ import 'package:nestify/redux/login/login_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/common/popup_mixin.dart';
+import 'package:nestify/ui/common/text_field/nestify_text_field_view_model.dart';
 import 'package:nestify/ui/create_home/create_home_screen.dart';
 import 'package:nestify/ui/create_home/create_home_view_model.dart';
 import 'package:redux/redux.dart';
@@ -20,9 +21,24 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
     return CreateHomeViewModel(
       onDiscard: store.createCommand(DiscardCreateHomeAction()),
       onLogout: store.createCommand(LogoutAction()),
-      homeName: createHomeState.homeName,
-      address: createHomeState.homeAddress,
-      about: createHomeState.about,
+      homeNameViewModel: NestifyTextFieldViewModel(
+        text: createHomeState.homeName,
+        onTextChanged: store.createCommandWith(
+          (newName) => HomeNameChangedAction(newName),
+        ),
+      ),
+      homeAddressViewModel: NestifyTextFieldViewModel(
+        text: createHomeState.homeAddress,
+        onTextChanged: store.createCommandWith(
+          (newAddress) => HomeAddressChangedAction(newAddress),
+        ),
+      ),
+      homeAboutViewModel: NestifyTextFieldViewModel(
+        text: createHomeState.about,
+        onTextChanged: store.createCommandWith(
+          (newAbout) => HomeAboutChangedAction(newAbout),
+        ),
+      ),
       onCreateHome: createHomeState.homeName.isEmpty ? null : Command.stub,
       isLoading: createHomeState.isLoading,
       event: createHomeState.error?.when(

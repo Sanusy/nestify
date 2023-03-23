@@ -49,7 +49,7 @@ extension StoreCommandExtension on Store<AppState> {
 
   CommandWith<T> createCommandWith<T>(dynamic Function(T) action) {
     return CommandWith((T) {
-      return dispatch(action);
+      dispatch(action(T));
     });
   }
 }
