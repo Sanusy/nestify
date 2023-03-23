@@ -6,6 +6,8 @@ part 'create_home_view_model.freezed.dart';
 @Freezed(copyWith: false)
 class CreateHomeViewModel with _$CreateHomeViewModel {
   const factory CreateHomeViewModel({
+    required Command onDiscard,
+    required Command onLogout,
     required String homeName,
     required String address,
     required String about,
