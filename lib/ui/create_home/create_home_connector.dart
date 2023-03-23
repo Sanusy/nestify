@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/create_home/create_home_action.dart';
 import 'package:nestify/redux/login/login_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
@@ -17,7 +18,7 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
   CreateHomeViewModel convert(BuildContext context, Store<AppState> store) {
     final createHomeState = store.state.createHomeState;
     return CreateHomeViewModel(
-      onDiscard: Command.stub,
+      onDiscard: store.createCommand(DiscardCreateHomeAction()),
       onLogout: store.createCommand(LogoutAction()),
       homeName: createHomeState.homeName,
       address: createHomeState.homeAddress,

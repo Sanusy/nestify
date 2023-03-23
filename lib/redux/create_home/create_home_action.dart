@@ -1,0 +1,3 @@
+class DiscardCreateHomeAction {}
+
+class FailedToDiscardCreateHome {}

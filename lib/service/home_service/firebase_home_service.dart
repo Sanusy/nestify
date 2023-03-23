@@ -66,4 +66,30 @@ class FirebaseHomeService implements HomeService {
       throw error.toNetworkError();
     }
   }
+
+  @override
+  Future<void> discardCreateHome() async {
+    final userId = _firebaseAuth.currentUser?.uid;
+
+    if (userId == null) throw const NetworkError.notAuthenticated();
+
+    try {
+      final userSnapshot =
+          await _firestore.collection(_usersCollectionId).doc(userId).get();
+      final homeId = userSnapshot.data()!['userProfile']['homeId'];
+
+      final homeDoc = _firestore.collection(_homesCollectionId).doc(homeId);
+
+      final batch = _firestore.batch();
+
+      batch.delete(homeDoc);
+      batch.update(userSnapshot.reference, {
+        'userProfile': null,
+      });
+
+      batch.commit();
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
 }
