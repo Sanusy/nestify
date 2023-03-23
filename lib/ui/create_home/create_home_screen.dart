@@ -51,11 +51,13 @@ class CreateHomeScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              AvatarPicker(
-                viewModel: viewModel.homeAvatarViewModel,
-                backgroundIcon: Icons.home_outlined,
+              Center(
+                child: AvatarPicker(
+                  viewModel: viewModel.homeAvatarViewModel,
+                  backgroundIcon: Icons.home_outlined,
+                ),
               ),
               const SizedBox(height: 32),
               NestifyTextField(
