@@ -5,6 +5,7 @@ import 'package:nestify/navigation/implementation/nestify_go_route.dart';
 import 'package:nestify/service/dto/home_dto.dart';
 import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/user_service/user_service.dart';
+import 'package:nestify/ui/create_home/create_home_connector.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
 import 'package:nestify/ui/root_tab_bar/root_tab_bar_screen.dart';
@@ -49,6 +50,11 @@ final goRouter = GoRouter(
       child: const HomelessUserConnector(),
       fullscreenDialog: const AppRoute.homelessUser().fullscreenDialog,
     ),
+    NestifyGoRoute(
+      path: const AppRoute.createHome().routeName,
+      child: const CreateHomeConnector(),
+      fullscreenDialog: const AppRoute.createHome().fullscreenDialog,
+    ),
   ],
 );
 
@@ -56,12 +62,14 @@ extension AppRouteExtensionForGoRouter on AppRoute {
   String get routeName => when(
         login: () => '/login',
         homelessUser: () => '/homelessUser',
+        createHome: () => '/createHome',
         rootTebBar: () => '/rootTabBar',
       );
 
   String get routePath => when(
         login: () => '/login',
         homelessUser: () => '/homelessUser',
+        createHome: () => '/createHome',
         rootTebBar: () => '/rootTabBar',
       );
 }

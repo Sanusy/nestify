@@ -10,6 +10,8 @@ class AppRoute with _$AppRoute {
 
   const factory AppRoute.homelessUser() = _HomelessUser;
 
+  const factory AppRoute.createHome() = _CreateHome;
+
   const factory AppRoute.rootTebBar() = _RootTebBar;
 
   bool get fullscreenDialog => maybeWhen(
