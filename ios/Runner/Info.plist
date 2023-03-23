@@ -58,5 +58,7 @@
     		</array>
     	</dict>
     </array>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Photo library permission is required for uploading photos</string>
 </dict>
 </plist>

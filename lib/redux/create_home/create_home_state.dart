@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_home_state.freezed.dart';
@@ -5,6 +7,7 @@ part 'create_home_state.freezed.dart';
 @freezed
 class CreateHomeState with _$CreateHomeState {
   const factory CreateHomeState({
+    required File? avatar,
     required String homeName,
     required String homeAddress,
     required String about,
@@ -13,6 +16,7 @@ class CreateHomeState with _$CreateHomeState {
   }) = _CreateHomeState;
 
   factory CreateHomeState.initial() => const CreateHomeState(
+        avatar: null,
         homeName: '',
         homeAddress: '',
         about: '',

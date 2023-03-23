@@ -1,6 +1,20 @@
+import 'dart:io';
+
 class DiscardCreateHomeAction {}
 
 class FailedToDiscardCreateHome {}
+
+class PickCreateHomeAvatarAction {}
+
+class CreateHomeAvatarPickedAction {
+  final File avatar;
+
+  CreateHomeAvatarPickedAction(this.avatar);
+}
+
+class FailedToPickCreateHomeAvatarAction {}
+
+class RemoveCreateHomeAvatarAction {}
 
 class HomeNameChangedAction {
   final String newName;

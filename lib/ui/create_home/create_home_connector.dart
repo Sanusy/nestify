@@ -22,7 +22,14 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
     return CreateHomeViewModel(
       onDiscard: store.createCommand(DiscardCreateHomeAction()),
       onLogout: store.createCommand(LogoutAction()),
-      homeAvatarViewModel: AvatarPickerViewModel(picture: null, onClick: Command.stub,),
+      homeAvatarViewModel: AvatarPickerViewModel(
+        picture: createHomeState.avatar,
+        onClick: store.createCommand(
+          createHomeState.avatar == null
+              ? PickCreateHomeAvatarAction()
+              : RemoveCreateHomeAvatarAction(),
+        ),
+      ),
       homeNameViewModel: NestifyTextFieldViewModel(
         text: createHomeState.homeName,
         onTextChanged: store.createCommandWith(
