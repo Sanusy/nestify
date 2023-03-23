@@ -34,7 +34,7 @@ final goRouter = GoRouter(
         final home = await homeService.userHome();
 
         if (home.homeStatus == HomeStatus.draft) {
-          return const AppRoute.homelessUser().routePath;
+          return const AppRoute.createHome().routePath;
         }
 
         return null;

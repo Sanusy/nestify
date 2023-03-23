@@ -57,7 +57,7 @@ class FirebaseHomeService implements HomeService {
     try {
       final userDoc =
           await _firestore.collection(_usersCollectionId).doc(userId).get();
-      final homeId = userDoc.data()!['userProfile'].homeId;
+      final homeId = userDoc.data()!['userProfile']['homeId'];
 
       final homeDoc =
           await _firestore.collection(_homesCollectionId).doc(homeId).get();
