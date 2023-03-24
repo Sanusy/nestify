@@ -12,6 +12,7 @@ final createHomeStateReducer = combineReducers<CreateHomeState>([
   TypedReducer(_createHome),
   TypedReducer(_homeCreated),
   TypedReducer(_failedToCreateHome),
+  TypedReducer(_errorProcessed),
 ]);
 
 CreateHomeState _homeNameChanged(
@@ -79,5 +80,14 @@ CreateHomeState _failedToCreateHome(
   return state.copyWith(
     error: const CreateHomeError.failedToCreate(),
     isLoading: false,
+  );
+}
+
+CreateHomeState _errorProcessed(
+  CreateHomeState state,
+  FailedToCreateHomeAction action,
+) {
+  return state.copyWith(
+    error: null,
   );
 }

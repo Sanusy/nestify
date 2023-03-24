@@ -39,3 +39,5 @@ class CreateHomeAction {}
 class HomeCreatedAction {}
 
 class FailedToCreateHomeAction {}
+
+class CreateHomeErrorProcessedAction {}

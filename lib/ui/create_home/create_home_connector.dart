@@ -62,10 +62,16 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
               : store.createCommand(CreateHomeAction()),
       isLoading: createHomeState.isLoading,
       event: createHomeState.error?.when(
-        failedToObtainPhoto: () =>
-            CreateHomeEvent.failedToObtainPhoto(onProcessed: Command.stub),
-        failedToCreate: () =>
-            CreateHomeEvent.failedToCreateHome(onProcessed: Command.stub),
+        failedToObtainPhoto: () => CreateHomeEvent.failedToObtainPhoto(
+          onProcessed: store.createCommand(
+            CreateHomeErrorProcessedAction(),
+          ),
+        ),
+        failedToCreate: () => CreateHomeEvent.failedToCreateHome(
+          onProcessed: store.createCommand(
+            CreateHomeErrorProcessedAction(),
+          ),
+        ),
       ),
     );
   }
