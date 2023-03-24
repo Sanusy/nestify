@@ -4,7 +4,7 @@ import 'package:nestify/ui/command.dart';
 part 'login_button_view_model.freezed.dart';
 
 @Freezed(copyWith: false)
-abstract class LoginButtonViewModel with _$LoginButtonViewModel {
+class LoginButtonViewModel with _$LoginButtonViewModel {
   const factory LoginButtonViewModel.loading() = _LoginButtonLoadingViewModel;
 
   const factory LoginButtonViewModel.available({

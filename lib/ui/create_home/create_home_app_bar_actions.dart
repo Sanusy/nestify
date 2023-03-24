@@ -1,0 +1,4 @@
+enum CreateHomeAppBarActions {
+  discard,
+  logOut,
+}

@@ -1,10 +1,17 @@
 {
   "commonLogout": "Log out",
+  "commonError": "Oops... Something went wrong:(",
+  "commonDiscard": "Discard",
   "loginWelcomeToNestify": "Welcome to Nestify!",
   "loginToStartLoginWith": "To start using app login with:",
   "loginLoginWithGoogle": "Log In with Google",
   "loginFailedToLogin": "Failed to log in :(",
   "homelessUserDescription": "You are not a member of any home yet. You can create your home or ask your homemate to invite you to existing home with QR code or invitation link.",
   "homelessUserCreateHome": "Create your home",
-  "homelessUserScanQrCode": "Scan QR code"
+  "homelessUserScanQrCode": "Scan QR code",
+  "createHomeTitle": "Create home profile",
+  "createHomeName": "Home name",
+  "createHomeAddress": "Address",
+  "createHomeAbout": "About",
+  "createHomeSaveProfile": "Save profile"
 }

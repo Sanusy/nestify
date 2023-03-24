@@ -21,10 +21,35 @@ class Command {
   static Command stub = Command(() {});
 }
 
+class CommandWith<T> {
+  final Function(T) command;
+
+  CommandWith(this.command);
+
+  void call(T arg) {
+    command.call(arg);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        other is CommandWith && runtimeType == other.runtimeType;
+  }
+
+  @override
+  int get hashCode => command.hashCode;
+}
+
 extension StoreCommandExtension on Store<AppState> {
-  Command dispatchAction(dynamic action) {
+  Command createCommand(dynamic action) {
     return Command(() {
       dispatch(action);
+    });
+  }
+
+  CommandWith<T> createCommandWith<T>(dynamic Function(T) action) {
+    return CommandWith((T) {
+      dispatch(action(T));
     });
   }
 }

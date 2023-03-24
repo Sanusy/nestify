@@ -4,7 +4,7 @@ import 'package:nestify/ui/login/view/login_button_view_model.dart';
 part 'login_view_model.freezed.dart';
 
 @Freezed(copyWith: false)
-abstract class LoginViewModel with _$LoginViewModel {
+class LoginViewModel with _$LoginViewModel {
   const factory LoginViewModel({
     required LoginButtonViewModel googleLoginViewModel,
     required bool isFailed,

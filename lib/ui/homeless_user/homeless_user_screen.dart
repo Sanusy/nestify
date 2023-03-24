@@ -31,17 +31,25 @@ class HomelessUserScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               OutlinedButton(
-                onPressed: viewModel.onCreateHome,
-                child: Text(localization.homelessUserCreateHome),
+                onPressed: viewModel.onCreateHome?.command,
+                child: viewModel.isLoading
+                    ? const Center(
+                        child: SizedBox(
+                          height: 24,
+                          width: 24,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        ),
+                      )
+                    : Text(localization.homelessUserCreateHome),
               ),
               const SizedBox(height: 8),
               OutlinedButton(
-                onPressed: viewModel.onScanQrCode,
+                onPressed: viewModel.onScanQrCode?.command,
                 child: Text(localization.homelessUserScanQrCode),
               ),
               const Spacer(),
               TextButton(
-                onPressed: viewModel.onLogout,
+                onPressed: viewModel.onLogout?.command,
                 child: Text(localization.commonLogout),
               ),
             ],
