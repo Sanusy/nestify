@@ -24,31 +24,42 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
       onLogout: store.createCommand(LogoutAction()),
       homeAvatarViewModel: AvatarPickerViewModel(
         picture: createHomeState.avatar,
-        onClick: store.createCommand(
-          createHomeState.avatar == null
-              ? PickCreateHomeAvatarAction()
-              : RemoveCreateHomeAvatarAction(),
-        ),
+        onClick: createHomeState.isLoading
+            ? null
+            : store.createCommand(
+                createHomeState.avatar == null
+                    ? PickCreateHomeAvatarAction()
+                    : RemoveCreateHomeAvatarAction(),
+              ),
       ),
       homeNameViewModel: NestifyTextFieldViewModel(
         text: createHomeState.homeName,
-        onTextChanged: store.createCommandWith(
-          (newName) => HomeNameChangedAction(newName),
-        ),
+        onTextChanged: createHomeState.isLoading
+            ? null
+            : store.createCommandWith(
+                (newName) => HomeNameChangedAction(newName),
+              ),
       ),
       homeAddressViewModel: NestifyTextFieldViewModel(
         text: createHomeState.homeAddress,
-        onTextChanged: store.createCommandWith(
-          (newAddress) => HomeAddressChangedAction(newAddress),
-        ),
+        onTextChanged: createHomeState.isLoading
+            ? null
+            : store.createCommandWith(
+                (newAddress) => HomeAddressChangedAction(newAddress),
+              ),
       ),
       homeAboutViewModel: NestifyTextFieldViewModel(
         text: createHomeState.about,
-        onTextChanged: store.createCommandWith(
-          (newAbout) => HomeAboutChangedAction(newAbout),
-        ),
+        onTextChanged: createHomeState.isLoading
+            ? null
+            : store.createCommandWith(
+                (newAbout) => HomeAboutChangedAction(newAbout),
+              ),
       ),
-      onCreateHome: createHomeState.homeName.isEmpty ? null : Command.stub,
+      onCreateHome:
+          createHomeState.homeName.isEmpty || createHomeState.isLoading
+              ? null
+              : store.createCommand(CreateHomeAction()),
       isLoading: createHomeState.isLoading,
       event: createHomeState.error?.when(
         failedToObtainPhoto: () =>

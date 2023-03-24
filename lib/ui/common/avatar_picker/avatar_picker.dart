@@ -15,7 +15,7 @@ class AvatarPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return GestureDetector(
-      onTap: viewModel.picture == null ? viewModel.onClick.command : null,
+      onTap: viewModel.picture == null ? viewModel.onClick?.command : null,
       child: Stack(
         alignment: Alignment.bottomRight,
         children: [
@@ -43,7 +43,7 @@ class AvatarPicker extends StatelessWidget {
               child: IconButton(
                 onPressed: viewModel.picture == null
                     ? null
-                    : viewModel.onClick.command,
+                    : viewModel.onClick?.command,
                 icon: Icon(
                   viewModel.picture == null
                       ? Icons.add_photo_alternate_outlined

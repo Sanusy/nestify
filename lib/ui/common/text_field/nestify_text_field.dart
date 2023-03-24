@@ -25,6 +25,7 @@ class NestifyTextField extends StatelessWidget {
       keyboardType: keyboardType,
       textCapitalization: textCapitalization,
       textInputAction: textInputAction,
+      enabled: viewModel.onTextChanged != null,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         labelText: label,
@@ -59,6 +60,7 @@ class NestifyMultilineTextField extends StatelessWidget {
         onChanged: viewModel.onTextChanged?.command,
         keyboardType: keyboardType,
         textCapitalization: textCapitalization,
+        enabled: viewModel.onTextChanged != null,
         textInputAction: TextInputAction.newline,
         maxLines: null,
         expands: true,

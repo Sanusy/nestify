@@ -9,6 +9,9 @@ final createHomeStateReducer = combineReducers<CreateHomeState>([
   TypedReducer(_pickedHomeAvatar),
   TypedReducer(_removeHomeAvatar),
   TypedReducer(_failedToPickAvatar),
+  TypedReducer(_createHome),
+  TypedReducer(_homeCreated),
+  TypedReducer(_failedToCreateHome),
 ]);
 
 CreateHomeState _homeNameChanged(
@@ -51,4 +54,30 @@ CreateHomeState _failedToPickAvatar(
   FailedToPickCreateHomeAvatarAction action,
 ) {
   return state.copyWith(error: const CreateHomeError.failedToObtainPhoto());
+}
+
+CreateHomeState _createHome(
+  CreateHomeState state,
+  CreateHomeAction action,
+) {
+  return state.copyWith(
+    isLoading: true,
+  );
+}
+
+CreateHomeState _homeCreated(
+  CreateHomeState state,
+  HomeCreatedAction action,
+) {
+  return CreateHomeState.initial();
+}
+
+CreateHomeState _failedToCreateHome(
+  CreateHomeState state,
+  FailedToCreateHomeAction action,
+) {
+  return state.copyWith(
+    error: const CreateHomeError.failedToCreate(),
+    isLoading: false,
+  );
 }

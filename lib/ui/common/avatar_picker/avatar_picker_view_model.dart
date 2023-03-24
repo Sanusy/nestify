@@ -9,6 +9,6 @@ part 'avatar_picker_view_model.freezed.dart';
 class AvatarPickerViewModel with _$AvatarPickerViewModel {
   const factory AvatarPickerViewModel({
     required File? picture,
-    required Command onClick,
+    required Command? onClick,
   }) = _AvatarPickerViewModel;
 }

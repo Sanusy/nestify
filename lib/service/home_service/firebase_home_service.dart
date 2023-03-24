@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nestify/service/dto/home_dto.dart';
+import 'package:nestify/service/dto/update_home_dto.dart';
 import 'package:nestify/service/dto/user_profile_dto.dart';
 import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
@@ -14,9 +15,7 @@ class FirebaseHomeService implements HomeService {
 
   @override
   Future<void> createHomeDraft() async {
-    final userId = _firebaseAuth.currentUser?.uid;
-
-    if (userId == null) throw const NetworkError.notAuthenticated();
+    final userId = _userId;
 
     try {
       final homeDraftDoc = _firestore.collection(_homesCollectionId).doc();
@@ -24,6 +23,7 @@ class FirebaseHomeService implements HomeService {
         id: homeDraftDoc.id,
         adminId: userId,
         users: [userId],
+        name: '',
         homeStatus: HomeStatus.draft,
       );
 
@@ -50,17 +50,11 @@ class FirebaseHomeService implements HomeService {
 
   @override
   Future<HomeDto> userHome() async {
-    final userId = _firebaseAuth.currentUser?.uid;
-
-    if (userId == null) throw const NetworkError.notAuthenticated();
-
     try {
-      final userDoc =
-          await _firestore.collection(_usersCollectionId).doc(userId).get();
-      final homeId = userDoc.data()!['userProfile']['homeId'];
-
-      final homeDoc =
-          await _firestore.collection(_homesCollectionId).doc(homeId).get();
+      final homeDoc = await _firestore
+          .collection(_homesCollectionId)
+          .doc(await _homeId)
+          .get();
       return HomeDto.fromJson(homeDoc.data()!);
     } on FirebaseException catch (error) {
       throw error.toNetworkError();
@@ -69,16 +63,12 @@ class FirebaseHomeService implements HomeService {
 
   @override
   Future<void> discardCreateHome() async {
-    final userId = _firebaseAuth.currentUser?.uid;
-
-    if (userId == null) throw const NetworkError.notAuthenticated();
-
     try {
       final userSnapshot =
-          await _firestore.collection(_usersCollectionId).doc(userId).get();
-      final homeId = userSnapshot.data()!['userProfile']['homeId'];
+          await _firestore.collection(_usersCollectionId).doc(_userId).get();
 
-      final homeDoc = _firestore.collection(_homesCollectionId).doc(homeId);
+      final homeDoc =
+          _firestore.collection(_homesCollectionId).doc(await _homeId);
 
       final batch = _firestore.batch();
 
@@ -88,6 +78,36 @@ class FirebaseHomeService implements HomeService {
       });
 
       batch.commit();
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
+
+  @override
+  Future<void> createHome(UpdateHomeDto homeInfo) async {
+    try {
+      final homeDoc =
+          _firestore.collection(_homesCollectionId).doc(await _homeId);
+
+      await homeDoc.update(homeInfo.toJson());
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
+
+  String get _userId {
+    final userId = _firebaseAuth.currentUser?.uid;
+
+    if (userId == null) throw const NetworkError.notAuthenticated();
+
+    return userId;
+  }
+
+  Future<String> get _homeId async {
+    try {
+      final userSnapshot =
+          await _firestore.collection(_usersCollectionId).doc(_userId).get();
+      return userSnapshot.data()!['userProfile']['homeId'];
     } on FirebaseException catch (error) {
       throw error.toNetworkError();
     }

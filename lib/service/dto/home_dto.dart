@@ -10,6 +10,10 @@ class HomeDto with _$HomeDto {
     required String adminId,
     required List<String> users,
     required HomeStatus homeStatus,
+    required String name,
+    String? address,
+    String? about,
+    String? avatarUrl,
   }) = _HomeDto;
 
   factory HomeDto.fromJson(Map<String, dynamic> json) =>

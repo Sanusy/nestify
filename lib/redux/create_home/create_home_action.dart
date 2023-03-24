@@ -33,3 +33,9 @@ class HomeAboutChangedAction {
 
   HomeAboutChangedAction(this.newAbout);
 }
+
+class CreateHomeAction {}
+
+class HomeCreatedAction {}
+
+class FailedToCreateHomeAction {}
