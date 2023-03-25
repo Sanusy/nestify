@@ -1,2 +1,2 @@
-json_key_file("secrets/nestify-e2a8e-f3b75187bad9.json")
+json_key_file("secrets/play_store_credentials.json")
 package_name("com.gmail.ivan.morozyk.nestify")

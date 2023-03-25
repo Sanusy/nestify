@@ -34,7 +34,7 @@ platform :android do
   lane :firebase do
     latest_release = firebase_app_distribution_get_latest_release(
       app: FIREBASE_APP_ID_ANDROID,
-      service_credentials_file: "secrets/nestify-dev-01aa131c1b9f.json"
+      service_credentials_file: "secrets/firebase_credentials.json"
     )
 
     increment_version_code({ version_code: latest_release[:buildVersion].to_i + 1 })
@@ -46,7 +46,7 @@ platform :android do
       android_artifact_type: "APK",
       groups: "friends",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-dev-release.apk",
-      service_credentials_file: "secrets/nestify-dev-01aa131c1b9f.json"
+      service_credentials_file: "secrets/firebase_credentials.json"
     )
     end
 end
