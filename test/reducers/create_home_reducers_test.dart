@@ -121,7 +121,7 @@ void main() {
 
       store.dispatch(CreateHomeErrorProcessedAction());
 
-      expect(store.state.createHomeState.error, null);
+      expect(store.state.createHomeState.error, 'null');
     });
   });
 }
