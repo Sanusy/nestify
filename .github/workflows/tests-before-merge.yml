@@ -17,10 +17,8 @@ jobs:
               owner: Sanusy
               repo: nestify
               name: "Test check run"
+              conclusion: "in_progress"
               head_sha: ${{ github.sha }}
-              output: | # The | is significant!
-                title: Test check run title
-                summary: A summary of the test check run
             env:
               GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
