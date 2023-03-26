@@ -28,6 +28,10 @@ jobs:
               flutter-version: '3.7.7'
               channel: 'stable'
 
+          - name: Print response
+            run: |
+              echo "${{ steps.create_check_run.outputs.response }}"
+
           - name: Flutter get
             working-directory: ${{ github.workspace }}
             run: flutter pub get
