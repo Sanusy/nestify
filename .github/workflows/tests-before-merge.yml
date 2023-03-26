@@ -10,13 +10,6 @@ jobs:
           - name: Checkout code
             uses: actions/checkout@v2
 
-          - name: Authenticate with GitHub API
-            uses: octokit/request-action@v2.x
-            with:
-              route: GET /app
-            env:
-              GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-
           - uses: octokit/request-action@v2.x
             id: create_check_run
             with:
@@ -27,7 +20,7 @@ jobs:
               conclusion: "in_progress"
               head_sha: ${{ github.sha }}
             env:
-              GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+              TOKEN: ${{ secrets.GH_TOKEN }}
 
           - name: Install Flutter
             uses: subosito/flutter-action@v2
@@ -56,5 +49,5 @@ jobs:
               check_run_id: ${{ fromJson(steps.create_check_run.outputs.data).id }}
               conclusion: "success"
             env:
-              GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+              TOKEN: ${{ secrets.GH_TOKEN }}
 
