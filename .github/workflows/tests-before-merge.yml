@@ -2,7 +2,7 @@ name: run-tests-before-enable-merge
 run-name: ${{ github.actor }} wants to merge a pull request
 on:
   pull_request:
-    types: [ opened, reopened, edited ]
+    types: [ opened, reopened, synchronize ]
     branches:
       - master
 
