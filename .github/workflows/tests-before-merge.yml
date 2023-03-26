@@ -13,14 +13,13 @@ jobs:
           - uses: octokit/request-action@v2.x
             id: create_check_run
             with:
+              token: ${{ secrets.GH_TOKEN }}
               route: POST /repos/{owner}/{repo}/check-runs
               owner: Sanusy
               repo: nestify
               name: "Test check run"
               conclusion: "in_progress"
               head_sha: ${{ github.sha }}
-            env:
-              TOKEN: ${{ secrets.GH_TOKEN }}
 
           - name: Install Flutter
             uses: subosito/flutter-action@v2
@@ -43,11 +42,10 @@ jobs:
           - uses: octokit/request-action@v2.x
             id: update_check_run
             with:
+              token: ${{ secrets.GH_TOKEN }}
               route: PATCH /repos/{owner}/{repo}/check-runs/{check_run_id}
               owner: Sanusy
               repo: nestify
               check_run_id: ${{ fromJson(steps.create_check_run.outputs.data).id }}
               conclusion: "success"
-            env:
-              TOKEN: ${{ secrets.GH_TOKEN }}
 
