@@ -7,17 +7,17 @@ import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
 import 'package:redux/redux.dart';
 
-class OnCreateHomeMiddleware extends BaseMiddleware<OnCreateHomeAction> {
+class CreateHomeDraftMiddleware extends BaseMiddleware<CreateHomeDraftAction> {
   final HomeService _homeService;
 
-  OnCreateHomeMiddleware(
+  CreateHomeDraftMiddleware(
     this._homeService,
   );
 
   @override
   Future<void> process(
     Store<AppState> store,
-    OnCreateHomeAction action,
+    CreateHomeDraftAction action,
   ) async {
     try {
       await _homeService.createHomeDraft();

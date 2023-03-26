@@ -43,8 +43,11 @@ dependencies:
   image_picker: ^0.8.7
 
 dev_dependencies:
+  # Testing
   flutter_test:
     sdk: flutter
+  mocktail: ^0.3.0
+
   flutter_lints: ^2.0.0
 
   build_runner: ^2.3.3

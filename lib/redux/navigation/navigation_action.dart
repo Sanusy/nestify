@@ -5,13 +5,13 @@ part 'navigation_action.freezed.dart';
 
 @freezed
 abstract class NavigationAction with _$NavigationAction {
-  const factory NavigationAction.push(AppRoute route) = _PushNavigationAction;
+  const factory NavigationAction.push(AppRoute route) = PushNavigationAction;
 
   const factory NavigationAction.replace(AppRoute route) =
-      _ReplaceNavigationAction;
+      ReplaceNavigationAction;
 
   const factory NavigationAction.setPath(AppRoute route) =
-      _SetPathNavigationAction;
+      SetPathNavigationAction;
 
-  const factory NavigationAction.pop() = _PopNavigationAction;
+  const factory NavigationAction.pop() = PopNavigationAction;
 }

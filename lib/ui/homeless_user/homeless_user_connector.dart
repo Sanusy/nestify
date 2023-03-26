@@ -20,7 +20,7 @@ class HomelessUserConnector extends BaseConnector<HomelessUserViewModel>
     return HomelessUserViewModel(
       onCreateHome: homelessUserState.isLoading
           ? null
-          : store.createCommand(OnCreateHomeAction()),
+          : store.createCommand(CreateHomeDraftAction()),
       onScanQrCode: homelessUserState.isLoading ? null : Command.stub,
       onLogout: homelessUserState.isLoading
           ? null

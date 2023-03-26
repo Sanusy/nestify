@@ -1,4 +1,4 @@
-class OnCreateHomeAction {}
+class CreateHomeDraftAction {}
 
 class CreatedHomeDraftAction {}
 
