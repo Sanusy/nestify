@@ -2,7 +2,10 @@ name: run-tests-before-enable-merge
 run-name: ${{ github.actor }} wants to merge a pull request
 on:
   pull_request:
-    types: [ opened, reopened ]
+    types: [ opened, reopened, edited ]
+    branches:
+      - master
+
 jobs:
      run-tests:
         runs-on: macos-latest
