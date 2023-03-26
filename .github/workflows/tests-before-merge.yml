@@ -13,7 +13,7 @@ jobs:
           - name: Authenticate with GitHub API
             uses: octokit/request-action@v2.x
             with:
-              route: GET /user
+              route: GET /app
             env:
               GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
