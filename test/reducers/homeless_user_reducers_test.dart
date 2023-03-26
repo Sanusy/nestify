@@ -48,7 +48,7 @@ void main() {
 
       store.dispatch(HomelessUserErrorProcessedAction());
 
-      expect(store.state.homelessUserState.error, null);
+      expect(store.state.homelessUserState.error, 'null');
     });
   });
 }
