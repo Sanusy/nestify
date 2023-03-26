@@ -14,8 +14,8 @@ jobs:
             id: create_check_run
             with:
               route: POST /repos/{owner}/{repo}/check-runs
-              owner: octokit
-              repo: request-action
+              owner: Sanusy
+              repo: nestify
               name: "Test check run"
               head_sha: ${{ github.sha }}
               output: | # The | is significant!
@@ -46,8 +46,8 @@ jobs:
             id: update_check_run
             with:
               route: PATCH /repos/{owner}/{repo}/check-runs/{check_run_id}
-              owner: octokit
-              repo: request-action
+              owner: Sanusy
+              repo: nestify
               check_run_id: ${{ fromJson(steps.create_check_run.outputs.data).id }}
               conclusion: "success"
             env:
