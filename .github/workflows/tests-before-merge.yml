@@ -39,3 +39,14 @@ jobs:
             working-directory: ${{ github.workspace }}
             run: flutter test
 
+          - uses: octokit/request-action@v2.x
+            id: update_check_run
+            with:
+              route: PATCH /repos/{owner}/{repo}/check-runs/{check_run_id}
+              owner: octokit
+              repo: request-action
+              check_run_id: ${{ fromJson(steps.create_check_run.outputs.data).id }}
+              conclusion: "success"
+            env:
+              GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
