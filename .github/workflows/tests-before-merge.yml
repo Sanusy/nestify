@@ -1,0 +1,30 @@
+name: run-tests-before-enable-merge
+run-name: ${{ github.actor }} wants to merge a pull request
+on:
+  pull_request:
+    types: [ opened, reopened ]
+jobs:
+     build_apk:
+        runs-on: macos-latest
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v2
+
+          - name: Install Flutter
+            uses: subosito/flutter-action@v2
+            with:
+              flutter-version: '3.7.7'
+              channel: 'stable'
+
+          - name: Flutter get
+            working-directory: ${{ github.workspace }}
+            run: flutter pub get
+
+          - name: Flutter run build runner
+            working-directory: ${{ github.workspace }}
+            run: flutter pub run build_runner build --delete-conflicting-outputs
+
+          - name: Flutter run tests
+            working-directory: ${{ github.workspace }}
+            run: flutter test
+

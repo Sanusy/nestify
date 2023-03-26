@@ -11,7 +11,7 @@ final homelessUserStateReducer = combineReducers<HomelessUserState>([
 
 HomelessUserState _onCreateHome(
   HomelessUserState state,
-  OnCreateHomeAction action,
+  CreateHomeDraftAction action,
 ) {
   return state.copyWith(
     isLoading: true,
