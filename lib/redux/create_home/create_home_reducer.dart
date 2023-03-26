@@ -85,7 +85,7 @@ CreateHomeState _failedToCreateHome(
 
 CreateHomeState _errorProcessed(
   CreateHomeState state,
-  FailedToCreateHomeAction action,
+  CreateHomeErrorProcessedAction action,
 ) {
   return state.copyWith(
     error: null,
