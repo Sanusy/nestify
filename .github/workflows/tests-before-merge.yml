@@ -10,6 +10,14 @@ jobs:
           - name: Checkout code
             uses: actions/checkout@v2
 
+          - name: Authenticate with GitHub API
+            uses: octokit/request-action@v2.x
+            with:
+              route: GET /user
+              headers: |
+                Authorization: token ${{ secrets.GH_TOKEN }}
+                Accept: application/vnd.github+json
+
           - uses: octokit/request-action@v2.x
             id: create_check_run
             with:
