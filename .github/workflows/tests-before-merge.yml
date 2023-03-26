@@ -10,16 +10,19 @@ jobs:
           - name: Checkout code
             uses: actions/checkout@v2
 
-        - uses: octokit/request-action@v2.x
-          id: update_check_run
-          with:
-            route: PATCH /repos/{owner}/{repo}/check-runs/{check_run_id}
-            owner: octokit
-            repo: request-action
-            check_run_id: ${{ fromJson(steps.create_check_run.outputs.data).id }}
-            conclusion: "in_progress"
-          env:
-            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          - uses: octokit/request-action@v2.x
+              id: create_check_run
+              with:
+                route: POST /repos/{owner}/{repo}/check-runs
+                owner: octokit
+                repo: request-action
+                name: "Test check run"
+                head_sha: ${{ github.sha }}
+                output: | # The | is significant!
+                  title: Test check run title
+                  summary: A summary of the test check run
+              env:
+                GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
           - name: Install Flutter
             uses: subosito/flutter-action@v2
