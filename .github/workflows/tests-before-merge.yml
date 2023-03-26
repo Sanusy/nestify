@@ -14,9 +14,8 @@ jobs:
             uses: octokit/request-action@v2.x
             with:
               route: GET /user
-              headers: |
-                Authorization: token ${{ secrets.GH_TOKEN }}
-                Accept: application/vnd.github+json
+            env:
+              GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
           - uses: octokit/request-action@v2.x
             id: create_check_run
