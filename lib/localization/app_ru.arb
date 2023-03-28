@@ -1,4 +1,8 @@
 {
+  "commonYellow": "Желтый",
+  "commonBlue": "Синий",
+  "commonGreen": "Зеленый",
+  "commonPurple": "Фиолетовый",
   "commonLogout": "Выйти",
   "commonError": "Упс... Что-то пошло не так:(",
   "commonDiscard": "Отмена",
@@ -13,5 +17,11 @@
   "createHomeName": "Название дома",
   "createHomeAddress": "Адрес",
   "createHomeAbout": "Про дом",
-  "createHomeSaveProfile": "Сохранить профиль"
+  "createHomeSaveProfile": "Сохранить профиль",
+  "createUserProfileTitle": "Создать свой профиль",
+  "createUserProfileNameHint": "Имя",
+  "createUserProfileBioHint": "О себе",
+  "createUserProfileSelectColorTitle": "Выберите свой цвет",
+  "createUserProfileSelectColorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом",
+  "createUserProfileSave": "Сохранить профиль"
 }

@@ -1,4 +1,8 @@
 {
+  "commonYellow": "Yellow",
+  "commonBlue": "Blue",
+  "commonGreen": "Green",
+  "commonPurple": "Purple",
   "commonLogout": "Log out",
   "commonError": "Oops... Something went wrong:(",
   "commonDiscard": "Discard",
@@ -13,5 +17,11 @@
   "createHomeName": "Home name",
   "createHomeAddress": "Address",
   "createHomeAbout": "About",
-  "createHomeSaveProfile": "Save profile"
+  "createHomeSaveProfile": "Save profile",
+  "createUserProfileTitle": "Create your profile",
+  "createUserProfileNameHint": "Name",
+  "createUserProfileBioHint": "Bio",
+  "createUserProfileSelectColorTitle": "Select your color",
+  "createUserProfileSelectColorDescription": "Your tasks, reminders and messages will be marked with this color.",
+  "createUserProfileSave": "Save profile"
 }
