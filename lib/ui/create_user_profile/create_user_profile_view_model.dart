@@ -7,5 +7,6 @@ part 'create_user_profile_view_model.freezed.dart';
 class CreateUserProfileViewModel with _$CreateUserProfileViewModel {
   const factory CreateUserProfileViewModel({
     required Command onLogout,
+    required Command onDiscard,
   }) = _CreateUserProfileViewModel;
 }

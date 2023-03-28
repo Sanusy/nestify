@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/create_home/create_home_action.dart';
 import 'package:nestify/redux/login/login_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
@@ -16,8 +17,10 @@ class CreateUserProfileConnector
       BuildContext context, Store<AppState> store) {
     return CreateUserProfileViewModel(
       onLogout: store.createCommand(
-        LogoutAction(),
+        LogoutAction()
       ),
+      //TODO: In future use different action based on creating home or joining home
+      onDiscard: store.createCommand(DiscardCreateHomeAction())
     );
   }
 

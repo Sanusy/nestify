@@ -1,0 +1,4 @@
+enum CreateUserProfileAppBarActions {
+  discard,
+  logOut,
+}
