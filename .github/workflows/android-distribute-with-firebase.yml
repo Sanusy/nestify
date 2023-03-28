@@ -1,10 +1,11 @@
-name: ci
+name: android-distribute-with-firebase
+run-name: ${{ github.actor }} wants to distribute test build with Firebase
 on:
   push:
     branches:
       - master
 jobs:
-      build_apk:
+      distribute_with_firebase:
         runs-on: macos-latest
         steps:
           - name: Checkout code
@@ -44,12 +45,12 @@ jobs:
               echo keyAlias=\${{ secrets.SIGNING_KEY_ALIAS }} >> ${{env.PROPERTIES_PATH}}
               echo storeFile=\${{ secrets.STORE_FILE }} >> ${{env.PROPERTIES_PATH}}
             env:
-              PROPERTIES_PATH: "${{ github.workspace }}/android/key.properties"
+              PROPERTIES_PATH: "${{ github.workspace }}/android/secrets/key.properties"
 
           - name: Create Firebase Service Credentials file
             run: |
-              echo "$FIREBASE_CREDENTIALS" > nestify-dev-01aa131c1b9f.json.b64
-              base64 -d -i nestify-dev-01aa131c1b9f.json.b64 > "${{ github.workspace }}/android/secrets/nestify-dev-01aa131c1b9f.json"
+              echo "$FIREBASE_CREDENTIALS" > firebase_credentials.json.b64
+              base64 -d -i firebase_credentials.json.b64 > "${{ github.workspace }}/android/secrets/firebase_credentials.json"
             env:
               FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
 
