@@ -22,6 +22,6 @@
   "createUserProfileNameHint": "Имя",
   "createUserProfileBioHint": "О себе",
   "createUserProfileSelectColorTitle": "Выберите свой цвет",
-  "createUserProfileSelectColorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом",
+  "createUserProfileSelectColorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом.",
   "createUserProfileSave": "Сохранить профиль"
 }
