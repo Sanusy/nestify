@@ -89,7 +89,9 @@ class FirebaseHomeService implements HomeService {
       final homeDoc =
           _firestore.collection(_homesCollectionId).doc(await _homeId);
 
-      await homeDoc.update(homeInfo.toJson());
+      final json = homeInfo.toJson();
+
+      await homeDoc.update(json);
     } on FirebaseException catch (error) {
       throw error.toNetworkError();
     }

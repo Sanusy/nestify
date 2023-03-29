@@ -37,7 +37,7 @@ class CreateHomeMiddleware extends BaseMiddleware<CreateHomeAction> {
             )
           : null;
 
-      final homeInfoDto = UpdateHomeDto(
+      final homeInfoDto = UpdateHomeDto.onCreate(
         name: store.state.createHomeState.homeName,
         address: store.state.createHomeState.homeAddress,
         about: store.state.createHomeState.about,
