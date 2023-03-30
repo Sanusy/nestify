@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/redux/app_state.dart';
-import 'package:nestify/redux/homeless_user/homeless_user_action.dart';
 import 'package:nestify/redux/login/login_action.dart';
+import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/common/popup_mixin.dart';
@@ -16,36 +16,14 @@ class HomelessUserConnector extends BaseConnector<HomelessUserViewModel>
 
   @override
   HomelessUserViewModel convert(BuildContext context, Store<AppState> store) {
-    final homelessUserState = store.state.homelessUserState;
     return HomelessUserViewModel(
-      onCreateHome: homelessUserState.isLoading
-          ? null
-          : store.createCommand(CreateHomeDraftAction()),
-      onScanQrCode: homelessUserState.isLoading ? null : Command.stub,
-      onLogout: homelessUserState.isLoading
-          ? null
-          : store.createCommand(LogoutAction()),
-      isLoading: homelessUserState.isLoading,
-      event: homelessUserState.error?.when(
-        failedToCreateHomeDraft: () =>
-            HomelessUserEvent.failedToCreateHomeDraft(
-          onProcessed: store.createCommand(
-            HomelessUserErrorProcessedAction(),
-          ),
+      onCreateHome: store.createCommand(
+        const NavigationAction.push(
+          AppRoute.createHome(),
         ),
       ),
-    );
-  }
-
-  @override
-  void processEvent(BuildContext context, HomelessUserViewModel viewModel) {
-    final localization = AppLocalizations.of(context)!;
-    viewModel.event?.when(
-      failedToCreateHomeDraft: (onProcessed) => showSnackBar(
-        context,
-        localization.commonError,
-        onProcessed,
-      ),
+      onScanQrCode: Command.stub,
+      onLogout: store.createCommand(LogoutAction()),
     );
   }
 

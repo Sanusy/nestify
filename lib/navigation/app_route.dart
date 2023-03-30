@@ -18,5 +18,6 @@ class AppRoute with _$AppRoute {
 
   bool get fullscreenDialog => maybeWhen(
         orElse: () => false,
+        createHome: () => true,
       );
 }
