@@ -8,16 +8,29 @@ part 'create_home_view_model.freezed.dart';
 @Freezed(copyWith: false)
 class CreateHomeViewModel with _$CreateHomeViewModel {
   const factory CreateHomeViewModel({
-    required Command onDiscard,
-    required Command onLogout,
+    required CreateHomeStepViewModel createHomeStepViewModel,
+    required CreateHomeEvent? event,
+  }) = _CreateHomeViewModel;
+}
+
+@Freezed(copyWith: false)
+class CreateHomeStepViewModel with _$CreateHomeStepViewModel {
+  const factory CreateHomeStepViewModel.homeProfile({
     required AvatarPickerViewModel homeAvatarViewModel,
     required NestifyTextFieldViewModel homeNameViewModel,
     required NestifyTextFieldViewModel homeAddressViewModel,
     required NestifyTextFieldViewModel homeAboutViewModel,
-    required Command? onCreateHome,
+    required Command? onNext,
+  }) = CreateHomeProfileStepViewModel;
+
+  const factory CreateHomeStepViewModel.userProfile({
+    required AvatarPickerViewModel userAvatarViewModel,
+    required NestifyTextFieldViewModel userNameViewModel,
+    required NestifyTextFieldViewModel userBioViewModel,
     required bool isLoading,
-    required CreateHomeEvent? event,
-  }) = _CreateHomeViewModel;
+    required Command? onBack,
+    required Command? onCreate,
+  }) = CreateUserProfileStepViewModel;
 }
 
 @Freezed(copyWith: false)

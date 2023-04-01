@@ -5,27 +5,27 @@ import 'package:nestify/service/file_error.dart';
 import 'package:nestify/service/file_service/file_service.dart';
 import 'package:redux/redux.dart';
 
-class PickCreateHomeAvatarMiddleware
-    extends BaseMiddleware<PickCreateHomeAvatarAction> {
+class CreateHomePickUserAvatarMiddleware
+    extends BaseMiddleware<CreateHomePickUserAvatarAction> {
   final FileService _fileService;
 
-  PickCreateHomeAvatarMiddleware(
+  CreateHomePickUserAvatarMiddleware(
     this._fileService,
   );
 
   @override
   Future<void> process(
     Store<AppState> store,
-    PickCreateHomeAvatarAction action,
+    CreateHomePickUserAvatarAction action,
   ) async {
     try {
       final avatar = await _fileService.pictureFromGallery();
 
       if (avatar != null) {
-        store.dispatch(CreateHomeAvatarPickedAction(avatar));
+        store.dispatch(CreateHomeUserAvatarPickedAction(avatar));
       }
     } on FileError catch (_) {
-      store.dispatch(FailedToPickCreateHomeAvatarAction());
+      store.dispatch(CreateHomeFailedToPickAvatarAction());
     }
   }
 }

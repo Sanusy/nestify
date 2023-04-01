@@ -1,10 +1,14 @@
 import 'dart:io';
 
-class DiscardCreateHomeAction {}
+import 'package:nestify/redux/create_home/create_home_state.dart';
 
-class FailedToDiscardCreateHome {}
+class CreateHomeStepChangedAction {
+  final CreateHomeStep step;
 
-class PickCreateHomeAvatarAction {}
+  CreateHomeStepChangedAction(this.step);
+}
+
+class CreateHomePickHomeAvatarAction {}
 
 class CreateHomeAvatarPickedAction {
   final File avatar;
@@ -12,31 +16,53 @@ class CreateHomeAvatarPickedAction {
   CreateHomeAvatarPickedAction(this.avatar);
 }
 
-class FailedToPickCreateHomeAvatarAction {}
+class CreateHomeFailedToPickAvatarAction {}
 
 class RemoveCreateHomeAvatarAction {}
 
-class HomeNameChangedAction {
+class CreateHomeNameChangedAction {
   final String newName;
 
-  HomeNameChangedAction(this.newName);
+  CreateHomeNameChangedAction(this.newName);
 }
 
-class HomeAddressChangedAction {
+class CreateHomeAddressChangedAction {
   final String newAddress;
 
-  HomeAddressChangedAction(this.newAddress);
+  CreateHomeAddressChangedAction(this.newAddress);
 }
 
-class HomeAboutChangedAction {
+class CreateHomeAboutChangedAction {
   final String newAbout;
 
-  HomeAboutChangedAction(this.newAbout);
+  CreateHomeAboutChangedAction(this.newAbout);
+}
+
+class CreateHomePickUserAvatarAction {}
+
+class CreateHomeUserAvatarPickedAction {
+  final File avatar;
+
+  CreateHomeUserAvatarPickedAction(this.avatar);
+}
+
+class CreateHomeRemoveUserAvatarAction {}
+
+class CreateHomeUserNameChangedAction {
+  final String newName;
+
+  CreateHomeUserNameChangedAction(this.newName);
+}
+
+class CreateHomeUserBioChangedAction {
+  final String newBio;
+
+  CreateHomeUserBioChangedAction(this.newBio);
 }
 
 class CreateHomeAction {}
 
-class HomeCreatedAction {}
+class CloseCreateHomeAction {}
 
 class FailedToCreateHomeAction {}
 
