@@ -3,6 +3,9 @@ import 'package:nestify/redux/create_home/create_home_state.dart';
 import 'package:redux/redux.dart';
 
 final createHomeStateReducer = combineReducers<CreateHomeState>([
+  TypedReducer(_availableColorsLoading),
+  TypedReducer(_availableColorsLoaded),
+  TypedReducer(_failedToLoadColors),
   TypedReducer(_createHomeStepChanged),
   TypedReducer(_homeNameChanged),
   TypedReducer(_homeAddressChanged),
@@ -19,6 +22,35 @@ final createHomeStateReducer = combineReducers<CreateHomeState>([
   TypedReducer(_failedToCreateHome),
   TypedReducer(_errorProcessed),
 ]);
+
+CreateHomeState _availableColorsLoading(
+  CreateHomeState state,
+  LoadAvailableColorsAction action,
+) {
+  return state.copyWith(
+    isColorsLoading: true,
+  );
+}
+
+CreateHomeState _availableColorsLoaded(
+  CreateHomeState state,
+  LoadedAvailableColorsAction action,
+) {
+  return state.copyWith(
+    availableColors: action.availableColors,
+    isColorsLoading: false,
+  );
+}
+
+CreateHomeState _failedToLoadColors(
+  CreateHomeState state,
+  FailedToLoadAvailableColorsAction action,
+) {
+  return state.copyWith(
+    isColorsLoading: false,
+    error: const CreateHomeError.failedToLoadColors(),
+  );
+}
 
 CreateHomeState _createHomeStepChanged(
   CreateHomeState state,

@@ -89,7 +89,7 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
 
     return CreateHomeViewModel(
       createHomeStepViewModel: createHomeStepViewModel,
-      event: createHomeState.error?.when(
+      event: createHomeState.error?.whenOrNull(
         failedToObtainPhoto: () => CreateHomeEvent.failedToObtainPhoto(
           onProcessed: store.createCommand(
             CreateHomeErrorProcessedAction(),
@@ -105,8 +105,13 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
   }
 
   @override
+  void onInit(Store<AppState> store) {
+    store.dispatch(LoadAvailableColorsAction());
+  }
+
+  @override
   void onDispose(Store<AppState> store) {
-    // store.dispatch(CloseCreateHomeAction());
+    store.dispatch(CloseCreateHomeAction());
   }
 
   @override

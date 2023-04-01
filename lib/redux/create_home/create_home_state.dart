@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:nestify/models/user_color.dart';
 
 part 'create_home_state.freezed.dart';
 
@@ -10,6 +11,8 @@ class CreateHomeState with _$CreateHomeState {
     required CreateHomeStep createHomeStep,
     required HomeProfileDraftState homeProfileDraftState,
     required UserProfileDraftState userProfileDraftState,
+    required List<UserColor>? availableColors,
+    required bool isColorsLoading,
     required bool isLoading,
     required CreateHomeError? error,
   }) = _CreateHomeState;
@@ -18,6 +21,8 @@ class CreateHomeState with _$CreateHomeState {
         createHomeStep: CreateHomeStep.homeProfile,
         homeProfileDraftState: HomeProfileDraftState.initial(),
         userProfileDraftState: UserProfileDraftState.initial(),
+        availableColors: null,
+        isColorsLoading: false,
         isLoading: false,
         error: null,
       );
@@ -62,6 +67,8 @@ enum CreateHomeStep {
 
 @freezed
 class CreateHomeError with _$CreateHomeError {
+  const factory CreateHomeError.failedToLoadColors() = _FailedToLoadColors;
+
   const factory CreateHomeError.failedToObtainPhoto() = _FailedToObrainPhoto;
 
   const factory CreateHomeError.failedToCreate() = _FailedToCreate;

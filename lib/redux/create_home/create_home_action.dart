@@ -1,6 +1,17 @@
 import 'dart:io';
 
+import 'package:nestify/models/user_color.dart';
 import 'package:nestify/redux/create_home/create_home_state.dart';
+
+class LoadAvailableColorsAction {}
+
+class LoadedAvailableColorsAction {
+  final List<UserColor> availableColors;
+
+  LoadedAvailableColorsAction(this.availableColors);
+}
+
+class FailedToLoadAvailableColorsAction {}
 
 class CreateHomeStepChangedAction {
   final CreateHomeStep step;
