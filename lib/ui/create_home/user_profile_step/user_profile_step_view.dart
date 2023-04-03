@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/ui/common/avatar_picker/avatar_picker.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field.dart';
 import 'package:nestify/ui/create_home/create_home_view_model.dart';
+import 'package:nestify/ui/create_home/user_profile_step/create_home_color_selector/create_home_color_selector_view.dart';
 
 class CreateUserProfileStepView extends StatelessWidget {
   final CreateUserProfileStepViewModel viewModel;
@@ -15,7 +16,6 @@ class CreateUserProfileStepView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
 
     return CustomScrollView(
       slivers: [
@@ -44,14 +44,8 @@ class CreateUserProfileStepView extends StatelessWidget {
                   height: 120,
                 ),
                 const SizedBox(height: 32),
-                Text(
-                  localization.createHomeUserProfileSelectColorTitle,
-                  style: theme.textTheme.titleMedium,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  localization.createHomeUserProfileSelectColorDescription,
-                  style: theme.textTheme.bodySmall,
+                CreateHomeColorSelectorView(
+                  viewModel: viewModel.colorSelectorViewModel,
                 ),
                 const Spacer(),
                 Row(

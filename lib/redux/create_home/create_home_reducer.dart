@@ -17,6 +17,7 @@ final createHomeStateReducer = combineReducers<CreateHomeState>([
   TypedReducer(_pickedUserAvatar),
   TypedReducer(_removeUserAvatar),
   TypedReducer(_failedToPickAvatar),
+  TypedReducer(_colorSelected),
   TypedReducer(_createHome),
   TypedReducer(_createHomeClosed),
   TypedReducer(_failedToCreateHome),
@@ -28,7 +29,7 @@ CreateHomeState _availableColorsLoading(
   LoadAvailableColorsAction action,
 ) {
   return state.copyWith(
-    isColorsLoading: true,
+    colorsState: const ColorsLoadingState.loading(),
   );
 }
 
@@ -37,8 +38,10 @@ CreateHomeState _availableColorsLoaded(
   LoadedAvailableColorsAction action,
 ) {
   return state.copyWith(
-    availableColors: action.availableColors,
-    isColorsLoading: false,
+    colorsState: ColorsLoadingState.loaded(
+      selectedColor: null,
+      availableColors: action.availableColors,
+    ),
   );
 }
 
@@ -47,8 +50,7 @@ CreateHomeState _failedToLoadColors(
   FailedToLoadAvailableColorsAction action,
 ) {
   return state.copyWith(
-    isColorsLoading: false,
-    error: const CreateHomeError.failedToLoadColors(),
+    colorsState: const ColorsLoadingState.error(),
   );
 }
 
@@ -165,6 +167,20 @@ CreateHomeState _failedToPickAvatar(
   CreateHomeFailedToPickAvatarAction action,
 ) {
   return state.copyWith(error: const CreateHomeError.failedToObtainPhoto());
+}
+
+CreateHomeState _colorSelected(
+  CreateHomeState state,
+  CreateHomeColorSelectedAction action,
+) {
+  return state.copyWith(
+    colorsState: state.colorsState.maybeMap(
+      orElse: () => state.colorsState,
+      loaded: (loadedState) => loadedState.copyWith(
+        selectedColor: action.color,
+      ),
+    ),
+  );
 }
 
 CreateHomeState _createHome(

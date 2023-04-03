@@ -11,8 +11,7 @@ class CreateHomeState with _$CreateHomeState {
     required CreateHomeStep createHomeStep,
     required HomeProfileDraftState homeProfileDraftState,
     required UserProfileDraftState userProfileDraftState,
-    required List<UserColor>? availableColors,
-    required bool isColorsLoading,
+    required ColorsLoadingState colorsState,
     required bool isLoading,
     required CreateHomeError? error,
   }) = _CreateHomeState;
@@ -21,8 +20,7 @@ class CreateHomeState with _$CreateHomeState {
         createHomeStep: CreateHomeStep.homeProfile,
         homeProfileDraftState: HomeProfileDraftState.initial(),
         userProfileDraftState: UserProfileDraftState.initial(),
-        availableColors: null,
-        isColorsLoading: false,
+        colorsState: const ColorsLoadingState.loading(),
         isLoading: false,
         error: null,
       );
@@ -60,6 +58,18 @@ class UserProfileDraftState with _$UserProfileDraftState {
       );
 }
 
+@freezed
+class ColorsLoadingState with _$ColorsLoadingState {
+  const factory ColorsLoadingState.loading() = _Loading;
+
+  const factory ColorsLoadingState.error() = _Error;
+
+  const factory ColorsLoadingState.loaded({
+    required UserColor? selectedColor,
+    required List<UserColor> availableColors,
+  }) = _Loaded;
+}
+
 enum CreateHomeStep {
   homeProfile,
   userProfile,
@@ -67,8 +77,6 @@ enum CreateHomeStep {
 
 @freezed
 class CreateHomeError with _$CreateHomeError {
-  const factory CreateHomeError.failedToLoadColors() = _FailedToLoadColors;
-
   const factory CreateHomeError.failedToObtainPhoto() = _FailedToObrainPhoto;
 
   const factory CreateHomeError.failedToCreate() = _FailedToCreate;

@@ -10,6 +10,7 @@ import 'package:nestify/ui/common/popup_mixin.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field_view_model.dart';
 import 'package:nestify/ui/create_home/create_home_screen.dart';
 import 'package:nestify/ui/create_home/create_home_view_model.dart';
+import 'package:nestify/ui/create_home/user_profile_step/create_home_color_selector/create_home_color_selector_view_model.dart';
 import 'package:redux/redux.dart';
 
 class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
@@ -83,6 +84,29 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
             CreateHomeStepChangedAction(CreateHomeStep.homeProfile),
           ),
           onCreate: null,
+          colorSelectorViewModel: createHomeState.colorsState.map(
+            loading: (_) => const CreateHomeColorSelectorViewModel.loading(),
+            error: (_) => CreateHomeColorSelectorViewModel.error(
+                onRetry: store.createCommand(LoadAvailableColorsAction())),
+            loaded: (availableColors) {
+              return CreateHomeColorSelectorViewModel.loaded(
+                availableColors: availableColors.availableColors
+                    .map(
+                      (availableColor) => ColorViewModel(
+                          onSelect:
+                              availableColors.selectedColor == availableColor
+                                  ? null
+                                  : store.createCommand(
+                                      CreateHomeColorSelectedAction(
+                                        availableColor,
+                                      ),
+                                    ),
+                          color: availableColor.toColor),
+                    )
+                    .toList(),
+              );
+            },
+          ),
         );
         break;
     }

@@ -71,6 +71,12 @@ class CreateHomeUserBioChangedAction {
   CreateHomeUserBioChangedAction(this.newBio);
 }
 
+class CreateHomeColorSelectedAction {
+  final UserColor color;
+
+  CreateHomeColorSelectedAction(this.color);
+}
+
 class CreateHomeAction {}
 
 class CloseCreateHomeAction {}

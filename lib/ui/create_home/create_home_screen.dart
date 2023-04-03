@@ -25,6 +25,7 @@ class CreateHomeScreen extends StatelessWidget {
           ),
         ),
       ),
+      // TODO: Probably implement Stepper here to be clear what is going on each step
       body: SafeArea(
         child: viewModel.createHomeStepViewModel.map(
           homeProfile: (createHomeProfileViewModel) =>

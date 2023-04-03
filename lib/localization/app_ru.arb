@@ -4,6 +4,7 @@
   "commonDiscard": "Отмена",
   "commonNext": "Далее",
   "commonBack": "Назад",
+  "commonRetry": "Повторить",
   "loginWelcomeToNestify": "Добро пожаловать в Nestify!",
   "loginToStartLoginWith": "Для того, что-бы начать, войдите:",
   "loginLoginWithGoogle": "Войти через Google",

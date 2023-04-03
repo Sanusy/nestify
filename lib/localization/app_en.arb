@@ -4,6 +4,7 @@
   "commonDiscard": "Discard",
   "commonNext": "Next",
   "commonBack": "Back",
+  "commonRetry": "Retry",
   "loginWelcomeToNestify": "Welcome to Nestify!",
   "loginToStartLoginWith": "To start using app login with:",
   "loginLoginWithGoogle": "Log In with Google",
