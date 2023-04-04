@@ -18,7 +18,7 @@ final goRouter = GoRouter(
       redirect: (_, __) async {
         final userService = GetIt.instance.get<UserService>();
 
-        if (!userService.isLoggedIn()) {
+        if (userService.currentUserId() == null) {
           return const AppRoute.login().routePath;
         }
 

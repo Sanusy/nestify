@@ -62,28 +62,41 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
         createHomeStepViewModel = CreateHomeStepViewModel.userProfile(
           userAvatarViewModel: AvatarPickerViewModel(
               picture: createHomeState.userProfileDraftState.userAvatar,
-              onClick: store.createCommand(
-                createHomeState.userProfileDraftState.userAvatar == null
-                    ? CreateHomePickUserAvatarAction()
-                    : CreateHomeRemoveUserAvatarAction(),
-              )),
+              onClick: createHomeState.isLoading
+                  ? null
+                  : store.createCommand(
+                      createHomeState.userProfileDraftState.userAvatar == null
+                          ? CreateHomePickUserAvatarAction()
+                          : CreateHomeRemoveUserAvatarAction(),
+                    )),
           userNameViewModel: NestifyTextFieldViewModel(
             text: createHomeState.userProfileDraftState.userName,
-            onTextChanged: store.createCommandWith(
-              (newName) => CreateHomeUserNameChangedAction(newName),
-            ),
+            onTextChanged: createHomeState.isLoading
+                ? null
+                : store.createCommandWith(
+                    (newName) => CreateHomeUserNameChangedAction(newName),
+                  ),
           ),
           userBioViewModel: NestifyTextFieldViewModel(
             text: createHomeState.userProfileDraftState.userBio,
-            onTextChanged: store.createCommandWith(
-              (newBio) => CreateHomeUserBioChangedAction(newBio),
-            ),
+            onTextChanged: createHomeState.isLoading
+                ? null
+                : store.createCommandWith(
+                    (newBio) => CreateHomeUserBioChangedAction(newBio),
+                  ),
           ),
           isLoading: createHomeState.isLoading,
-          onBack: store.createCommand(
-            CreateHomeStepChangedAction(CreateHomeStep.homeProfile),
-          ),
-          onCreate: null,
+          onBack: createHomeState.isLoading
+              ? null
+              : store.createCommand(
+                  CreateHomeStepChangedAction(CreateHomeStep.homeProfile),
+                ),
+          onCreate: createHomeState.homeProfileDraftState.homeName.isEmpty ||
+                  createHomeState.userProfileDraftState.userName.isEmpty ||
+                  createHomeState.userProfileDraftState.selectedColor == null ||
+                  createHomeState.isLoading
+              ? null
+              : store.createCommand(CreateHomeAction()),
           colorSelectorViewModel: createHomeState.colorsState.map(
             loading: (_) => const CreateHomeColorSelectorViewModel.loading(),
             error: (_) => CreateHomeColorSelectorViewModel.error(
@@ -93,15 +106,17 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
                 availableColors: availableColors.availableColors
                     .map(
                       (availableColor) => ColorViewModel(
-                          onSelect:
-                              availableColors.selectedColor == availableColor
-                                  ? null
-                                  : store.createCommand(
-                                      CreateHomeColorSelectedAction(
-                                        availableColor,
-                                      ),
-                                    ),
-                          color: availableColor.toColor),
+                        onSelect: createHomeState
+                                    .userProfileDraftState.selectedColor ==
+                                availableColor
+                            ? null
+                            : store.createCommand(
+                                CreateHomeColorSelectedAction(
+                                  availableColor,
+                                ),
+                              ),
+                        color: availableColor.toColor,
+                      ),
                     )
                     .toList(),
               );

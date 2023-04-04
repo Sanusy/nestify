@@ -18,11 +18,7 @@ List<Middleware<AppState>> appMiddleware = [
   LoginWithGoogleMiddleware(_serviceLocator.get()),
   LogoutMiddleware(_serviceLocator.get()),
   CreateHomePickHomeAvatarMiddleware(_serviceLocator.get()),
-  CreateHomeMiddleware(
-    _serviceLocator.get(),
-    _serviceLocator.get(),
-    _serviceLocator.get(),
-  ),
+  CreateHomeMiddleware(_serviceLocator.get()),
   CreateHomePickUserAvatarMiddleware(_serviceLocator.get()),
   LoadAvailableColorsMiddleware(_serviceLocator.get()),
 ];

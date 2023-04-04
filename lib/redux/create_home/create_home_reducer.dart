@@ -39,7 +39,6 @@ CreateHomeState _availableColorsLoaded(
 ) {
   return state.copyWith(
     colorsState: ColorsLoadingState.loaded(
-      selectedColor: null,
       availableColors: action.availableColors,
     ),
   );
@@ -174,11 +173,8 @@ CreateHomeState _colorSelected(
   CreateHomeColorSelectedAction action,
 ) {
   return state.copyWith(
-    colorsState: state.colorsState.maybeMap(
-      orElse: () => state.colorsState,
-      loaded: (loadedState) => loadedState.copyWith(
-        selectedColor: action.color,
-      ),
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      selectedColor: action.color,
     ),
   );
 }

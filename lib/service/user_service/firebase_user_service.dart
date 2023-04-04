@@ -11,8 +11,8 @@ class FirebaseUserService implements UserService {
   final _firestore = FirebaseFirestore.instance;
 
   @override
-  bool isLoggedIn() {
-    return _firebaseAuth.currentUser?.uid != null;
+  String? currentUserId() {
+    return _firebaseAuth.currentUser?.uid;
   }
 
   @override

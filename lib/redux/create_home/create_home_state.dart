@@ -49,12 +49,14 @@ class UserProfileDraftState with _$UserProfileDraftState {
     required File? userAvatar,
     required String userName,
     required String userBio,
+    required UserColor? selectedColor,
   }) = _UserProfileDraftState;
 
   factory UserProfileDraftState.initial() => const UserProfileDraftState(
         userAvatar: null,
         userName: '',
         userBio: '',
+        selectedColor: null,
       );
 }
 
@@ -65,7 +67,6 @@ class ColorsLoadingState with _$ColorsLoadingState {
   const factory ColorsLoadingState.error() = _Error;
 
   const factory ColorsLoadingState.loaded({
-    required UserColor? selectedColor,
     required List<UserColor> availableColors,
   }) = _Loaded;
 }

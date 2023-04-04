@@ -1,5 +1,5 @@
 abstract class UserService {
-  bool isLoggedIn();
+  String? currentUserId();
 
   Future<String?> homeId();
 
