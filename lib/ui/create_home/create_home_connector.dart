@@ -91,10 +91,7 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
               : store.createCommand(
                   CreateHomeStepChangedAction(CreateHomeStep.homeProfile),
                 ),
-          onCreate: createHomeState.homeProfileDraftState.homeName.isEmpty ||
-                  createHomeState.userProfileDraftState.userName.isEmpty ||
-                  createHomeState.userProfileDraftState.selectedColor == null ||
-                  createHomeState.isLoading
+          onCreate: createHomeState.canCreateHome
               ? null
               : store.createCommand(CreateHomeAction()),
           colorSelectorViewModel: createHomeState.colorsState.map(
@@ -127,6 +124,9 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
     }
 
     return CreateHomeViewModel(
+      quitConfirmation: createHomeState.hasChanges
+          ? store.baseQuitConfirmationViewModel
+          : null,
       createHomeStepViewModel: createHomeStepViewModel,
       event: createHomeState.error?.whenOrNull(
         failedToObtainPhoto: () => CreateHomeEvent.failedToObtainPhoto(

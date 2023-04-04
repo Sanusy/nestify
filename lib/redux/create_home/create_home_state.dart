@@ -7,6 +7,8 @@ part 'create_home_state.freezed.dart';
 
 @freezed
 class CreateHomeState with _$CreateHomeState {
+  const CreateHomeState._();
+
   const factory CreateHomeState({
     required CreateHomeStep createHomeStep,
     required HomeProfileDraftState homeProfileDraftState,
@@ -24,6 +26,16 @@ class CreateHomeState with _$CreateHomeState {
         isLoading: false,
         error: null,
       );
+
+  bool get hasChanges =>
+      createHomeStep == CreateHomeStep.userProfile ||
+      homeProfileDraftState != HomeProfileDraftState.initial();
+
+  bool get canCreateHome =>
+      homeProfileDraftState.homeName.isEmpty ||
+      userProfileDraftState.userName.isEmpty ||
+      userProfileDraftState.selectedColor == null ||
+      isLoading;
 }
 
 @freezed
