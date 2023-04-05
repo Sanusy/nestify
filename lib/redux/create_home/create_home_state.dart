@@ -32,10 +32,10 @@ class CreateHomeState with _$CreateHomeState {
       homeProfileDraftState != HomeProfileDraftState.initial();
 
   bool get canCreateHome =>
-      homeProfileDraftState.homeName.isEmpty ||
-      userProfileDraftState.userName.isEmpty ||
-      userProfileDraftState.selectedColor == null ||
-      isLoading;
+      homeProfileDraftState.homeName.isNotEmpty &&
+      userProfileDraftState.userName.isNotEmpty &&
+      userProfileDraftState.selectedColor != null &&
+      !isLoading;
 }
 
 @freezed

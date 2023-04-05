@@ -92,8 +92,8 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
                   CreateHomeStepChangedAction(CreateHomeStep.homeProfile),
                 ),
           onCreate: createHomeState.canCreateHome
-              ? null
-              : store.createCommand(CreateHomeAction()),
+              ? store.createCommand(CreateHomeAction())
+              : null,
           colorSelectorViewModel: createHomeState.colorsState.map(
             loading: (_) => const CreateHomeColorSelectorViewModel.loading(),
             error: (_) => CreateHomeColorSelectorViewModel.error(
