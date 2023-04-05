@@ -28,7 +28,10 @@ abstract class AppTextStyles {
 
   static const bodyLarge = TextStyle(fontSize: 16);
   static const bodyMedium = TextStyle(fontSize: 14);
-  static const bodySmall = TextStyle(fontSize: 12);
+  static const bodySmall = TextStyle(
+    fontSize: 12,
+    color: AppColors.subtitleColor,
+  );
 }
 
 const appTextTheme = TextTheme(

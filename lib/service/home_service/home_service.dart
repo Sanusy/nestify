@@ -1,12 +1,11 @@
-import 'package:nestify/service/dto/home_dto.dart';
-import 'package:nestify/service/dto/update_home_dto.dart';
+import 'package:nestify/models/user_color.dart';
+import 'package:nestify/redux/create_home/create_home_state.dart';
 
 abstract class HomeService {
-  Future<void> createHomeDraft();
+  Future<List<UserColor>> availableColors();
 
-  Future<void> createHome(UpdateHomeDto homeInfo);
-
-  Future<HomeDto> userHome();
-
-  Future<void> discardCreateHome();
+  Future<void> createHome({
+    required HomeProfileDraftState homeDraft,
+    required UserProfileDraftState userDraft,
+  });
 }

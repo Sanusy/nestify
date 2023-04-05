@@ -1,81 +1,89 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:nestify/service/dto/home_dto.dart';
-import 'package:nestify/service/dto/update_home_dto.dart';
-import 'package:nestify/service/dto/user_profile_dto.dart';
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:nestify/models/home.dart';
+import 'package:nestify/models/user.dart';
+import 'package:nestify/models/user_color.dart';
+import 'package:nestify/redux/create_home/create_home_state.dart';
+import 'package:nestify/service/file_error.dart';
 import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
 
 class FirebaseHomeService implements HomeService {
   final _usersCollectionId = 'Users';
   final _homesCollectionId = 'Homes';
+  final _colorsCollectionId = 'Colors';
 
   final _firebaseAuth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
+  final _storage = FirebaseStorage.instance;
 
   @override
-  Future<void> createHomeDraft() async {
-    final userId = _userId;
+  Future<List<UserColor>> availableColors() async {
+    try {
+      final colorsSnapshot =
+          await _firestore.collection(_colorsCollectionId).get();
+
+      return colorsSnapshot.docs.map((colorDoc) {
+        return UserColor.fromJson(colorDoc.data());
+      }).toList();
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
+
+  @override
+  Future<void> createHome({
+    required HomeProfileDraftState homeDraft,
+    required UserProfileDraftState userDraft,
+  }) async {
+    final userId = _firebaseAuth.currentUser?.uid;
+
+    if (userId == null) throw const NetworkError.notAuthenticated();
 
     try {
-      final homeDraftDoc = _firestore.collection(_homesCollectionId).doc();
-      final homeDraft = HomeDto(
-        id: homeDraftDoc.id,
+      final userSnapshot = _firestore.collection(_usersCollectionId).doc(userId);
+      final homeSnapshot = _firestore.collection(_homesCollectionId).doc();
+
+      final userAvatarUrl = userDraft.userAvatar == null
+          ? null
+          : await _uploadPicture(
+              'Users/$userId/Avatar/Avatar_${DateTime.now().toString()}',
+              userDraft.userAvatar!,
+            );
+
+      final homeAvatarUrl = homeDraft.homeAvatar == null
+          ? null
+          : await _uploadPicture(
+              'Homes/${homeSnapshot.id}/Avatar/Avatar_${DateTime.now().toString()}',
+              userDraft.userAvatar!,
+            );
+
+      final homeModel = Home(
+        id: homeSnapshot.id,
+        homeName: homeDraft.homeName,
         adminId: userId,
-        users: [userId],
-        name: '',
-        homeStatus: HomeStatus.draft,
+        usersUrls: [userId],
+        address: homeDraft.homeAddress,
+        about: homeDraft.homeAbout,
+        avatarUrl: homeAvatarUrl,
       );
 
-      final userDoc = _firestore.collection(_usersCollectionId).doc(userId);
-      final userProfile = UserProfileDto(
+      final userModel = User(
         id: userId,
-        homeId: homeDraftDoc.id,
-        userProfileStatus: UserProfileStatus.draft,
+        userName: userDraft.userName,
+        homeId: homeModel.id,
+        colorId: userDraft.selectedColor!.id,
+        bio: userDraft.userBio,
+        avatarUrl: userAvatarUrl,
       );
 
       final batch = _firestore.batch();
 
-      batch.set(homeDraftDoc, homeDraft.toJson());
-      batch.update(
-        userDoc,
-        {'userProfile': userProfile.toJson()},
-      );
-
-      await batch.commit();
-    } on FirebaseException catch (error) {
-      throw error.toNetworkError();
-    }
-  }
-
-  @override
-  Future<HomeDto> userHome() async {
-    try {
-      final homeDoc = await _firestore
-          .collection(_homesCollectionId)
-          .doc(await _homeId)
-          .get();
-      return HomeDto.fromJson(homeDoc.data()!);
-    } on FirebaseException catch (error) {
-      throw error.toNetworkError();
-    }
-  }
-
-  @override
-  Future<void> discardCreateHome() async {
-    try {
-      final userSnapshot =
-          await _firestore.collection(_usersCollectionId).doc(_userId).get();
-
-      final homeDoc =
-          _firestore.collection(_homesCollectionId).doc(await _homeId);
-
-      final batch = _firestore.batch();
-
-      batch.delete(homeDoc);
-      batch.update(userSnapshot.reference, {
-        'userProfile': null,
-      });
+      batch.set(homeSnapshot, homeModel.toJson());
+      batch.update(userSnapshot, userModel.toJson());
 
       batch.commit();
     } on FirebaseException catch (error) {
@@ -83,33 +91,17 @@ class FirebaseHomeService implements HomeService {
     }
   }
 
-  @override
-  Future<void> createHome(UpdateHomeDto homeInfo) async {
+  Future<String> _uploadPicture(String path, File picture) async {
+    final storageRef = _storage.ref();
+
+    final avatarRef = storageRef.child(path);
+
     try {
-      final homeDoc =
-          _firestore.collection(_homesCollectionId).doc(await _homeId);
+      final uploadedAvatar = await avatarRef.putFile(picture);
 
-      await homeDoc.update(homeInfo.toJson());
-    } on FirebaseException catch (error) {
-      throw error.toNetworkError();
-    }
-  }
-
-  String get _userId {
-    final userId = _firebaseAuth.currentUser?.uid;
-
-    if (userId == null) throw const NetworkError.notAuthenticated();
-
-    return userId;
-  }
-
-  Future<String> get _homeId async {
-    try {
-      final userSnapshot =
-          await _firestore.collection(_usersCollectionId).doc(_userId).get();
-      return userSnapshot.data()!['userProfile']['homeId'];
-    } on FirebaseException catch (error) {
-      throw error.toNetworkError();
+      return uploadedAvatar.ref.getDownloadURL();
+    } on FirebaseException catch (_) {
+      throw const FileError.failedToUpload();
     }
   }
 }

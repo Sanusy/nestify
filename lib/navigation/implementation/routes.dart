@@ -2,12 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/navigation/implementation/nestify_go_route.dart';
-import 'package:nestify/service/dto/home_dto.dart';
-import 'package:nestify/service/dto/user_profile_dto.dart';
-import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 import 'package:nestify/ui/create_home/create_home_connector.dart';
-import 'package:nestify/ui/create_user_profile/create_user_profile_connector.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
 import 'package:nestify/ui/root_tab_bar/root_tab_bar_screen.dart';
@@ -21,9 +17,8 @@ final goRouter = GoRouter(
       fullscreenDialog: const AppRoute.rootTebBar().fullscreenDialog,
       redirect: (_, __) async {
         final userService = GetIt.instance.get<UserService>();
-        final homeService = GetIt.instance.get<HomeService>();
 
-        if (!userService.isLoggedIn()) {
+        if (userService.currentUserId() == null) {
           return const AppRoute.login().routePath;
         }
 
@@ -31,22 +26,6 @@ final goRouter = GoRouter(
 
         if (!isHomeMember) {
           return const AppRoute.homelessUser().routePath;
-        }
-
-        final home = await homeService.userHome();
-
-        if (home.homeStatus == HomeStatus.draft) {
-          return const AppRoute.createHome().routePath;
-        }
-
-        final userProfile = await userService.userProfile();
-
-        if (userProfile == null) {
-          return const AppRoute.homelessUser().routePath;
-        }
-
-        if (userProfile.userProfileStatus == UserProfileStatus.draft) {
-          return const AppRoute.createUserProfile().routePath;
         }
 
         return null;
@@ -67,11 +46,6 @@ final goRouter = GoRouter(
       child: const CreateHomeConnector(),
       fullscreenDialog: const AppRoute.createHome().fullscreenDialog,
     ),
-    NestifyGoRoute(
-      path: const AppRoute.createUserProfile().routeName,
-      child: const CreateUserProfileConnector(),
-      fullscreenDialog: const AppRoute.createUserProfile().fullscreenDialog,
-    ),
   ],
 );
 
@@ -80,7 +54,6 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         login: () => '/login',
         homelessUser: () => '/homelessUser',
         createHome: () => '/createHome',
-        createUserProfile: () => '/createUserProfile',
         rootTebBar: () => '/rootTabBar',
       );
 
@@ -88,7 +61,6 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         login: () => '/login',
         homelessUser: () => '/homelessUser',
         createHome: () => '/createHome',
-        createUserProfile: () => '/createUserProfile',
         rootTebBar: () => '/rootTabBar',
       );
 }

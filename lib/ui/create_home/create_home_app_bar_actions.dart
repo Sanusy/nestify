@@ -1,4 +1,0 @@
-enum CreateHomeAppBarActions {
-  discard,
-  logOut,
-}

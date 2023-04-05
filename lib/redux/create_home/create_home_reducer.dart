@@ -3,58 +3,180 @@ import 'package:nestify/redux/create_home/create_home_state.dart';
 import 'package:redux/redux.dart';
 
 final createHomeStateReducer = combineReducers<CreateHomeState>([
+  TypedReducer(_availableColorsLoading),
+  TypedReducer(_availableColorsLoaded),
+  TypedReducer(_failedToLoadColors),
+  TypedReducer(_createHomeStepChanged),
   TypedReducer(_homeNameChanged),
   TypedReducer(_homeAddressChanged),
   TypedReducer(_homeAboutChanged),
   TypedReducer(_pickedHomeAvatar),
   TypedReducer(_removeHomeAvatar),
+  TypedReducer(_userNameChanged),
+  TypedReducer(_userBioChanged),
+  TypedReducer(_pickedUserAvatar),
+  TypedReducer(_removeUserAvatar),
   TypedReducer(_failedToPickAvatar),
+  TypedReducer(_colorSelected),
   TypedReducer(_createHome),
-  TypedReducer(_homeCreated),
+  TypedReducer(_createHomeClosed),
   TypedReducer(_failedToCreateHome),
   TypedReducer(_errorProcessed),
 ]);
 
+CreateHomeState _availableColorsLoading(
+  CreateHomeState state,
+  LoadAvailableColorsAction action,
+) {
+  return state.copyWith(
+    colorsState: const ColorsLoadingState.loading(),
+  );
+}
+
+CreateHomeState _availableColorsLoaded(
+  CreateHomeState state,
+  LoadedAvailableColorsAction action,
+) {
+  return state.copyWith(
+    colorsState: ColorsLoadingState.loaded(
+      availableColors: action.availableColors,
+    ),
+  );
+}
+
+CreateHomeState _failedToLoadColors(
+  CreateHomeState state,
+  FailedToLoadAvailableColorsAction action,
+) {
+  return state.copyWith(
+    colorsState: const ColorsLoadingState.error(),
+  );
+}
+
+CreateHomeState _createHomeStepChanged(
+  CreateHomeState state,
+  CreateHomeStepChangedAction action,
+) {
+  return state.copyWith(
+    createHomeStep: action.step,
+  );
+}
+
 CreateHomeState _homeNameChanged(
   CreateHomeState state,
-  HomeNameChangedAction action,
+  CreateHomeNameChangedAction action,
 ) {
-  return state.copyWith(homeName: action.newName);
+  return state.copyWith(
+    homeProfileDraftState: state.homeProfileDraftState.copyWith(
+      homeName: action.newName,
+    ),
+  );
 }
 
 CreateHomeState _homeAddressChanged(
   CreateHomeState state,
-  HomeAddressChangedAction action,
+  CreateHomeAddressChangedAction action,
 ) {
-  return state.copyWith(homeAddress: action.newAddress);
+  return state.copyWith(
+    homeProfileDraftState: state.homeProfileDraftState.copyWith(
+      homeAddress: action.newAddress,
+    ),
+  );
 }
 
 CreateHomeState _homeAboutChanged(
   CreateHomeState state,
-  HomeAboutChangedAction action,
+  CreateHomeAboutChangedAction action,
 ) {
-  return state.copyWith(about: action.newAbout);
+  return state.copyWith(
+    homeProfileDraftState: state.homeProfileDraftState.copyWith(
+      homeAbout: action.newAbout,
+    ),
+  );
 }
 
 CreateHomeState _pickedHomeAvatar(
   CreateHomeState state,
   CreateHomeAvatarPickedAction action,
 ) {
-  return state.copyWith(avatar: action.avatar);
+  return state.copyWith(
+    homeProfileDraftState: state.homeProfileDraftState.copyWith(
+      homeAvatar: action.avatar,
+    ),
+  );
 }
 
 CreateHomeState _removeHomeAvatar(
   CreateHomeState state,
   RemoveCreateHomeAvatarAction action,
 ) {
-  return state.copyWith(avatar: null);
+  return state.copyWith(
+    homeProfileDraftState: state.homeProfileDraftState.copyWith(
+      homeAvatar: null,
+    ),
+  );
+}
+
+CreateHomeState _userNameChanged(
+  CreateHomeState state,
+  CreateHomeUserNameChangedAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      userName: action.newName,
+    ),
+  );
+}
+
+CreateHomeState _userBioChanged(
+  CreateHomeState state,
+  CreateHomeUserBioChangedAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      userBio: action.newBio,
+    ),
+  );
+}
+
+CreateHomeState _pickedUserAvatar(
+  CreateHomeState state,
+  CreateHomeUserAvatarPickedAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      userAvatar: action.avatar,
+    ),
+  );
+}
+
+CreateHomeState _removeUserAvatar(
+  CreateHomeState state,
+  CreateHomeRemoveUserAvatarAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      userAvatar: null,
+    ),
+  );
 }
 
 CreateHomeState _failedToPickAvatar(
   CreateHomeState state,
-  FailedToPickCreateHomeAvatarAction action,
+  CreateHomeFailedToPickAvatarAction action,
 ) {
   return state.copyWith(error: const CreateHomeError.failedToObtainPhoto());
+}
+
+CreateHomeState _colorSelected(
+  CreateHomeState state,
+  CreateHomeColorSelectedAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      selectedColor: action.color,
+    ),
+  );
 }
 
 CreateHomeState _createHome(
@@ -66,9 +188,9 @@ CreateHomeState _createHome(
   );
 }
 
-CreateHomeState _homeCreated(
+CreateHomeState _createHomeClosed(
   CreateHomeState state,
-  HomeCreatedAction action,
+  CloseCreateHomeAction action,
 ) {
   return CreateHomeState.initial();
 }

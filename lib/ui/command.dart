@@ -1,4 +1,6 @@
 import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/navigation/navigation_action.dart';
+import 'package:nestify/ui/common/quit_confirmation_dialog/quit_confirmation_dialog_view_model.dart';
 import 'package:redux/redux.dart';
 
 class Command {
@@ -52,4 +54,14 @@ extension StoreCommandExtension on Store<AppState> {
       dispatch(action(T));
     });
   }
+
+  /// Will be used in flow where you need either close dialog or pop the whole screen
+  QuitConfirmationDialogViewModel get baseQuitConfirmationViewModel =>
+      QuitConfirmationDialogViewModel(
+        onQuit: Command(() {
+          dispatch(const NavigationAction.pop());
+          dispatch(const NavigationAction.pop());
+        }),
+        onStay: createCommand(const NavigationAction.pop()),
+      );
 }
