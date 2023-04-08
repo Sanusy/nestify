@@ -12,7 +12,11 @@ class AppRoute with _$AppRoute {
 
   const factory AppRoute.createHome() = _CreateHome;
 
-  const factory AppRoute.rootTebBar() = _RootTebBar;
+  const factory AppRoute.home() = _Home;
+
+  const factory AppRoute.homeProfile() = _HomeProfile;
+
+  const factory AppRoute.settings() = _Settings;
 
   bool get fullscreenDialog => maybeWhen(
         orElse: () => false,

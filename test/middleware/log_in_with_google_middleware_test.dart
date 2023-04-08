@@ -40,7 +40,7 @@ void main() {
         verify(() => mockUserService.logInWithGoogle()).called(1);
         expect(store.actionLog[0], const TypeMatcher<LoginSuccessAction>());
         expect(store.actionLog[1],
-            const NavigationAction.replace(AppRoute.rootTebBar()));
+            const NavigationAction.replace(AppRoute.home()));
       });
 
       test('''Check failed login dispatch fail action''', () async {

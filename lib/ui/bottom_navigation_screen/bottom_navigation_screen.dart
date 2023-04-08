@@ -1,29 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:get_it/get_it.dart';
-import 'package:nestify/navigation/app_route.dart';
-import 'package:nestify/navigation/navigation_service.dart';
-import 'package:nestify/service/user_service/user_service.dart';
 
 class BottomNavigationScreen extends StatelessWidget {
-  const BottomNavigationScreen({Key? key}) : super(key: key);
+  final Widget screen;
+
+  const BottomNavigationScreen({Key? key, required this.screen})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
     return Scaffold(
-      body: Center(
-        child: OutlinedButton(
-          onPressed: () async {
-            final navigationService = GetIt.instance.get<UserService>();
-            await navigationService.logOut();
-            GetIt.instance
-                .get<NavigationService>()
-                .replace(const AppRoute.login());
-          },
-          child: const Text('Logout'),
-        ),
-      ),
+      body: screen,
       bottomNavigationBar: NavigationBar(
         destinations: [
           NavigationDestination(
