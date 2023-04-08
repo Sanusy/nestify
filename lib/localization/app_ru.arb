@@ -24,5 +24,8 @@
   "createHomeUserProfileNameHint": "Имя",
   "createHomeUserProfileBioHint": "О себе",
   "createHomeUserProfileSelectColorTitle": "Выберите свой цвет",
-  "createHomeUserProfileSelectColorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом."
+  "createHomeUserProfileSelectColorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом.",
+  "bottomNavigationHome": "Дом",
+  "bottomNavigationHomeProfile": "Профиль дома",
+  "bottomNavigationSettings": "Настройки"
 }

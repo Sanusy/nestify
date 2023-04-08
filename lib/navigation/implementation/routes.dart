@@ -3,17 +3,17 @@ import 'package:go_router/go_router.dart';
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/navigation/implementation/nestify_go_route.dart';
 import 'package:nestify/service/user_service/user_service.dart';
+import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:nestify/ui/create_home/create_home_connector.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
-import 'package:nestify/ui/root_tab_bar/root_tab_bar_screen.dart';
 
 final goRouter = GoRouter(
   initialLocation: const AppRoute.rootTebBar().routeName,
   routes: [
     NestifyGoRoute(
       path: const AppRoute.rootTebBar().routeName,
-      child: const RootTabBarScreen(),
+      child: const BottomNavigationScreen(),
       fullscreenDialog: const AppRoute.rootTebBar().fullscreenDialog,
       redirect: (_, __) async {
         final userService = GetIt.instance.get<UserService>();
