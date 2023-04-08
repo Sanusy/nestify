@@ -28,7 +28,7 @@ class CreateHomeMiddleware extends BaseMiddleware<CreateHomeAction> {
         userDraft: createHomeState.userProfileDraftState,
       );
 
-      store.dispatch(const NavigationAction.replace(AppRoute.home()));
+      store.dispatch(const NavigationAction.setPath(AppRoute.home()));
     } on NetworkError {
       store.dispatch(FailedToCreateHomeAction());
     } on FileError {

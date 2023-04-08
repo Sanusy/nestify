@@ -10,6 +10,9 @@ class HomeProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home profile screen'),
+      ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -24,7 +27,7 @@ class HomeProfileScreen extends StatelessWidget {
                     .get<NavigationService>()
                     .replace(const AppRoute.login());
               },
-              child: Text('Logout'),
+              child: const Text('Logout'),
             ),
           ],
         ),

@@ -56,7 +56,7 @@ void main() {
               userDraft: userDraft,
             )).called(1);
         expect(store.actionLog[0],
-            const NavigationAction.replace(AppRoute.home()));
+            const NavigationAction.setPath(AppRoute.home()));
         expect(store.actionLog.length, 1);
       });
 

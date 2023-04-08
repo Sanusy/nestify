@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/navigation/implementation/nestify_go_route.dart';
 import 'package:nestify/service/user_service/user_service.dart';
-import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_screen.dart';
+import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_connector.dart';
 import 'package:nestify/ui/create_home/create_home_connector.dart';
-import 'package:nestify/ui/home/home_screen.dart';
+import 'package:nestify/ui/home/home_connector.dart';
 import 'package:nestify/ui/home_profile/home_profile_screen.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
@@ -20,15 +20,15 @@ final goRouter = GoRouter(
   initialLocation: const AppRoute.home().routeName,
   routes: [
     ShellRoute(
-      builder: (BuildContext context, GoRouterState state, Widget child) {
-        return BottomNavigationScreen(
-          screen: child,
+      builder: (_, state, currentScreen) {
+        return BottomNavigationConnector(
+          currentScreen: currentScreen,
         );
       },
       routes: [
         NestifyGoRoute(
           path: const AppRoute.home().routeName,
-          child: const HomeScreen(),
+          child: const HomeConnector(),
           fullscreenDialog: const AppRoute.home().fullscreenDialog,
           redirect: (_, __) async {
             final userService = GetIt.instance.get<UserService>();
