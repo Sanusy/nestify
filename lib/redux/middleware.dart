@@ -22,5 +22,5 @@ List<Middleware<AppState>> appMiddleware = [
   CreateHomeMiddleware(_serviceLocator.get()),
   CreateHomePickUserAvatarMiddleware(_serviceLocator.get()),
   LoadAvailableColorsMiddleware(_serviceLocator.get()),
-  ContactSupportMiddleware(_serviceLocator.get()),
+  ContactSupportMiddleware(_serviceLocator.get(), _serviceLocator.get()),
 ];
