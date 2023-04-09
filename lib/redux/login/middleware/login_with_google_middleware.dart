@@ -23,7 +23,7 @@ class LoginWithGoogleMiddleware extends BaseMiddleware<LoginWithGoogleAction> {
       await _userService.logInWithGoogle();
 
       store.dispatch(LoginSuccessAction());
-      store.dispatch(const NavigationAction.setPath(AppRoute.home()));
+      store.dispatch(const NavigationAction.setPath(AppRoute.homelessUser()));
     } on NetworkError {
       store.dispatch(FailedToLoginAction());
     }

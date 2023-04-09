@@ -10,10 +10,12 @@ import 'package:redux/redux.dart';
 
 class BottomNavigationConnector
     extends BaseConnector<BottomNavigationViewModel> {
+  final BottomNavigationDestination currentDestination;
   final Widget currentScreen;
 
   const BottomNavigationConnector({
     super.key,
+    required this.currentDestination,
     required this.currentScreen,
   });
 
@@ -23,8 +25,10 @@ class BottomNavigationConnector
     Store<AppState> store,
   ) {
     return BottomNavigationViewModel(
+      currentDestination: currentDestination,
       currentScreen: currentScreen,
       onSelectDestination: CommandWith((selectedDestination) {
+        if (selectedDestination == currentDestination) return;
         store.dispatch(NavigationAction.setPath(selectedDestination.route));
       }),
     );

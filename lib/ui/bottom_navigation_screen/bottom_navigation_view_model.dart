@@ -8,6 +8,7 @@ part 'bottom_navigation_view_model.freezed.dart';
 @Freezed(copyWith: false)
 class BottomNavigationViewModel with _$BottomNavigationViewModel {
   const factory BottomNavigationViewModel({
+    required BottomNavigationDestination currentDestination,
     required Widget currentScreen,
     required CommandWith<BottomNavigationDestination> onSelectDestination,
   }) = _BottomNavigationViewModel;
