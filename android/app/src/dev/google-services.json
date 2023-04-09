@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "761356519653-7po85qpea3tri95s261vpd9io0qhipvs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.ivan.morozyk.nestify.dev",
+            "certificate_hash": "4540a7b6fd31fb4e88781b98a9986f2d1934f9c5"
+          }
+        },
+        {
           "client_id": "761356519653-bdvli30m9qkopupks1t3onqg39rvn9h3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

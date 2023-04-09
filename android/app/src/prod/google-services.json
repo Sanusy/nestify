@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "150543360145-ir087fkl9s21ot6tjgr26rc3434mak52.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.ivan.morozyk.nestify",
+            "certificate_hash": "4540a7b6fd31fb4e88781b98a9986f2d1934f9c5"
+          }
+        },
+        {
           "client_id": "150543360145-tqarct650shbp1ccod6sjbe17kp5d4tm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
