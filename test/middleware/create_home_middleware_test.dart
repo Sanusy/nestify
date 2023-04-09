@@ -44,8 +44,7 @@ void main() {
         );
       });
 
-      test('''on successful create home user navigated to root tab bar''',
-          () async {
+      test('''on successful create home user navigated to home''', () async {
         when(() => mockHomeService.createHome(
             homeDraft: homeDraft,
             userDraft: userDraft)).thenAnswer((_) async => Future.value());
@@ -56,7 +55,7 @@ void main() {
               userDraft: userDraft,
             )).called(1);
         expect(store.actionLog[0],
-            const NavigationAction.replace(AppRoute.rootTebBar()));
+            const NavigationAction.setPath(AppRoute.home()));
         expect(store.actionLog.length, 1);
       });
 

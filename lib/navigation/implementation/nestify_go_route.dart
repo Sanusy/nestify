@@ -8,6 +8,7 @@ class NestifyGoRoute extends GoRoute {
     required bool fullscreenDialog,
     List<GoRoute> routes = const [],
     GoRouterRedirect? redirect,
+    GlobalKey<NavigatorState>? parentNavigatorKey,
   }) : super(
           path: path,
           pageBuilder: (_, state) => MaterialPage(
@@ -16,6 +17,7 @@ class NestifyGoRoute extends GoRoute {
           ),
           routes: routes,
           redirect: redirect,
+          parentNavigatorKey: parentNavigatorKey,
         );
 
   NestifyGoRoute.builder({
@@ -24,12 +26,15 @@ class NestifyGoRoute extends GoRoute {
     required bool fullscreenDialog,
     List<GoRoute> routes = const [],
     GoRouterRedirect? redirect,
+    GlobalKey<NavigatorState>? parentNavigatorKey,
   }) : super(
-            path: path,
-            pageBuilder: (_, state) => MaterialPage(
-                  child: builder(state),
-                  fullscreenDialog: fullscreenDialog,
-                ),
-            routes: routes,
-            redirect: redirect);
+          path: path,
+          pageBuilder: (_, state) => MaterialPage(
+            child: builder(state),
+            fullscreenDialog: fullscreenDialog,
+          ),
+          routes: routes,
+          redirect: redirect,
+          parentNavigatorKey: parentNavigatorKey,
+        );
 }

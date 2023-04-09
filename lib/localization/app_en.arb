@@ -24,5 +24,8 @@
   "createHomeUserProfileNameHint": "Name",
   "createHomeUserProfileBioHint": "Bio",
   "createHomeUserProfileSelectColorTitle": "Select your color",
-  "createHomeUserProfileSelectColorDescription": "Your tasks, reminders and messages will be marked with this color."
+  "createHomeUserProfileSelectColorDescription": "Your tasks, reminders and messages will be marked with this color.",
+  "bottomNavigationHome": "Home",
+  "bottomNavigationHomeProfile": "Home profile",
+  "bottomNavigationSettings": "Settings"
 }
