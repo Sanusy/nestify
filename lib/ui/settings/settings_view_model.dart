@@ -13,5 +13,13 @@ class SettingsViewModel with _$SettingsViewModel {
     required Command? onOpenTermsAndConditions,
     required Command? onLogout,
     required SettingsLoading? loading,
+    required SettingsEvent? event,
   }) = _SettingsViewModel;
+}
+
+@Freezed(copyWith: false)
+class SettingsEvent with _$SettingsEvent {
+  const factory SettingsEvent.failedToContactSupport({
+    required Command onProcessed,
+  }) = _FailedToContactSupprot;
 }
