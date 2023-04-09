@@ -44,8 +44,7 @@ void main() {
         );
       });
 
-      test('''on successful create home user navigated to root tab bar''',
-          () async {
+      test('''on successful create home user navigated to home''', () async {
         when(() => mockHomeService.createHome(
             homeDraft: homeDraft,
             userDraft: userDraft)).thenAnswer((_) async => Future.value());

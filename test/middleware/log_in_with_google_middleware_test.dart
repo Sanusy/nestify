@@ -39,8 +39,10 @@ void main() {
 
         verify(() => mockUserService.logInWithGoogle()).called(1);
         expect(store.actionLog[0], const TypeMatcher<LoginSuccessAction>());
-        expect(store.actionLog[1],
-            const NavigationAction.setPath(AppRoute.homelessUser()));
+        expect(
+          store.actionLog[1],
+          const NavigationAction.setPath(AppRoute.splash()),
+        );
       });
 
       test('''Check failed login dispatch fail action''', () async {

@@ -18,8 +18,27 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 final goRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: const AppRoute.login().routeName,
   routes: [
+    NestifyGoRoute(
+      path: const AppRoute.splash().routeName,
+      child: Container(),
+      fullscreenDialog: false,
+      redirect: (_, __) async {
+        final userService = GetIt.instance.get<UserService>();
+
+        if (userService.currentUserId() == null) {
+          return const AppRoute.login().routePath;
+        }
+
+        final isHomeMember = (await userService.homeId()) != null;
+
+        if (!isHomeMember) {
+          return const AppRoute.homelessUser().routePath;
+        }
+
+        return const AppRoute.home().routePath;
+      },
+    ),
     ShellRoute(
       builder: (_, state, currentScreen) {
         return BottomNavigationConnector(
@@ -49,21 +68,6 @@ final goRouter = GoRouter(
       path: const AppRoute.login().routeName,
       child: const LoginConnector(),
       fullscreenDialog: const AppRoute.login().fullscreenDialog,
-      redirect: (_, __) async {
-        final userService = GetIt.instance.get<UserService>();
-
-        if (userService.currentUserId() == null) {
-          return null;
-        }
-
-        final isHomeMember = (await userService.homeId()) != null;
-
-        if (isHomeMember) {
-          return const AppRoute.home().routePath;
-        }
-
-        return const AppRoute.homelessUser().routePath;
-      },
     ),
     NestifyGoRoute(
       path: const AppRoute.homelessUser().routeName,
@@ -116,6 +120,7 @@ extension AppRouteExtensionForGoRouter on AppRoute {
   /// For example if you have root route Home, and nested in Home TaskDetails route,\
   /// Home route name should be '/home', and TaskDetails should be 'taskDetails.
   String get routeName => when(
+        splash: () => '/',
         login: () => '/login',
         homelessUser: () => '/homelessUser',
         createHome: () => '/createHome',
@@ -129,6 +134,7 @@ extension AppRouteExtensionForGoRouter on AppRoute {
   /// for example if Home route contains nested route TaskDetails,
   /// path to taskDetails should be /home/taskDetails
   String get routePath => when(
+        splash: () => '/',
         login: () => '/login',
         homelessUser: () => '/homelessUser',
         createHome: () => '/createHome',
