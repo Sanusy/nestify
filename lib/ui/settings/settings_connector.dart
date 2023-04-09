@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/middleware/common_actions.dart';
+import 'package:nestify/redux/settings/settings_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/settings/settings_screen.dart';
@@ -11,12 +13,19 @@ class SettingsConnector extends BaseConnector<SettingsViewModel> {
 
   @override
   SettingsViewModel convert(BuildContext context, Store<AppState> store) {
+    final settingsState = store.state.settingsState;
     return SettingsViewModel(
-      onOpenProfile: Command.stub,
-      onContactSupport: Command.stub,
-      onOpenPrivacyPolicy: Command.stub,
-      onOpenTermsAndConditions: Command.stub,
-      onLogout: Command.stub,
+      onOpenProfile: settingsState.loading == null ? Command.stub : null,
+      onContactSupport: settingsState.loading == null
+          ? store.createCommand(ContactSupportAction())
+          : null,
+      onOpenPrivacyPolicy: settingsState.loading == null ? Command.stub : null,
+      onOpenTermsAndConditions:
+          settingsState.loading == null ? Command.stub : null,
+      onLogout: settingsState.loading == null
+          ? store.createCommand(LogoutAction())
+          : null,
+      loading: settingsState.loading,
     );
   }
 

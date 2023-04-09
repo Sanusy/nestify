@@ -9,6 +9,8 @@ import 'package:nestify/navigation/navigation_service.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/middleware.dart';
 import 'package:nestify/redux/reducer.dart';
+import 'package:nestify/service/constants_service/constants_service.dart';
+import 'package:nestify/service/constants_service/firebase_constants_service.dart';
 import 'package:nestify/service/file_service/file_service.dart';
 import 'package:nestify/service/file_service/file_service_implementation.dart';
 import 'package:nestify/service/home_service/firebase_home_service.dart';
@@ -40,6 +42,8 @@ class AppConfiguration {
     serviceLocator.registerSingleton<UserService>(FirebaseUserService());
     serviceLocator.registerSingleton<HomeService>(FirebaseHomeService());
     serviceLocator.registerSingleton<FileService>(FileServiceImplementation());
+    serviceLocator
+        .registerSingleton<ConstantsService>(FirebaseConstantsService());
 
     await serviceLocator.allReady();
   }

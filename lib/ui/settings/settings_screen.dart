@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/gen/assets.gen.dart';
+import 'package:nestify/redux/settings/settings_state.dart';
 import 'package:nestify/ui/settings/settings_view_model.dart';
 import 'package:nestify/ui/settings/view/outlined_icon_button.dart';
 
@@ -37,8 +38,16 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 OutlinedButton(
-                  onPressed: viewModel.onContactSupport,
-                  child: Text(localization.settingsContactSupport),
+                  onPressed: viewModel.onContactSupport?.command,
+                  child: viewModel.loading == SettingsLoading.contactSupport
+                      ? const Center(
+                          child: SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                        )
+                      : Text(localization.settingsContactSupport),
                 ),
                 const SizedBox(height: 8),
                 OutlinedIconButton(
