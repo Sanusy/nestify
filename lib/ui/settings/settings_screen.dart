@@ -3,9 +3,15 @@ import 'package:get_it/get_it.dart';
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/navigation/navigation_service.dart';
 import 'package:nestify/service/user_service/user_service.dart';
+import 'package:nestify/ui/settings/settings_view_model.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  final SettingsViewModel viewModel;
+
+  const SettingsScreen({
+    Key? key,
+    required this.viewModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
