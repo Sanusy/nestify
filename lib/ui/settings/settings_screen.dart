@@ -1,32 +1,75 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:nestify/navigation/app_route.dart';
-import 'package:nestify/navigation/navigation_service.dart';
-import 'package:nestify/service/user_service/user_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nestify/gen/assets.gen.dart';
+import 'package:nestify/redux/settings/settings_state.dart';
+import 'package:nestify/ui/settings/settings_view_model.dart';
+import 'package:nestify/ui/settings/view/outlined_icon_button.dart';
 
 class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+  final SettingsViewModel viewModel;
+
+  const SettingsScreen({
+    Key? key,
+    required this.viewModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalizations.of(context)!;
+
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Settings screen'),
-            OutlinedButton(
-              onPressed: () async {
-                final navigationService = GetIt.instance.get<UserService>();
-                await navigationService.logOut();
-                GetIt.instance
-                    .get<NavigationService>()
-                    .replace(const AppRoute.login());
-              },
-              child: Text('Logout'),
+      appBar: AppBar(
+        title: Text(localization.settingsTitle),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 16),
+                Assets.images.appPicture.image(),
+                const SizedBox(height: 16),
+                OutlinedIconButton(
+                  icon: Icons.person_outline,
+                  text: localization.settingsProfile,
+                  onClick: viewModel.onOpenProfile,
+                ),
+                const SizedBox(height: 8),
+                OutlinedButton(
+                  onPressed: viewModel.onContactSupport?.command,
+                  child: viewModel.loading == SettingsLoading.contactSupport
+                      ? const Center(
+                          child: SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                        )
+                      : Text(localization.settingsContactSupport),
+                ),
+                const SizedBox(height: 8),
+                OutlinedIconButton(
+                  icon: Icons.open_in_new_outlined,
+                  text: localization.settingsPrivacyPolicy,
+                  onClick: viewModel.onOpenPrivacyPolicy,
+                ),
+                const SizedBox(height: 8),
+                OutlinedIconButton(
+                  icon: Icons.open_in_new_outlined,
+                  text: localization.settingsTermsAndConditions,
+                  onClick: viewModel.onOpenTermsAndConditions,
+                ),
+                const SizedBox(height: 8),
+                OutlinedIconButton(
+                  icon: Icons.logout_outlined,
+                  text: localization.commonLogout,
+                  onClick: viewModel.onLogout,
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

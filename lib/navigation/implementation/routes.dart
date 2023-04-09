@@ -11,7 +11,7 @@ import 'package:nestify/ui/home/home_connector.dart';
 import 'package:nestify/ui/home_profile/home_profile_screen.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
-import 'package:nestify/ui/settings/settings_screen.dart';
+import 'package:nestify/ui/settings/settings_connector.dart';
 
 /// Used to open screen above BottomNavigation ShellRoute
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -59,7 +59,7 @@ final goRouter = GoRouter(
         ),
         NestifyGoRoute(
           path: const AppRoute.settings().routeName,
-          child: const SettingsScreen(),
+          child: const SettingsConnector(),
           fullscreenDialog: const AppRoute.settings().fullscreenDialog,
         ),
       ],

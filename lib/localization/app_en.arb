@@ -27,5 +27,10 @@
   "createHomeUserProfileSelectColorDescription": "Your tasks, reminders and messages will be marked with this color.",
   "bottomNavigationHome": "Home",
   "bottomNavigationHomeProfile": "Home profile",
-  "bottomNavigationSettings": "Settings"
+  "bottomNavigationSettings": "Settings",
+  "settingsTitle": "Settings",
+  "settingsProfile": "Profile",
+  "settingsContactSupport": "Contact Support",
+  "settingsPrivacyPolicy": "Privacy policy",
+  "settingsTermsAndConditions": "Terms and Conditions"
 }

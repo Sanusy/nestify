@@ -27,5 +27,10 @@
   "createHomeUserProfileSelectColorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом.",
   "bottomNavigationHome": "Дом",
   "bottomNavigationHomeProfile": "Профиль дома",
-  "bottomNavigationSettings": "Настройки"
+  "bottomNavigationSettings": "Настройки",
+  "settingsTitle": "Настройки",
+  "settingsProfile": "Профиль",
+  "settingsContactSupport": "Поддержка",
+  "settingsPrivacyPolicy": "Политика конфиденциальности",
+  "settingsTermsAndConditions": "Условия использования"
 }
