@@ -73,21 +73,6 @@ final goRouter = GoRouter(
       path: const AppRoute.homelessUser().routeName,
       child: const HomelessUserConnector(),
       fullscreenDialog: const AppRoute.homelessUser().fullscreenDialog,
-      redirect: (_, __) async {
-        final userService = GetIt.instance.get<UserService>();
-
-        if (userService.currentUserId() == null) {
-          return const AppRoute.login().routePath;
-        }
-
-        final isHomeMember = (await userService.homeId()) != null;
-
-        if (isHomeMember) {
-          return const AppRoute.home().routePath;
-        }
-
-        return null;
-      },
     ),
     NestifyGoRoute(
       path: const AppRoute.createHome().routeName,
