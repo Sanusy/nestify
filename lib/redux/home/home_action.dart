@@ -1,0 +1,3 @@
+class InitHomeAction {}
+
+class FailedToInitHome {}

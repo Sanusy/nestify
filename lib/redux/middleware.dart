@@ -4,6 +4,7 @@ import 'package:nestify/redux/create_home/middleware/create_home_middleware.dart
 import 'package:nestify/redux/create_home/middleware/create_home_pick_home_avatar_middleware.dart';
 import 'package:nestify/redux/create_home/middleware/create_home_pick_user_avatar_middleware.dart';
 import 'package:nestify/redux/create_home/middleware/load_available_colors_middleware.dart';
+import 'package:nestify/redux/home/middleware/init_home_middleware.dart';
 import 'package:nestify/redux/logger/logger_middleware.dart';
 import 'package:nestify/redux/login/middleware/login_with_google_middleware.dart';
 import 'package:nestify/redux/middleware/logout_middleware.dart';
@@ -23,4 +24,5 @@ List<Middleware<AppState>> appMiddleware = [
   CreateHomePickUserAvatarMiddleware(_serviceLocator.get()),
   LoadAvailableColorsMiddleware(_serviceLocator.get()),
   ContactSupportMiddleware(_serviceLocator.get(), _serviceLocator.get()),
+  InitHomeMiddleware(_serviceLocator.get(), _serviceLocator.get()),
 ];

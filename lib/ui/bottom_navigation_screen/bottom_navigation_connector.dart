@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/home/home_action.dart';
 import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_destinations.dart';
@@ -32,6 +33,11 @@ class BottomNavigationConnector
         store.dispatch(NavigationAction.setPath(selectedDestination.route));
       }),
     );
+  }
+
+  @override
+  void onInit(Store<AppState> store) {
+    store.dispatch(InitHomeAction());
   }
 
   @override
