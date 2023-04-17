@@ -44,7 +44,8 @@ class FirebaseHomeService implements HomeService {
     if (userId == null) throw const NetworkError.notAuthenticated();
 
     try {
-      final userSnapshot = _firestore.collection(_usersCollectionId).doc(userId);
+      final userSnapshot =
+          _firestore.collection(_usersCollectionId).doc(userId);
       final homeSnapshot = _firestore.collection(_homesCollectionId).doc();
 
       final userAvatarUrl = userDraft.userAvatar == null
@@ -102,6 +103,39 @@ class FirebaseHomeService implements HomeService {
       return uploadedAvatar.ref.getDownloadURL();
     } on FirebaseException catch (_) {
       throw const FileError.failedToUpload();
+    }
+  }
+
+  @override
+  Stream<Home> watchHome(String homeId) {
+    try {
+      return _firestore
+          .collection(_homesCollectionId)
+          .doc(homeId)
+          .snapshots()
+          .where((homeDocEvent) => homeDocEvent.data() != null)
+          .map((homeDocEvent) => Home.fromJson(homeDocEvent.data()!));
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
+
+  @override
+  Stream<List<User>> watchHomeUsers(List<String> userIds) {
+    try {
+      return _firestore
+          .collection(_usersCollectionId)
+          .where('id', whereIn: userIds)
+          .snapshots()
+          .map((usersEvent) {
+        final List<User> users = [];
+        for (final userDoc in usersEvent.docs) {
+          users.add(User.fromJson(userDoc.data()));
+        }
+        return users;
+      });
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
     }
   }
 }

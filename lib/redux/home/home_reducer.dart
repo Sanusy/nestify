@@ -5,6 +5,9 @@ import 'package:redux/redux.dart';
 final homeStateReducer = combineReducers<HomeState>([
   TypedReducer(_initHome),
   TypedReducer(_failedToInitHome),
+  TypedReducer(_homeInitialized),
+  TypedReducer(_homeUpdated),
+  TypedReducer(_homeUsersUpdated),
 ]);
 
 HomeState _initHome(HomeState state, InitHomeAction action) {
@@ -14,9 +17,32 @@ HomeState _initHome(HomeState state, InitHomeAction action) {
   );
 }
 
-HomeState _failedToInitHome(HomeState state, FailedToInitHome action) {
+HomeState _failedToInitHome(HomeState state, FailedToInitHomeAction action) {
   return state.copyWith(
     isLoading: false,
     error: const HomeError.failedToInitHome(),
+  );
+}
+
+HomeState _homeInitialized(HomeState state, HomeInitializedAction action) {
+  return state.copyWith(
+    colors: action.colors,
+    currentUserId: action.currentUserId,
+    home: action.home,
+    homeUsers: action.users,
+    isLoading: false,
+    error: null,
+  );
+}
+
+HomeState _homeUpdated(HomeState state, HomeUpdatedAction action) {
+  return state.copyWith(
+    home: action.home,
+  );
+}
+
+HomeState _homeUsersUpdated(HomeState state, HomeUsersUpdatedAction action) {
+  return state.copyWith(
+    homeUsers: action.homeUsers,
   );
 }
