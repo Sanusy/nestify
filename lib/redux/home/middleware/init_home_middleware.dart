@@ -50,7 +50,7 @@ class InitHomeMiddleware extends BaseMiddleware<InitHomeAction> {
 
       final home = await homeUpdatesStream.first;
 
-      final usersUpdatesStream = _homeService.watchHomeUsers(home.usersUrls);
+      final usersUpdatesStream = _homeService.watchHomeUsers(home.usersIds);
 
       final users = await usersUpdatesStream.first;
 

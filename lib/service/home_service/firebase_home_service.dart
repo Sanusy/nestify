@@ -66,7 +66,7 @@ class FirebaseHomeService implements HomeService {
         id: homeSnapshot.id,
         homeName: homeDraft.homeName,
         adminId: userId,
-        usersUrls: [userId],
+        usersIds: [userId],
         address: homeDraft.homeAddress,
         about: homeDraft.homeAbout,
         avatarUrl: homeAvatarUrl,
@@ -121,11 +121,11 @@ class FirebaseHomeService implements HomeService {
   }
 
   @override
-  Stream<List<User>> watchHomeUsers(List<String> userIds) {
+  Stream<List<User>> watchHomeUsers(List<String> usersIds) {
     try {
       return _firestore
           .collection(_usersCollectionId)
-          .where('id', whereIn: userIds)
+          .where('id', whereIn: usersIds)
           .snapshots()
           .map((usersEvent) {
         final List<User> users = [];
