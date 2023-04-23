@@ -1,36 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:nestify/navigation/app_route.dart';
-import 'package:nestify/navigation/navigation_service.dart';
-import 'package:nestify/service/user_service/user_service.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nestify/ui/home_profile/home_profile_view_model.dart';
 
 class HomeProfileScreen extends StatelessWidget {
-  const HomeProfileScreen({Key? key}) : super(key: key);
+  final HomeProfileViewModel viewModel;
+
+  const HomeProfileScreen({Key? key, required this.viewModel})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final localization = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home profile screen'),
+        title: Text(localization.homeProfileTitle),
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Home profile screen'),
-            OutlinedButton(
-              onPressed: () async {
-                final navigationService = GetIt.instance.get<UserService>();
-                await navigationService.logOut();
-                GetIt.instance
-                    .get<NavigationService>()
-                    .replace(const AppRoute.login());
-              },
-              child: const Text('Logout'),
-            ),
-          ],
+      body: viewModel.map(
+        loading: (_) => const Center(
+          child: CircularProgressIndicator(),
         ),
+        failed: (failedViewModel) => const Center(
+          child: Text('Failed'),
+        ),
+        loaded: (loadedViewModel) {
+          return const Center(
+            child: Text('Loaded'),
+          );
+        },
       ),
     );
   }

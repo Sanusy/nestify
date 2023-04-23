@@ -32,5 +32,6 @@
   "settingsProfile": "Profile",
   "settingsContactSupport": "Contact Support",
   "settingsPrivacyPolicy": "Privacy policy",
-  "settingsTermsAndConditions": "Terms and Conditions"
+  "settingsTermsAndConditions": "Terms and Conditions",
+  "homeProfileTitle": "Home profile"
 }

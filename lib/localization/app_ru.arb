@@ -32,5 +32,6 @@
   "settingsProfile": "Профиль",
   "settingsContactSupport": "Поддержка",
   "settingsPrivacyPolicy": "Политика конфиденциальности",
-  "settingsTermsAndConditions": "Условия использования"
+  "settingsTermsAndConditions": "Условия использования",
+  "homeProfileTitle": "Профиль дома"
 }

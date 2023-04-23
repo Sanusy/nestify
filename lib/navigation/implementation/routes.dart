@@ -8,7 +8,7 @@ import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_connector.
 import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_destinations.dart';
 import 'package:nestify/ui/create_home/create_home_connector.dart';
 import 'package:nestify/ui/home/home_connector.dart';
-import 'package:nestify/ui/home_profile/home_profile_screen.dart';
+import 'package:nestify/ui/home_profile/home_profile_connector.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
 import 'package:nestify/ui/settings/settings_connector.dart';
@@ -54,7 +54,7 @@ final goRouter = GoRouter(
         ),
         NestifyGoRoute(
           path: const AppRoute.homeProfile().routeName,
-          child: const HomeProfileScreen(),
+          child: const HomeProfileConnector(),
           fullscreenDialog: const AppRoute.homeProfile().fullscreenDialog,
         ),
         NestifyGoRoute(
