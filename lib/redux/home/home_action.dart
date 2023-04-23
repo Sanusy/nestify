@@ -19,15 +19,3 @@ class HomeInitializedAction {
     required this.users,
   });
 }
-
-class HomeUpdatedAction {
-  final Home home;
-
-  HomeUpdatedAction(this.home);
-}
-
-class HomeUsersUpdatedAction {
-  final List<User> homeUsers;
-
-  HomeUsersUpdatedAction(this.homeUsers);
-}
