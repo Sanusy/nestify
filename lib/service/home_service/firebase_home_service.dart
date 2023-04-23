@@ -44,7 +44,8 @@ class FirebaseHomeService implements HomeService {
     if (userId == null) throw const NetworkError.notAuthenticated();
 
     try {
-      final userSnapshot = _firestore.collection(_usersCollectionId).doc(userId);
+      final userSnapshot =
+          _firestore.collection(_usersCollectionId).doc(userId);
       final homeSnapshot = _firestore.collection(_homesCollectionId).doc();
 
       final userAvatarUrl = userDraft.userAvatar == null
@@ -65,7 +66,7 @@ class FirebaseHomeService implements HomeService {
         id: homeSnapshot.id,
         homeName: homeDraft.homeName,
         adminId: userId,
-        usersUrls: [userId],
+        usersIds: [userId],
         address: homeDraft.homeAddress,
         about: homeDraft.homeAbout,
         avatarUrl: homeAvatarUrl,
@@ -102,6 +103,36 @@ class FirebaseHomeService implements HomeService {
       return uploadedAvatar.ref.getDownloadURL();
     } on FirebaseException catch (_) {
       throw const FileError.failedToUpload();
+    }
+  }
+
+  @override
+  Future<Home> home(String homeId) {
+    try {
+      return _firestore
+          .collection(_homesCollectionId)
+          .doc(homeId)
+          .get()
+          .then((homeSnapshot) => Home.fromJson(homeSnapshot.data()!));
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
+
+  @override
+  Future<List<User>> homeUsers(List<String> usersIds) {
+    try {
+      return _firestore
+          .collection(_usersCollectionId)
+          .where('id', whereIn: usersIds)
+          .get()
+          .then((usersSnapshot) {
+        return usersSnapshot.docs
+            .map((userSnapshot) => User.fromJson(userSnapshot.data()))
+            .toList();
+      });
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
     }
   }
 }

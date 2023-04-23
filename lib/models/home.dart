@@ -10,7 +10,7 @@ class Home with _$Home {
     required String id,
     required String homeName,
     required String adminId,
-    required List<String> usersUrls,
+    required List<String> usersIds,
     required String? address,
     required String? about,
     required String? avatarUrl,
