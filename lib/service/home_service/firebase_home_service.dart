@@ -107,32 +107,29 @@ class FirebaseHomeService implements HomeService {
   }
 
   @override
-  Stream<Home> watchHome(String homeId) {
+  Future<Home> home(String homeId) {
     try {
       return _firestore
           .collection(_homesCollectionId)
           .doc(homeId)
-          .snapshots()
-          .where((homeDocEvent) => homeDocEvent.data() != null)
-          .map((homeDocEvent) => Home.fromJson(homeDocEvent.data()!));
+          .get()
+          .then((homeSnapshot) => Home.fromJson(homeSnapshot.data()!));
     } on FirebaseException catch (error) {
       throw error.toNetworkError();
     }
   }
 
   @override
-  Stream<List<User>> watchHomeUsers(List<String> usersIds) {
+  Future<List<User>> homeUsers(List<String> usersIds) {
     try {
       return _firestore
           .collection(_usersCollectionId)
           .where('id', whereIn: usersIds)
-          .snapshots()
-          .map((usersEvent) {
-        final List<User> users = [];
-        for (final userDoc in usersEvent.docs) {
-          users.add(User.fromJson(userDoc.data()));
-        }
-        return users;
+          .get()
+          .then((usersSnapshot) {
+        return usersSnapshot.docs
+            .map((userSnapshot) => User.fromJson(userSnapshot.data()))
+            .toList();
       });
     } on FirebaseException catch (error) {
       throw error.toNetworkError();

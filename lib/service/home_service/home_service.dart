@@ -11,7 +11,7 @@ abstract class HomeService {
     required UserProfileDraftState userDraft,
   });
 
-  Stream<Home> watchHome(String homeId);
+  Future<Home> home(String homeId);
 
-  Stream<List<User>> watchHomeUsers(List<String> userIds);
+  Future<List<User>> homeUsers(List<String> userIds);
 }
