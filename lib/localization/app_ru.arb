@@ -33,5 +33,7 @@
   "settingsContactSupport": "Поддержка",
   "settingsPrivacyPolicy": "Политика конфиденциальности",
   "settingsTermsAndConditions": "Условия использования",
-  "homeProfileTitle": "Профиль дома"
+  "homeProfileTitle": "Профиль дома",
+  "homeProfileMembers": "Участники",
+  "homeProfileAdminMember": "админ"
 }

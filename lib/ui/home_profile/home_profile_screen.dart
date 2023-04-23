@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nestify/ui/home_profile/components/home_profile_loaded_body_view.dart';
 import 'package:nestify/ui/home_profile/home_profile_view_model.dart';
 
 class HomeProfileScreen extends StatelessWidget {
@@ -20,12 +21,22 @@ class HomeProfileScreen extends StatelessWidget {
         loading: (_) => const Center(
           child: CircularProgressIndicator(),
         ),
-        failed: (failedViewModel) => const Center(
-          child: Text('Failed'),
+        failed: (failedViewModel) => Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(localization.commonError),
+              TextButton(
+                onPressed: failedViewModel.onRetry,
+                child: Text(localization.commonRetry),
+              ),
+            ],
+          ),
         ),
         loaded: (loadedViewModel) {
-          return const Center(
-            child: Text('Loaded'),
+          return SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: HomeProfileLoadedBodyView(viewModel: loadedViewModel),
           );
         },
       ),

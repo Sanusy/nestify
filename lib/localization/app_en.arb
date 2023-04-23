@@ -33,5 +33,7 @@
   "settingsContactSupport": "Contact Support",
   "settingsPrivacyPolicy": "Privacy policy",
   "settingsTermsAndConditions": "Terms and Conditions",
-  "homeProfileTitle": "Home profile"
+  "homeProfileTitle": "Home profile",
+  "homeProfileMembers": "Members",
+  "homeProfileAdminMember": "admin"
 }

@@ -17,7 +17,7 @@ class HomeProfileViewModel with _$HomeProfileViewModel {
     required String? homeAddress,
     required String? about,
     required List<HomeUserViewModel> users,
-  }) = _Loaded;
+  }) = HomeProfileLoadedViewModel;
 }
 
 @Freezed(copyWith: false)
