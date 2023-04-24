@@ -34,6 +34,17 @@
   "settingsPrivacyPolicy": "Политика конфиденциальности",
   "settingsTermsAndConditions": "Условия использования",
   "homeProfileTitle": "Профиль дома",
-  "homeProfileMembers": "Участники",
-  "homeProfileAdminMember": "админ"
+  "homeProfileMembers": "Участники({currentMembersAmount}/{maxMembersAmount})",
+  "@homeProfileMembers": {
+    "placeholders": {
+      "currentMembersAmount": {
+        "type": "int"
+      },
+      "maxMembersAmount": {
+        "type": "int"
+      }
+    }
+  },
+  "homeProfileAdminMember": "админ",
+  "homeProfileAddMember": "Добавить"
 }

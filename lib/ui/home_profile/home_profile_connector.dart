@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/home/home_action.dart';
 import 'package:nestify/ui/base_connector.dart';
@@ -12,6 +13,7 @@ class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
 
   @override
   HomeProfileViewModel convert(BuildContext context, Store<AppState> store) {
+    final localization = AppLocalizations.of(context)!;
     final homeState = store.state.homeState;
 
     if (homeState.isLoading) {
@@ -29,6 +31,14 @@ class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
       homeName: homeState.home!.homeName,
       homeAddress: homeState.home!.address,
       about: homeState.home!.about,
+      membersDescription: localization.homeProfileMembers(
+        homeState.homeUsers.length,
+        homeState.colors.length,
+      ),
+      onAddMember: homeState.home!.adminId == homeState.currentUserId &&
+              homeState.homeUsers.length < homeState.colors.length
+          ? Command.stub
+          : null,
       users: homeState.homeUsers
           .map((user) => HomeUserViewModel(
                 userPictureUrl: user.avatarUrl,

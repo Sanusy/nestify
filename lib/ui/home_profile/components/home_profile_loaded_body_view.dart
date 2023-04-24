@@ -20,36 +20,64 @@ class HomeProfileLoadedBodyView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        NetworkCircleAvatar(
-          radius: 90,
-          placeholder: Icon(
-            Icons.home_outlined,
-            size: 120,
-            color: theme.colorScheme.primary,
-          ),
-          avatarUrl: viewModel.pictureUrl,
-        ),
-        const SizedBox(height: 16),
-        Text(
-          viewModel.homeName,
-          style: theme.textTheme.bodyLarge,
-        ),
-        if (viewModel.homeAddress != null)
-          Text(
-            viewModel.homeAddress!,
-            style: theme.textTheme.bodyMedium,
-          ),
-        const SizedBox(height: 16),
-        if (viewModel.about != null) ...[
-          Text(
-            viewModel.about!,
-            style: theme.textTheme.bodyMedium,
+        ...[
+          NetworkCircleAvatar(
+            radius: 90,
+            placeholder: Icon(
+              Icons.home_outlined,
+              size: 120,
+              color: theme.colorScheme.primary,
+            ),
+            avatarUrl: viewModel.pictureUrl,
           ),
           const SizedBox(height: 16),
-        ],
-        Text(
-          localization.homeProfileMembers,
-          style: theme.textTheme.labelLarge,
+          Text(
+            viewModel.homeName,
+            style: theme.textTheme.bodyLarge,
+          ),
+          if (viewModel.homeAddress != null)
+            Text(
+              viewModel.homeAddress!,
+              style: theme.textTheme.bodyMedium,
+            ),
+          const SizedBox(height: 16),
+          if (viewModel.about != null) ...[
+            Text(
+              viewModel.about!,
+              style: theme.textTheme.bodyMedium,
+            ),
+            const SizedBox(height: 16),
+          ],
+        ]
+            .map((widget) => widget is ListView
+                ? widget
+                : Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: widget,
+                  ))
+            .toList(),
+        SizedBox(
+          height: 40,
+          child: Row(
+            children: [
+              const SizedBox(width: 16),
+              Text(
+                viewModel.membersDescription,
+                style: theme.textTheme.labelLarge,
+              ),
+              const Spacer(),
+              if (viewModel.onAddMember != null)
+                TextButton(
+                  onPressed: viewModel.onAddMember!,
+                  child: Row(
+                    children: [
+                      const Icon(Icons.add),
+                      Text(localization.homeProfileAddMember),
+                    ],
+                  ),
+                )
+            ],
+          ),
         ),
         ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
@@ -59,14 +87,7 @@ class HomeProfileLoadedBodyView extends StatelessWidget {
             return UserTileView(viewModel: viewModel.users[index]);
           },
         ),
-      ]
-          .map((widget) => widget is ListView
-              ? widget
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: widget,
-                ))
-          .toList(),
+      ],
     );
   }
 }

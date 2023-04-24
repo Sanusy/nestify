@@ -34,6 +34,17 @@
   "settingsPrivacyPolicy": "Privacy policy",
   "settingsTermsAndConditions": "Terms and Conditions",
   "homeProfileTitle": "Home profile",
-  "homeProfileMembers": "Members",
-  "homeProfileAdminMember": "admin"
+  "homeProfileMembers": "Members({currentMembersAmount}/{maxMembersAmount})",
+  "@homeProfileMembers": {
+    "placeholders": {
+      "currentMembersAmount": {
+        "type": "int"
+      },
+      "maxMembersAmount": {
+        "type": "int"
+      }
+    }
+  },
+  "homeProfileAdminMember": "admin",
+  "homeProfileAddMember": "Add member"
 }
