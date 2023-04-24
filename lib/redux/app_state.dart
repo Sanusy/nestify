@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:nestify/redux/add_member/add_member_state.dart';
 import 'package:nestify/redux/create_home/create_home_state.dart';
 import 'package:nestify/redux/home/home_state.dart';
 import 'package:nestify/redux/login/login_state.dart';
@@ -13,6 +14,7 @@ class AppState with _$AppState {
     required CreateHomeState createHomeState,
     required SettingsState settingsState,
     required HomeState homeState,
+    required AddMemberState addMemberState,
   }) = _AppState;
 
   factory AppState.initial() => AppState(
@@ -20,5 +22,6 @@ class AppState with _$AppState {
         createHomeState: CreateHomeState.initial(),
         settingsState: SettingsState.initial(),
         homeState: HomeState.initial(),
+        addMemberState: AddMemberState.initial(),
       );
 }
