@@ -48,7 +48,7 @@ class HomeProfileLoadedBodyView extends StatelessWidget {
           const SizedBox(height: 16),
         ],
         Text(
-          localization.homeProfileMembers,
+          viewModel.membersDescription,
           style: theme.textTheme.labelLarge,
         ),
         ListView.builder(

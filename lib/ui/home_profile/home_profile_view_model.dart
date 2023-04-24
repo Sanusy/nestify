@@ -16,6 +16,7 @@ class HomeProfileViewModel with _$HomeProfileViewModel {
     required String homeName,
     required String? homeAddress,
     required String? about,
+    required String membersDescription,
     required List<HomeUserViewModel> users,
   }) = HomeProfileLoadedViewModel;
 }
