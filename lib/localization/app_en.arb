@@ -45,5 +45,6 @@
       }
     }
   },
-  "homeProfileAdminMember": "admin"
+  "homeProfileAdminMember": "admin",
+  "homeProfileAddMember": "Add member"
 }

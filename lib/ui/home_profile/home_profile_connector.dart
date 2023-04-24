@@ -35,6 +35,10 @@ class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
         homeState.homeUsers.length,
         homeState.colors.length,
       ),
+      onAddMember: homeState.home!.adminId == homeState.currentUserId &&
+              homeState.homeUsers.length < homeState.colors.length
+          ? Command.stub
+          : null,
       users: homeState.homeUsers
           .map((user) => HomeUserViewModel(
                 userPictureUrl: user.avatarUrl,
