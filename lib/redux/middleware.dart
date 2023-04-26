@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:nestify/redux/add_member/middleware/obtain_invite_url_middleware.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/create_home/middleware/create_home_middleware.dart';
 import 'package:nestify/redux/create_home/middleware/create_home_pick_home_avatar_middleware.dart';
@@ -25,4 +26,5 @@ List<Middleware<AppState>> appMiddleware = [
   LoadAvailableColorsMiddleware(_serviceLocator.get()),
   ContactSupportMiddleware(_serviceLocator.get(), _serviceLocator.get()),
   InitHomeMiddleware(_serviceLocator.get(), _serviceLocator.get()),
+  ObtainInviteUrlMiddleware(_serviceLocator.get()),
 ];
