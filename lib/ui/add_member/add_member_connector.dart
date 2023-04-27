@@ -4,6 +4,7 @@ import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/ui/add_member/add_member_screen.dart';
 import 'package:nestify/ui/add_member/add_member_view_model.dart';
 import 'package:nestify/ui/base_connector.dart';
+import 'package:nestify/ui/command.dart';
 import 'package:redux/redux.dart';
 
 class AddMemberConnector extends BaseConnector<AddMemberViewModel> {
@@ -16,7 +17,20 @@ class AddMemberConnector extends BaseConnector<AddMemberViewModel> {
 
   @override
   AddMemberViewModel convert(BuildContext context, Store<AppState> store) {
-    return const AddMemberViewModel.loading();
+    final addMemberState = store.state.addMemberState;
+    if (addMemberState.isLoading) {
+      return const AddMemberViewModel.loading();
+    }
+
+    if (addMemberState.error != null) {
+      return AddMemberViewModel.failed(
+          onRetry: store.createCommand(ObtainInviteUrlAction()));
+    }
+
+    return AddMemberViewModel.loaded(
+      inviteUrl: addMemberState.inviteUrl!,
+      onShareUrl: Command.stub,
+    );
   }
 
   @override
