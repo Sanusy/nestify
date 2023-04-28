@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/ui/command.dart';
 
@@ -12,7 +14,19 @@ class AddMemberViewModel with _$AddMemberViewModel {
   }) = _Failed;
 
   const factory AddMemberViewModel.loaded({
-    required String inviteUrl,
-    required Command onShareUrl,
+    required bool isInviteCapturingInProgress,
+    required HomeInviteViewModel homeInviteViewModel,
+    required Command onCreatePictureInvite,
+    required CommandWith<Uint8List> onShareInvite,
   }) = _Loaded;
+}
+
+@Freezed(copyWith: false)
+class HomeInviteViewModel with _$HomeInviteViewModel {
+  const factory HomeInviteViewModel({
+    required String homeName,
+    required String? homeAddress,
+    required String? humeAvatarUrl,
+    required String inviteUrl,
+  }) = _HomeInviteViewModel;
 }

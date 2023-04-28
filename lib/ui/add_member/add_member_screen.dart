@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/gen/assets.gen.dart';
 import 'package:nestify/ui/add_member/add_member_view_model.dart';
+import 'package:nestify/ui/add_member/components/share_invite_view.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:screenshot/screenshot.dart';
 
 class AddMemberScreen extends StatelessWidget {
   final AddMemberViewModel viewModel;
@@ -55,7 +57,7 @@ class AddMemberScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 64),
                   child: QrImage(
-                    data: loadedViewModel.inviteUrl,
+                    data: loadedViewModel.homeInviteViewModel.inviteUrl,
                     size: qrCodeSize,
                     // TODO: Replace with app icon
                     embeddedImage: Assets.images.qrCodePicture.provider(),
@@ -69,8 +71,34 @@ class AddMemberScreen extends StatelessWidget {
                 const SizedBox(height: 64),
                 const Spacer(),
                 OutlinedButton(
-                  onPressed: loadedViewModel.onShareUrl,
-                  child: Text(localization.addMemberShareInvite),
+                  onPressed: loadedViewModel.isInviteCapturingInProgress
+                      ? null
+                      : () {
+                          loadedViewModel.onCreatePictureInvite();
+                          ScreenshotController()
+                              .captureFromWidget(
+                                ShareInviteView(
+                                  inviteDescription: localization
+                                      .addMemberSharedInviteDescription,
+                                  viewModel:
+                                      loadedViewModel.homeInviteViewModel,
+                                ),
+                                context: context,
+                              )
+                              .then(
+                                (pictureBytes) =>
+                                    loadedViewModel.onShareInvite(pictureBytes),
+                              );
+                        },
+                  child: loadedViewModel.isInviteCapturingInProgress
+                      ? const Center(
+                          child: SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                        )
+                      : Text(localization.addMemberShareInvite),
                 ),
               ],
             ),

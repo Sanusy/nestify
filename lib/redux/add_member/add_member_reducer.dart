@@ -6,7 +6,8 @@ final addMemberStateReducer = combineReducers<AddMemberState>([
   TypedReducer(_obtainInviteUrl),
   TypedReducer(_inviteUrlObtained),
   TypedReducer(_failedToObtainInviteUrl),
-  TypedReducer(_errorProcessed),
+  TypedReducer(_createInvitePicture),
+  TypedReducer(_shareInviteAction),
 ]);
 
 AddMemberState _obtainInviteUrl(
@@ -40,11 +41,20 @@ AddMemberState _failedToObtainInviteUrl(
   );
 }
 
-AddMemberState _errorProcessed(
+AddMemberState _createInvitePicture(
   AddMemberState state,
-  AddMemberErrorProcessedAction action,
+  CreateInvitePictureAction action,
 ) {
   return state.copyWith(
-    error: null,
+    isInviteCapturingInProgress: true,
+  );
+}
+
+AddMemberState _shareInviteAction(
+  AddMemberState state,
+  ShareInviteAction action,
+) {
+  return state.copyWith(
+    isInviteCapturingInProgress: false,
   );
 }

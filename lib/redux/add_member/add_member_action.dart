@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 class ObtainInviteUrlAction {}
 
 class FailedToObtainInviteUrlAction {}
@@ -8,4 +10,14 @@ class InviteUrlObtainedAction {
   InviteUrlObtainedAction({required this.inviteUrl});
 }
 
-class AddMemberErrorProcessedAction {}
+class CreateInvitePictureAction {}
+
+class ShareInviteAction {
+  final Uint8List pictureBytes;
+  final String inviteDescription;
+
+  ShareInviteAction({
+    required this.pictureBytes,
+    required this.inviteDescription,
+  });
+}

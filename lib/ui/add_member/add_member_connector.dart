@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/redux/add_member/add_member_action.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/ui/add_member/add_member_screen.dart';
@@ -17,19 +18,37 @@ class AddMemberConnector extends BaseConnector<AddMemberViewModel> {
 
   @override
   AddMemberViewModel convert(BuildContext context, Store<AppState> store) {
+    final localization = AppLocalizations.of(context)!;
     final addMemberState = store.state.addMemberState;
     if (addMemberState.isLoading) {
       return const AddMemberViewModel.loading();
     }
 
-    if (addMemberState.error != null) {
+    if (addMemberState.error != null ||
+        store.state.homeState.home == null ||
+        addMemberState.inviteUrl == null) {
       return AddMemberViewModel.failed(
-          onRetry: store.createCommand(ObtainInviteUrlAction()));
+        onRetry: store.createCommand(ObtainInviteUrlAction()),
+      );
     }
 
+    final home = store.state.homeState.home!;
+
     return AddMemberViewModel.loaded(
-      inviteUrl: addMemberState.inviteUrl!,
-      onShareUrl: Command.stub,
+      homeInviteViewModel: HomeInviteViewModel(
+        homeName: home.homeName,
+        homeAddress: home.address,
+        humeAvatarUrl: home.avatarUrl,
+        inviteUrl: addMemberState.inviteUrl!,
+      ),
+      isInviteCapturingInProgress: addMemberState.isInviteCapturingInProgress,
+      onCreatePictureInvite: store.createCommand(CreateInvitePictureAction()),
+      onShareInvite: store.createCommandWith(
+        (pictureBytes) => ShareInviteAction(
+          pictureBytes: pictureBytes,
+          inviteDescription: localization.addMemberShareDescription,
+        ),
+      ),
     );
   }
 

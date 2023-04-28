@@ -1,4 +1,6 @@
+import 'package:image_picker/image_picker.dart';
 import 'package:nestify/service/external_activities_service/external_activities_service.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ExternalActivitiesServiceImplementation
@@ -10,5 +12,13 @@ class ExternalActivitiesServiceImplementation
     if (await canLaunchUrl(mailToUrl)) {
       await launchUrl(mailToUrl);
     }
+  }
+
+  @override
+  Future<void> shareHomeInvite({
+    required String inviteDescription,
+    required XFile qrCode,
+  }) async {
+    await Share.shareXFiles([qrCode], text: inviteDescription);
   }
 }
