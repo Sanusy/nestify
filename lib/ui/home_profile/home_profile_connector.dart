@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/home/home_action.dart';
+import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/home_profile/home_profile_screen.dart';
@@ -37,7 +39,9 @@ class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
       ),
       onAddMember: homeState.home!.adminId == homeState.currentUserId &&
               homeState.homeUsers.length < homeState.colors.length
-          ? Command.stub
+          ? store.createCommand(
+              const NavigationAction.setPath(AppRoute.addMember()),
+            )
           : null,
       users: homeState.homeUsers
           .map((user) => HomeUserViewModel(

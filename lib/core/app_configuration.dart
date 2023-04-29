@@ -11,6 +11,8 @@ import 'package:nestify/redux/middleware.dart';
 import 'package:nestify/redux/reducer.dart';
 import 'package:nestify/service/constants_service/constants_service.dart';
 import 'package:nestify/service/constants_service/firebase_constants_service.dart';
+import 'package:nestify/service/dynamic_links_service/dynamic_links_service.dart';
+import 'package:nestify/service/dynamic_links_service/dynamic_links_service_implementation.dart';
 import 'package:nestify/service/external_activities_service/external_activities_service.dart';
 import 'package:nestify/service/external_activities_service/external_activities_service_implementation.dart';
 import 'package:nestify/service/file_service/file_service.dart';
@@ -48,6 +50,8 @@ class AppConfiguration {
         .registerSingleton<ConstantsService>(FirebaseConstantsService());
     serviceLocator.registerSingleton<ExternalActivitiesService>(
         ExternalActivitiesServiceImplementation());
+    serviceLocator.registerSingleton<DynamicLinkService>(
+        DynamicLinkServiceImplementation());
 
     await serviceLocator.allReady();
   }

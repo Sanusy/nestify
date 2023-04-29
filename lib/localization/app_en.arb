@@ -46,5 +46,11 @@
     }
   },
   "homeProfileAdminMember": "admin",
-  "homeProfileAddMember": "Add member"
+  "homeProfileAddMember": "Add member",
+  "addMemberTitle": "Invite member",
+  "addMemberDisclaimer": "Show this QR code to user you want to add.",
+  "addMemberDisclaimerSubtitle": "Alternatively you can share this invite through any app you want.",
+  "addMemberShareInvite": "Share invite",
+  "addMemberShareDescription": "You were invited to become a home member in Nestify. Tap the link or scan QR code to accept invite.",
+  "addMemberSharedInviteDescription": "You were invited to become a home member in Nestify. Scan QR code to accept invite."
 }

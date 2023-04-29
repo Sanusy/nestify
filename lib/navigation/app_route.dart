@@ -20,6 +20,8 @@ class AppRoute with _$AppRoute {
 
   const factory AppRoute.settings() = _Settings;
 
+  const factory AppRoute.addMember() = _AddMember;
+
   bool get fullscreenDialog => maybeWhen(
         orElse: () => false,
         createHome: () => true,

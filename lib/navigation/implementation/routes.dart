@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/navigation/implementation/nestify_go_route.dart';
 import 'package:nestify/service/user_service/user_service.dart';
+import 'package:nestify/ui/add_member/add_member_connector.dart';
 import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_connector.dart';
 import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_destinations.dart';
 import 'package:nestify/ui/create_home/create_home_connector.dart';
@@ -53,10 +54,16 @@ final goRouter = GoRouter(
           fullscreenDialog: const AppRoute.home().fullscreenDialog,
         ),
         NestifyGoRoute(
-          path: const AppRoute.homeProfile().routeName,
-          child: const HomeProfileConnector(),
-          fullscreenDialog: const AppRoute.homeProfile().fullscreenDialog,
-        ),
+            path: const AppRoute.homeProfile().routeName,
+            child: const HomeProfileConnector(),
+            fullscreenDialog: const AppRoute.homeProfile().fullscreenDialog,
+            routes: [
+              NestifyGoRoute(
+                path: const AppRoute.addMember().routeName,
+                child: const AddMemberConnector(),
+                fullscreenDialog: const AppRoute.addMember().fullscreenDialog,
+              )
+            ]),
         NestifyGoRoute(
           path: const AppRoute.settings().routeName,
           child: const SettingsConnector(),
@@ -112,6 +119,7 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         home: () => '/home',
         homeProfile: () => '/homeProfile',
         settings: () => '/settings',
+        addMember: () => 'addMember',
       );
 
   /// Used in navigation service to provide full path to the destination
@@ -126,5 +134,6 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         home: () => '/home',
         homeProfile: () => '/homeProfile',
         settings: () => '/settings',
+        addMember: () => '/homeProfile/$routeName',
       );
 }
