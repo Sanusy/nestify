@@ -47,4 +47,16 @@ class DynamicLinkServiceImplementation implements DynamicLinkService {
       throw error.toNetworkError();
     }
   }
+
+  @override
+  Future<String?> initialLink() async {
+    final initialLink = await _dynamicLinks.getInitialLink();
+    return initialLink?.link.toString();
+  }
+
+  @override
+  Stream<String> dynamicLinks() {
+    return _dynamicLinks.onLink
+        .map((pendingLink) => pendingLink.link.toString());
+  }
 }
