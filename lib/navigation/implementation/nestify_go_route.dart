@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nestify/navigation/app_route.dart';
+import 'package:nestify/navigation/implementation/app_route_extension.dart';
 
 class NestifyGoRoute extends GoRoute {
   NestifyGoRoute({
-    required String path,
+    required AppRoute appRoute,
     required Widget child,
-    required bool fullscreenDialog,
     List<GoRoute> routes = const [],
     GoRouterRedirect? redirect,
     GlobalKey<NavigatorState>? parentNavigatorKey,
   }) : super(
-          path: path,
+          path: appRoute.routeName,
           pageBuilder: (_, state) => MaterialPage(
             child: child,
-            fullscreenDialog: fullscreenDialog,
+            fullscreenDialog: appRoute.fullscreenDialog,
           ),
           routes: routes,
           redirect: redirect,

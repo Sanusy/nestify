@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nestify/models/home_invite.dart';
 import 'package:nestify/navigation/app_route.dart';
+import 'package:nestify/navigation/implementation/app_route_extension.dart';
 import 'package:nestify/navigation/implementation/nestify_go_route.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/dynamic_links/dynamic_links_action.dart';
@@ -30,9 +31,8 @@ final goRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   routes: [
     NestifyGoRoute(
-      path: const AppRoute.splash().routeName,
+      appRoute: const AppRoute.splash(),
       child: Container(),
-      fullscreenDialog: false,
       redirect: (_, __) async {
         final serviceLocator = GetIt.instance;
         final userService = serviceLocator.get<UserService>();
@@ -89,48 +89,40 @@ final goRouter = GoRouter(
       },
       routes: [
         NestifyGoRoute(
-          path: const AppRoute.home().routeName,
+          appRoute: const AppRoute.home(),
           child: const HomeConnector(),
-          fullscreenDialog: const AppRoute.home().fullscreenDialog,
         ),
         NestifyGoRoute(
-            path: const AppRoute.homeProfile().routeName,
+            appRoute: const AppRoute.homeProfile(),
             child: const HomeProfileConnector(),
-            fullscreenDialog: const AppRoute.homeProfile().fullscreenDialog,
             routes: [
               NestifyGoRoute(
-                path: const AppRoute.addMember().routeName,
+                appRoute: const AppRoute.addMember(),
                 child: const AddMemberConnector(),
-                fullscreenDialog: const AppRoute.addMember().fullscreenDialog,
               )
             ]),
         NestifyGoRoute(
-          path: const AppRoute.settings().routeName,
+          appRoute: const AppRoute.settings(),
           child: const SettingsConnector(),
-          fullscreenDialog: const AppRoute.settings().fullscreenDialog,
         ),
       ],
     ),
     NestifyGoRoute(
-      path: const AppRoute.login().routeName,
+      appRoute: const AppRoute.login(),
       child: const LoginConnector(),
-      fullscreenDialog: const AppRoute.login().fullscreenDialog,
     ),
     NestifyGoRoute(
-        path: const AppRoute.homelessUser().routeName,
+        appRoute: const AppRoute.homelessUser(),
         child: const HomelessUserConnector(),
-        fullscreenDialog: const AppRoute.homelessUser().fullscreenDialog,
         routes: [
           NestifyGoRoute(
-            path: const AppRoute.homeToJoin().routeName,
+            appRoute: const AppRoute.homeToJoin(),
             child: const HomeToJoinConnector(),
-            fullscreenDialog: const AppRoute.homeToJoin().fullscreenDialog,
           ),
         ]),
     NestifyGoRoute(
-      path: const AppRoute.createHome().routeName,
+      appRoute: const AppRoute.createHome(),
       child: const CreateHomeConnector(),
-      fullscreenDialog: const AppRoute.createHome().fullscreenDialog,
     ),
   ],
 );
@@ -148,40 +140,4 @@ BottomNavigationDestination _bottomNavigationDestination() {
     return BottomNavigationDestination.settings;
   }
   return BottomNavigationDestination.home;
-}
-
-extension AppRouteExtensionForGoRouter on AppRoute {
-  /// Used in GoRouter to give a route it's path. if it is a one of the
-  /// root routes, should start with '/'. If route is nested inside another
-  /// route, should only contain route name without '/'.
-  ///
-  /// For example if you have root route Home, and nested in Home TaskDetails route,\
-  /// Home route name should be '/home', and TaskDetails should be 'taskDetails.
-  String get routeName => when(
-        splash: () => '/',
-        login: () => '/login',
-        homelessUser: () => '/homelessUser',
-        createHome: () => '/createHome',
-        home: () => '/home',
-        homeProfile: () => '/homeProfile',
-        settings: () => '/settings',
-        addMember: () => 'addMember',
-        homeToJoin: () => 'homeToJoin',
-      );
-
-  /// Used in navigation service to provide full path to the destination
-  /// should provide full path from the very first parent route separated with '/'
-  /// for example if Home route contains nested route TaskDetails,
-  /// path to taskDetails should be /home/taskDetails
-  String get routePath => when(
-        splash: () => '/',
-        login: () => '/login',
-        homelessUser: () => '/homelessUser',
-        createHome: () => '/createHome',
-        home: () => '/home',
-        homeProfile: () => '/homeProfile',
-        settings: () => '/settings',
-        addMember: () => '/homeProfile/$routeName',
-        homeToJoin: () => '/homelessUser/$routeName',
-      );
 }
