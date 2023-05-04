@@ -1,7 +1,7 @@
 abstract class DynamicLinkService {
   Future<String> homeInviteUrl(String homeId);
 
-  Future<String?> initialLink();
+  Future<Uri?> initialLink();
 
-  Stream<String> dynamicLinks();
+  Stream<Uri> dynamicLinks();
 }

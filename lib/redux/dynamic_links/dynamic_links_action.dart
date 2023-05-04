@@ -1,0 +1,3 @@
+class ListenDynamicLinksAction {}
+
+class StopListenDynamicLinksAction {}

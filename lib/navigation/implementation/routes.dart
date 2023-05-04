@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nestify/models/home_invite.dart';
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/navigation/implementation/nestify_go_route.dart';
+import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/dynamic_links/dynamic_links_action.dart';
+import 'package:nestify/service/dynamic_links_service/dynamic_links_service.dart';
+import 'package:nestify/service/home_service/home_service.dart';
+import 'package:nestify/service/network_error.dart';
+import 'package:nestify/service/snack_bar_service/snack_bar_service.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 import 'package:nestify/ui/add_member/add_member_connector.dart';
 import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_connector.dart';
@@ -13,6 +20,7 @@ import 'package:nestify/ui/home_profile/home_profile_connector.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
 import 'package:nestify/ui/settings/settings_connector.dart';
+import 'package:redux/redux.dart';
 
 /// Used to open screen above BottomNavigation ShellRoute
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
@@ -25,16 +33,48 @@ final goRouter = GoRouter(
       child: Container(),
       fullscreenDialog: false,
       redirect: (_, __) async {
-        final userService = GetIt.instance.get<UserService>();
+        final serviceLocator = GetIt.instance;
+        final userService = serviceLocator.get<UserService>();
+        final homeService = serviceLocator.get<HomeService>();
+        final snackBarService = serviceLocator.get<SnackBarService>();
+        final store = serviceLocator.get<Store<AppState>>();
 
         if (userService.currentUserId() == null) {
           return const AppRoute.login().routePath;
         }
 
+        store.dispatch(ListenDynamicLinksAction());
+
+        final dynamicLinksService = serviceLocator.get<DynamicLinkService>();
+        final initialDynamicLink = await dynamicLinksService.initialLink();
+
         final isHomeMember = (await userService.homeId()) != null;
 
-        if (!isHomeMember) {
+        if (!isHomeMember && initialDynamicLink == null) {
           return const AppRoute.homelessUser().routePath;
+        }
+
+        if (!isHomeMember && initialDynamicLink != null) {
+          final homeInvite = HomeInvite.fromJson(
+            initialDynamicLink.queryParameters,
+          );
+          try {
+            final home = await homeService.home(homeInvite.homeId);
+
+            if (homeInvite.inviteId == home.inviteId) {
+              // TODO: Change route to show home invite
+              return const AppRoute.settings().routePath;
+            }
+            snackBarService.showInvalidInviteError();
+            return const AppRoute.homelessUser().routePath;
+          } on NetworkError catch (_) {
+            snackBarService.showJoinHomeError();
+            return const AppRoute.homelessUser().routePath;
+          }
+        }
+
+        if (isHomeMember && initialDynamicLink != null) {
+          snackBarService.showAlreadyHomeMemberSnackBar();
         }
 
         return const AppRoute.home().routePath;
