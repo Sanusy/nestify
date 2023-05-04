@@ -17,6 +17,7 @@ import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_destinatio
 import 'package:nestify/ui/create_home/create_home_connector.dart';
 import 'package:nestify/ui/home/home_connector.dart';
 import 'package:nestify/ui/home_profile/home_profile_connector.dart';
+import 'package:nestify/ui/home_to_join/home_to_join_connector.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
 import 'package:nestify/ui/settings/settings_connector.dart';
@@ -62,8 +63,7 @@ final goRouter = GoRouter(
             final home = await homeService.home(homeInvite.homeId);
 
             if (homeInvite.inviteId == home.inviteId) {
-              // TODO: Change route to show home invite
-              return const AppRoute.settings().routePath;
+              return const AppRoute.homeToJoin().routePath;
             }
             snackBarService.showInvalidInviteError();
             return const AppRoute.homelessUser().routePath;
@@ -117,10 +117,16 @@ final goRouter = GoRouter(
       fullscreenDialog: const AppRoute.login().fullscreenDialog,
     ),
     NestifyGoRoute(
-      path: const AppRoute.homelessUser().routeName,
-      child: const HomelessUserConnector(),
-      fullscreenDialog: const AppRoute.homelessUser().fullscreenDialog,
-    ),
+        path: const AppRoute.homelessUser().routeName,
+        child: const HomelessUserConnector(),
+        fullscreenDialog: const AppRoute.homelessUser().fullscreenDialog,
+        routes: [
+          NestifyGoRoute(
+            path: const AppRoute.homeToJoin().routeName,
+            child: const HomeToJoinConnector(),
+            fullscreenDialog: const AppRoute.homeToJoin().fullscreenDialog,
+          ),
+        ]),
     NestifyGoRoute(
       path: const AppRoute.createHome().routeName,
       child: const CreateHomeConnector(),
@@ -160,6 +166,7 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         homeProfile: () => '/homeProfile',
         settings: () => '/settings',
         addMember: () => 'addMember',
+        homeToJoin: () => 'homeToJoin',
       );
 
   /// Used in navigation service to provide full path to the destination
@@ -175,5 +182,6 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         homeProfile: () => '/homeProfile',
         settings: () => '/settings',
         addMember: () => '/homeProfile/$routeName',
+        homeToJoin: () => '/homelessUser/$routeName',
       );
 }

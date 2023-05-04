@@ -38,7 +38,7 @@ class DynamicLinksEpic implements EpicClass<AppState> {
             final homeToJoin = await _homeService.home(homeInvite.homeId);
 
             if (homeInvite.inviteId == homeToJoin.inviteId) {
-              return const NavigationAction.setPath(AppRoute.settings());
+              return const NavigationAction.setPath(AppRoute.homeToJoin());
             } else {
               _snackBarService.showInvalidInviteError();
             }
