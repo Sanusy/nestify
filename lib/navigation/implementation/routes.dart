@@ -7,6 +7,7 @@ import 'package:nestify/navigation/implementation/app_route_extension.dart';
 import 'package:nestify/navigation/implementation/nestify_go_route.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/dynamic_links/dynamic_links_action.dart';
+import 'package:nestify/redux/join_home/join_home_action.dart';
 import 'package:nestify/service/dynamic_links_service/dynamic_links_service.dart';
 import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
@@ -18,8 +19,8 @@ import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_destinatio
 import 'package:nestify/ui/create_home/create_home_connector.dart';
 import 'package:nestify/ui/home/home_connector.dart';
 import 'package:nestify/ui/home_profile/home_profile_connector.dart';
-import 'package:nestify/ui/home_to_join/home_to_join_connector.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
+import 'package:nestify/ui/join_home/join_home_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
 import 'package:nestify/ui/settings/settings_connector.dart';
 import 'package:redux/redux.dart';
@@ -63,7 +64,8 @@ final goRouter = GoRouter(
             final home = await homeService.home(homeInvite.homeId);
 
             if (homeInvite.inviteId == home.inviteId) {
-              return const AppRoute.homeToJoin().routePath;
+              store.dispatch(InitJoinHomeAction(homeToJoin: home));
+              return const AppRoute.joinHome().routePath;
             }
             snackBarService.showInvalidInviteError();
             return const AppRoute.homelessUser().routePath;
@@ -99,7 +101,7 @@ final goRouter = GoRouter(
               NestifyGoRoute(
                 appRoute: const AppRoute.addMember(),
                 child: const AddMemberConnector(),
-              )
+              ),
             ]),
         NestifyGoRoute(
           appRoute: const AppRoute.settings(),
@@ -116,8 +118,8 @@ final goRouter = GoRouter(
         child: const HomelessUserConnector(),
         routes: [
           NestifyGoRoute(
-            appRoute: const AppRoute.homeToJoin(),
-            child: const HomeToJoinConnector(),
+            appRoute: const AppRoute.joinHome(),
+            child: const JoinHomeConnector(),
           ),
         ]),
     NestifyGoRoute(

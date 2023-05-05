@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:nestify/ui/home_to_join/home_to_join_view_model.dart';
+import 'package:nestify/ui/join_home/join_home_view_model.dart';
 
-class HomeToJoinScreen extends StatelessWidget {
-  final HomeToJoinViewModel viewModel;
+class JoinHomeScreen extends StatelessWidget {
+  final JoinHomeViewModel viewModel;
 
-  const HomeToJoinScreen({
+  const JoinHomeScreen({
     Key? key,
     required this.viewModel,
   }) : super(key: key);

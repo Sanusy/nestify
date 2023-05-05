@@ -16,7 +16,7 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         homeProfile: () => '/homeProfile',
         settings: () => '/settings',
         addMember: () => 'addMember',
-        homeToJoin: () => 'homeToJoin',
+        joinHome: () => 'joinHome',
       );
 
   /// Used in navigation service to provide full path to the destination
@@ -32,6 +32,6 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         homeProfile: () => '/homeProfile',
         settings: () => '/settings',
         addMember: () => '/homeProfile/$routeName',
-        homeToJoin: () => '/homelessUser/$routeName',
+        joinHome: () => '/homelessUser/$routeName',
       );
 }

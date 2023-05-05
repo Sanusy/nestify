@@ -4,6 +4,7 @@ import 'package:nestify/models/home_invite.dart';
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/dynamic_links/dynamic_links_action.dart';
+import 'package:nestify/redux/join_home/join_home_action.dart';
 import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/service/dynamic_links_service/dynamic_links_service.dart';
 import 'package:nestify/service/home_service/home_service.dart';
@@ -29,24 +30,34 @@ class DynamicLinksEpic implements EpicClass<AppState> {
   @override
   Stream<dynamic> call(Stream<dynamic> actions, EpicStore<AppState> store) {
     return actions.whereType<ListenDynamicLinksAction>().flatMap((action) {
-      return _dynamicLinkService.dynamicLinks().asyncMap((dynamicLink) async {
-        if ((await _userService.homeId()) != null) {
-          _snackBarService.showAlreadyHomeMemberSnackBar();
-        } else {
-          try {
-            final homeInvite = HomeInvite.fromJson(dynamicLink.queryParameters);
-            final homeToJoin = await _homeService.home(homeInvite.homeId);
-
-            if (homeInvite.inviteId == homeToJoin.inviteId) {
-              return const NavigationAction.setPath(AppRoute.homeToJoin());
+      return _dynamicLinkService
+          .dynamicLinks()
+          .asyncMap((dynamicLink) async {
+            if ((await _userService.homeId()) != null) {
+              _snackBarService.showAlreadyHomeMemberSnackBar();
             } else {
-              _snackBarService.showInvalidInviteError();
+              try {
+                final homeInvite =
+                    HomeInvite.fromJson(dynamicLink.queryParameters);
+                final homeToJoin = await _homeService.home(homeInvite.homeId);
+
+                if (homeInvite.inviteId == homeToJoin.inviteId) {
+                  return homeToJoin;
+                } else {
+                  _snackBarService.showInvalidInviteError();
+                }
+              } on NetworkError catch (_) {
+                _snackBarService.showJoinHomeError();
+              }
             }
-          } on NetworkError catch (_) {
-            _snackBarService.showJoinHomeError();
-          }
-        }
-      }).takeUntil(actions.whereType<StopListenDynamicLinksAction>());
+          })
+          .expand((homeToJoin) => homeToJoin != null
+              ? List.of([
+                  InitJoinHomeAction(homeToJoin: homeToJoin),
+                  const NavigationAction.setPath(AppRoute.joinHome()),
+                ])
+              : [])
+          .takeUntil(actions.whereType<StopListenDynamicLinksAction>());
     });
   }
 }

@@ -12,7 +12,7 @@ class AppRoute with _$AppRoute {
 
   const factory AppRoute.homelessUser() = _HomelessUser;
 
-  const factory AppRoute.homeToJoin() = _HomeToJoin;
+  const factory AppRoute.joinHome() = _JoinHome;
 
   const factory AppRoute.createHome() = _CreateHome;
 
@@ -27,6 +27,6 @@ class AppRoute with _$AppRoute {
   bool get fullscreenDialog => maybeWhen(
         orElse: () => false,
         createHome: () => true,
-        homeToJoin: () => true,
+        joinHome: () => true,
       );
 }
