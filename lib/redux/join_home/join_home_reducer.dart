@@ -6,6 +6,7 @@ final joinHomeStateReducer = combineReducers<JoinHomeState>([
   TypedReducer(_initJoinHome),
   TypedReducer(_joinHomeInitialized),
   TypedReducer(_failedToInitJoinHome),
+  TypedReducer(_changeStepAction),
   TypedReducer(_joinHome),
 ]);
 
@@ -39,6 +40,15 @@ JoinHomeState _failedToInitJoinHome(
   return state.copyWith(
     isLoading: false,
     error: const JoinHomeError.failedToInitJoinHome(),
+  );
+}
+
+JoinHomeState _changeStepAction(
+    JoinHomeState state,
+    JoinHomeChangeStepAction action,
+    ) {
+  return state.copyWith(
+    joinHomeStep: action.step,
   );
 }
 

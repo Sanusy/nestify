@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/ui/common/network_circle_avatar.dart';
-import 'package:nestify/ui/home_profile/components/user_tile_view.dart';
+import 'package:nestify/ui/common/user_tile_view/user_tile_view.dart';
 import 'package:nestify/ui/home_profile/home_profile_view_model.dart';
 
 class HomeProfileLoadedBodyView extends StatelessWidget {

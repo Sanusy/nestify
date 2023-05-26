@@ -8,6 +8,8 @@ part 'join_home_state.freezed.dart';
 
 @freezed
 class JoinHomeState with _$JoinHomeState {
+  const JoinHomeState._();
+
   const factory JoinHomeState({
     required JoinHomeStep joinHomeStep,
     required Home? homeToJoin,
@@ -15,6 +17,7 @@ class JoinHomeState with _$JoinHomeState {
     required List<UserColor> colors,
     required UserProfileDraftState userProfileDraftState,
     required bool isLoading,
+    required bool isJoinInProgress,
     required JoinHomeError? error,
   }) = _JoinHomeState;
 
@@ -25,8 +28,17 @@ class JoinHomeState with _$JoinHomeState {
         colors: [],
         userProfileDraftState: UserProfileDraftState.initial(),
         isLoading: false,
+        isJoinInProgress: false,
         error: null,
       );
+
+  bool get hasChanges =>
+      userProfileDraftState != UserProfileDraftState.initial();
+
+  bool get canCreateHome =>
+      userProfileDraftState.userName.isNotEmpty &&
+      userProfileDraftState.selectedColor != null &&
+      !isLoading;
 }
 
 enum JoinHomeStep {

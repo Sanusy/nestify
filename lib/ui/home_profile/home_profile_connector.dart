@@ -6,6 +6,7 @@ import 'package:nestify/redux/home/home_action.dart';
 import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
+import 'package:nestify/ui/common/user_tile_view/user_tile_view_model.dart';
 import 'package:nestify/ui/home_profile/home_profile_screen.dart';
 import 'package:nestify/ui/home_profile/home_profile_view_model.dart';
 import 'package:redux/redux.dart';
@@ -44,7 +45,7 @@ class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
             )
           : null,
       users: homeState.homeUsers
-          .map((user) => HomeUserViewModel(
+          .map((user) => UserTileViewModel(
                 userPictureUrl: user.avatarUrl,
                 userName: user.userName,
                 isAdmin: homeState.home!.adminId == user.id,

@@ -55,5 +55,8 @@
   "addMemberDisclaimerSubtitle": "Так же вы можете поделиться приглажением через другое приложение.",
   "addMemberShareInvite": "Отправить приглашение",
   "addMemberShareDescription": "Вы были приглашены стать участником дома в Nestify. Пройдите по ссылке или просканируйте QR код что бы принять приглашение.",
-  "addMemberSharedInviteDescription": "Вы были приглашены стать участником дома в Nestify. Просканируйте QR код что бы принять приглашение."
+  "addMemberSharedInviteDescription": "Вы были приглашены стать участником дома в Nestify. Просканируйте QR код что бы принять приглашение.",
+  "joinHomeTitle": "Присоедениться к дому",
+  "joinHomeMembers": "Участники",
+  "joinHomeCreateProfile": "Создать профиль"
 }
