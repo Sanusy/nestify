@@ -35,7 +35,7 @@ class JoinHomeState with _$JoinHomeState {
   bool get hasChanges =>
       userProfileDraftState != UserProfileDraftState.initial();
 
-  bool get canCreateHome =>
+  bool get canJoinHome =>
       userProfileDraftState.userName.isNotEmpty &&
       userProfileDraftState.selectedColor != null &&
       !isLoading;
