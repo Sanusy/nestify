@@ -6,17 +6,21 @@ import 'package:nestify/redux/create_home/middleware/create_home_middleware.dart
 import 'package:nestify/redux/create_home/middleware/create_home_pick_home_avatar_middleware.dart';
 import 'package:nestify/redux/create_home/middleware/create_home_pick_user_avatar_middleware.dart';
 import 'package:nestify/redux/create_home/middleware/load_available_colors_middleware.dart';
+import 'package:nestify/redux/dynamic_links/dynamic_links_epic.dart';
 import 'package:nestify/redux/home/middleware/init_home_middleware.dart';
+import 'package:nestify/redux/join_home/middleware/init_join_home_middleware.dart';
 import 'package:nestify/redux/logger/logger_middleware.dart';
 import 'package:nestify/redux/login/middleware/login_with_google_middleware.dart';
 import 'package:nestify/redux/middleware/logout_middleware.dart';
 import 'package:nestify/redux/navigation/navigation_middleware.dart';
 import 'package:nestify/redux/settings/middleware/contact_support_middleware.dart';
 import 'package:redux/redux.dart';
+import 'package:redux_epics/redux_epics.dart';
 
 final _serviceLocator = GetIt.instance;
 
 List<Middleware<AppState>> appMiddleware = [
+  /// Middlewares
   LoggerMiddleware(),
   NavigationMiddleware(_serviceLocator.get()),
   LoginWithGoogleMiddleware(_serviceLocator.get()),
@@ -29,4 +33,13 @@ List<Middleware<AppState>> appMiddleware = [
   InitHomeMiddleware(_serviceLocator.get(), _serviceLocator.get()),
   ObtainInviteUrlMiddleware(_serviceLocator.get()),
   ShareInviteMiddleware(_serviceLocator.get()),
+  InitJoinHomeMiddleware(_serviceLocator.get()),
+
+  ///Epics
+  EpicMiddleware<AppState>(DynamicLinksEpic(
+    _serviceLocator.get(),
+    _serviceLocator.get(),
+    _serviceLocator.get(),
+    _serviceLocator.get(),
+  )),
 ];

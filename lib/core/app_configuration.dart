@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nestify/core/nestify_app.dart';
@@ -19,6 +19,8 @@ import 'package:nestify/service/file_service/file_service.dart';
 import 'package:nestify/service/file_service/file_service_implementation.dart';
 import 'package:nestify/service/home_service/firebase_home_service.dart';
 import 'package:nestify/service/home_service/home_service.dart';
+import 'package:nestify/service/snack_bar_service/snack_bar_service.dart';
+import 'package:nestify/service/snack_bar_service/snack_bar_service_implementation.dart';
 import 'package:nestify/service/user_service/firebase_user_service.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 import 'package:redux/redux.dart';
@@ -30,6 +32,7 @@ enum Environment {
 
 class AppConfiguration {
   final Environment environment;
+  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   AppConfiguration({
     required this.environment,
@@ -52,15 +55,24 @@ class AppConfiguration {
         ExternalActivitiesServiceImplementation());
     serviceLocator.registerSingleton<DynamicLinkService>(
         DynamicLinkServiceImplementation());
+    serviceLocator.registerSingleton<SnackBarService>(
+        SnackBarServiceImplementation(_scaffoldMessengerKey));
 
     await serviceLocator.allReady();
   }
 
-  Store<AppState> _createStore() => Store(
-        appReducer,
-        initialState: AppState.initial(),
-        middleware: appMiddleware,
-      );
+  Store<AppState> _createStore() {
+    final serviceLocator = GetIt.instance;
+    final store = Store(
+      appReducer,
+      initialState: AppState.initial(),
+      middleware: appMiddleware,
+    );
+
+    serviceLocator.registerSingleton<Store<AppState>>(store);
+
+    return store;
+  }
 
   Future<void> run() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -69,7 +81,9 @@ class AppConfiguration {
     runApp(
       StoreProvider(
         store: _createStore(),
-        child: const NestifyApp(),
+        child: NestifyApp(
+          scaffoldMessengerKey: _scaffoldMessengerKey,
+        ),
       ),
     );
   }

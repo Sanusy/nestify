@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/ui/command.dart';
+import 'package:nestify/ui/common/user_tile_view/user_tile_view_model.dart';
 
 part 'home_profile_view_model.freezed.dart';
 
@@ -18,16 +19,6 @@ class HomeProfileViewModel with _$HomeProfileViewModel {
     required String? about,
     required String membersDescription,
     required Command? onAddMember,
-    required List<HomeUserViewModel> users,
+    required List<UserTileViewModel> users,
   }) = HomeProfileLoadedViewModel;
-}
-
-@Freezed(copyWith: false)
-class HomeUserViewModel with _$HomeUserViewModel {
-  const factory HomeUserViewModel({
-    required String? userPictureUrl,
-    required String userName,
-    required bool isAdmin,
-    required Command onOpenUser,
-  }) = _HomeUserViewModel;
 }

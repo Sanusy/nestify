@@ -8,6 +8,9 @@
   "commonNext": "Next",
   "commonBack": "Back",
   "commonRetry": "Retry",
+  "dynamicLinkInvalidUrl": "Invite expired",
+  "dynamicLinkAlreadyHomeMember": "You're already home member",
+  "dynamicLinkFailedToOpenInvite": "Failed to open invite",
   "loginWelcomeToNestify": "Welcome to Nestify!",
   "loginToStartLoginWith": "To start using app login with:",
   "loginLoginWithGoogle": "Log In with Google",
@@ -52,5 +55,8 @@
   "addMemberDisclaimerSubtitle": "Alternatively you can share this invite through any app you want.",
   "addMemberShareInvite": "Share invite",
   "addMemberShareDescription": "You were invited to become a home member in Nestify. Tap the link or scan QR code to accept invite.",
-  "addMemberSharedInviteDescription": "You were invited to become a home member in Nestify. Scan QR code to accept invite."
+  "addMemberSharedInviteDescription": "You were invited to become a home member in Nestify. Scan QR code to accept invite.",
+  "joinHomeTitle": "Join home",
+  "joinHomeMembers": "Members",
+  "joinHomeCreateProfile": "Create profile"
 }

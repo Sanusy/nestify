@@ -14,6 +14,7 @@ class Home with _$Home {
     required String? address,
     required String? about,
     required String? avatarUrl,
+    String? inviteId,
   }) = _Home;
 
   factory Home.fromJson(Map<String, dynamic> json) => _$HomeFromJson(json);

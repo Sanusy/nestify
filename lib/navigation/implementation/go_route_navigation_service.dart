@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:nestify/navigation/app_route.dart';
-import 'package:nestify/navigation/implementation/routes.dart';
+import 'package:nestify/navigation/implementation/app_route_extension.dart';
 import 'package:nestify/navigation/navigation_service.dart';
 
 class GoRouteNavigationService implements NavigationService {
