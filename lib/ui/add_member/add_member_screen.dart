@@ -56,7 +56,7 @@ class AddMemberScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 64),
-                  child: QrImage(
+                  child: QrImageView(
                     data: loadedViewModel.homeInviteViewModel.inviteUrl,
                     size: qrCodeSize,
                     // TODO: Replace with app icon
