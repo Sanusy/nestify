@@ -32,9 +32,8 @@ class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
 
     final homeToJoin = joinHomeState.homeToJoin!;
 
-    switch (joinHomeState.joinHomeStep) {
-      case JoinHomeStep.homeInfo:
-        return JoinHomeViewModel.homeDetails(
+    return switch (joinHomeState.joinHomeStep) {
+      JoinHomeStep.homeInfo => JoinHomeViewModel.homeDetails(
           pictureUrl: homeToJoin.avatarUrl,
           homeName: homeToJoin.homeName,
           homeAddress: homeToJoin.address,
@@ -50,9 +49,8 @@ class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
           onNext: store.createCommand(
             JoinHomeChangeStepAction(JoinHomeStep.userProfile),
           ),
-        );
-      case JoinHomeStep.userProfile:
-        return JoinHomeViewModel.userProfile(
+        ),
+      JoinHomeStep.userProfile => JoinHomeViewModel.userProfile(
           quitConfirmation: joinHomeState.hasChanges
               ? store.baseQuitConfirmationViewModel
               : null,
@@ -95,8 +93,8 @@ class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
                   color: color.toColor))
               .toList(),
           onJoin: Command.stub,
-        );
-    }
+        ),
+    };
   }
 
   @override

@@ -13,33 +13,27 @@ extension BottomNavigationDestinationExtenstions
   NavigationDestination destination(BuildContext context) {
     final localization = AppLocalizations.of(context)!;
 
-    switch (this) {
-      case BottomNavigationDestination.home:
-        return NavigationDestination(
+    return switch (this) {
+      BottomNavigationDestination.home => NavigationDestination(
           icon: const Icon(Icons.home_outlined),
           label: localization.bottomNavigationHome,
-        );
-      case BottomNavigationDestination.homeProfile:
-        return NavigationDestination(
+        ),
+      BottomNavigationDestination.homeProfile => NavigationDestination(
           icon: const Icon(Icons.home_repair_service_outlined),
           label: localization.bottomNavigationHomeProfile,
-        );
-      case BottomNavigationDestination.settings:
-        return NavigationDestination(
+        ),
+      BottomNavigationDestination.settings => NavigationDestination(
           icon: const Icon(Icons.settings_outlined),
           label: localization.bottomNavigationSettings,
-        );
-    }
+        ),
+    };
   }
 
   AppRoute get route {
-    switch (this) {
-      case BottomNavigationDestination.home:
-        return HomeRoute();
-      case BottomNavigationDestination.homeProfile:
-        return HomeProfileRoute();
-      case BottomNavigationDestination.settings:
-        return SettingsRoute();
-    }
+    return switch (this) {
+      BottomNavigationDestination.home => HomeRoute(),
+      BottomNavigationDestination.homeProfile => HomeProfileRoute(),
+      BottomNavigationDestination.settings => SettingsRoute(),
+    };
   }
 }
