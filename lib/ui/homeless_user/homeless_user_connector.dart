@@ -18,8 +18,8 @@ class HomelessUserConnector extends BaseConnector<HomelessUserViewModel>
   HomelessUserViewModel convert(BuildContext context, Store<AppState> store) {
     return HomelessUserViewModel(
       onCreateHome: store.createCommand(
-        const NavigationAction.push(
-          AppRoute.createHome(),
+        PushNavigationAction(
+          CreateHomeRoute(),
         ),
       ),
       onScanQrCode: Command.stub,

@@ -28,14 +28,14 @@ class InitHomeMiddleware extends BaseMiddleware<InitHomeAction> {
       final currentUserId = _userService.currentUserId();
 
       if (currentUserId == null) {
-        store.dispatch(const NavigationAction.setPath(AppRoute.login()));
+        store.dispatch(SetPathNavigationAction(LoginRoute()));
         return;
       }
 
       final userHomeId = await _userService.homeId();
 
       if (userHomeId == null) {
-        store.dispatch(const NavigationAction.setPath(AppRoute.homelessUser()));
+        store.dispatch(SetPathNavigationAction(HomelessUserRoute()));
         return;
       }
 

@@ -54,7 +54,7 @@ class DynamicLinksEpic implements EpicClass<AppState> {
           .expand((homeToJoin) => homeToJoin != null
               ? List.of([
                   InitJoinHomeAction(homeToJoin: homeToJoin),
-                  const NavigationAction.setPath(AppRoute.joinHome()),
+                  SetPathNavigationAction(JoinHomeRoute()),
                 ])
               : [])
           .takeUntil(actions.whereType<StopListenDynamicLinksAction>());

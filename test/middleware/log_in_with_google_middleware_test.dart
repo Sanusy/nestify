@@ -41,7 +41,7 @@ void main() {
         expect(store.actionLog[0], const TypeMatcher<LoginSuccessAction>());
         expect(
           store.actionLog[1],
-          const NavigationAction.setPath(AppRoute.splash()),
+          SetPathNavigationAction(SplashRoute()),
         );
       });
 

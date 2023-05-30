@@ -68,8 +68,7 @@ void main() {
       verify(() => userService.currentUserId()).called(1);
       verifyZeroInteractions(homeService);
       expect(store.actionLog.length, 1);
-      expect(
-          store.actionLog[0], const NavigationAction.setPath(AppRoute.login()));
+      expect(store.actionLog[0], SetPathNavigationAction(LoginRoute()));
     });
 
     test('''user without home navigated to homeless user screen''', () async {
@@ -82,8 +81,7 @@ void main() {
       verify(() => userService.homeId()).called(1);
       verifyZeroInteractions(homeService);
       expect(store.actionLog.length, 1);
-      expect(store.actionLog[0],
-          const NavigationAction.setPath(AppRoute.homelessUser()));
+      expect(store.actionLog[0], SetPathNavigationAction(HomelessUserRoute()));
     });
 
     test('''on colors loading error fail action dispatched''', () async {

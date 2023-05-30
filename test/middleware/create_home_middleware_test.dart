@@ -54,8 +54,7 @@ void main() {
               homeDraft: homeDraft,
               userDraft: userDraft,
             )).called(1);
-        expect(store.actionLog[0],
-            const NavigationAction.setPath(AppRoute.home()));
+        expect(store.actionLog[0], SetPathNavigationAction(HomeRoute()));
         expect(store.actionLog.length, 1);
       });
 

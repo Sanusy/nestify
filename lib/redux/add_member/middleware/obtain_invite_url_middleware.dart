@@ -23,7 +23,7 @@ class ObtainInviteUrlMiddleware extends BaseMiddleware<ObtainInviteUrlAction> {
       final homeState = store.state.homeState;
 
       if (homeState.home == null) {
-        store.dispatch(const NavigationAction.setPath(AppRoute.homelessUser()));
+        store.dispatch(SetPathNavigationAction(HomelessUserRoute()));
       }
 
       final inviteUrl =

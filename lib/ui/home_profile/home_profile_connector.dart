@@ -41,7 +41,7 @@ class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
       onAddMember: homeState.home!.adminId == homeState.currentUserId &&
               homeState.homeUsers.length < homeState.colors.length
           ? store.createCommand(
-              const NavigationAction.setPath(AppRoute.addMember()),
+              SetPathNavigationAction(AddMemberRoute()),
             )
           : null,
       users: homeState.homeUsers

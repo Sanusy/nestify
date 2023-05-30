@@ -30,7 +30,7 @@ class BottomNavigationConnector
       currentScreen: currentScreen,
       onSelectDestination: CommandWith((selectedDestination) {
         if (selectedDestination == currentDestination) return;
-        store.dispatch(NavigationAction.setPath(selectedDestination.route));
+        store.dispatch(SetPathNavigationAction(selectedDestination.route));
       }),
     );
   }

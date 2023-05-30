@@ -22,6 +22,6 @@ class LogoutMiddleware extends BaseMiddleware<LogoutAction> {
     await _userService.logOut();
 
     store.dispatch(StopListenDynamicLinksAction());
-    store.dispatch(const NavigationAction.setPath(AppRoute.login()));
+    store.dispatch(SetPathNavigationAction(LoginRoute()));
   }
 }

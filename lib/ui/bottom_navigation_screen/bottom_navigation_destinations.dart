@@ -35,11 +35,11 @@ extension BottomNavigationDestinationExtenstions
   AppRoute get route {
     switch (this) {
       case BottomNavigationDestination.home:
-        return const AppRoute.home();
+        return HomeRoute();
       case BottomNavigationDestination.homeProfile:
-        return const AppRoute.homeProfile();
+        return HomeProfileRoute();
       case BottomNavigationDestination.settings:
-        return const AppRoute.settings();
+        return SettingsRoute();
     }
   }
 }

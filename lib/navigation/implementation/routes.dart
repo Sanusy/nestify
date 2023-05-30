@@ -32,7 +32,7 @@ final goRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
   routes: [
     NestifyGoRoute(
-      appRoute: const AppRoute.splash(),
+      appRoute: SplashRoute(),
       child: Container(),
       redirect: (_, __) async {
         final serviceLocator = GetIt.instance;
@@ -42,7 +42,7 @@ final goRouter = GoRouter(
         final store = serviceLocator.get<Store<AppState>>();
 
         if (userService.currentUserId() == null) {
-          return const AppRoute.login().routePath;
+          return LoginRoute().routePath;
         }
 
         store.dispatch(ListenDynamicLinksAction());
@@ -53,7 +53,7 @@ final goRouter = GoRouter(
         final isHomeMember = (await userService.homeId()) != null;
 
         if (!isHomeMember && initialDynamicLink == null) {
-          return const AppRoute.homelessUser().routePath;
+          return HomelessUserRoute().routePath;
         }
 
         if (!isHomeMember && initialDynamicLink != null) {
@@ -65,13 +65,13 @@ final goRouter = GoRouter(
 
             if (homeInvite.inviteId == home.inviteId) {
               store.dispatch(InitJoinHomeAction(homeToJoin: home));
-              return const AppRoute.joinHome().routePath;
+              return JoinHomeRoute().routePath;
             }
             snackBarService.showInvalidInviteError();
-            return const AppRoute.homelessUser().routePath;
+            return HomelessUserRoute().routePath;
           } on NetworkError catch (_) {
             snackBarService.showJoinHomeError();
-            return const AppRoute.homelessUser().routePath;
+            return HomelessUserRoute().routePath;
           }
         }
 
@@ -79,7 +79,7 @@ final goRouter = GoRouter(
           snackBarService.showAlreadyHomeMemberSnackBar();
         }
 
-        return const AppRoute.home().routePath;
+        return HomeRoute().routePath;
       },
     ),
     ShellRoute(
@@ -91,39 +91,39 @@ final goRouter = GoRouter(
       },
       routes: [
         NestifyGoRoute(
-          appRoute: const AppRoute.home(),
+          appRoute: HomeRoute(),
           child: const HomeConnector(),
         ),
         NestifyGoRoute(
-            appRoute: const AppRoute.homeProfile(),
+            appRoute: HomeProfileRoute(),
             child: const HomeProfileConnector(),
             routes: [
               NestifyGoRoute(
-                appRoute: const AppRoute.addMember(),
+                appRoute: AddMemberRoute(),
                 child: const AddMemberConnector(),
               ),
             ]),
         NestifyGoRoute(
-          appRoute: const AppRoute.settings(),
+          appRoute: SettingsRoute(),
           child: const SettingsConnector(),
         ),
       ],
     ),
     NestifyGoRoute(
-      appRoute: const AppRoute.login(),
+      appRoute: LoginRoute(),
       child: const LoginConnector(),
     ),
     NestifyGoRoute(
-        appRoute: const AppRoute.homelessUser(),
+        appRoute: HomelessUserRoute(),
         child: const HomelessUserConnector(),
         routes: [
           NestifyGoRoute(
-            appRoute: const AppRoute.joinHome(),
+            appRoute: JoinHomeRoute(),
             child: const JoinHomeConnector(),
           ),
         ]),
     NestifyGoRoute(
-      appRoute: const AppRoute.createHome(),
+      appRoute: CreateHomeRoute(),
       child: const CreateHomeConnector(),
     ),
   ],
@@ -132,8 +132,8 @@ final goRouter = GoRouter(
 BottomNavigationDestination _bottomNavigationDestination() {
   final location = goRouter.location;
 
-  final homeProfileTabPath = const AppRoute.homeProfile().routePath;
-  final settingsTabPath = const AppRoute.settings().routePath;
+  final homeProfileTabPath = HomeProfileRoute().routePath;
+  final settingsTabPath = SettingsRoute().routePath;
 
   if (location.startsWith(homeProfileTabPath)) {
     return BottomNavigationDestination.homeProfile;

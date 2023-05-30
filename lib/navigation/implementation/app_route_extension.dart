@@ -7,31 +7,31 @@ extension AppRouteExtensionForGoRouter on AppRoute {
   ///
   /// For example if you have root route Home, and nested in Home TaskDetails route,\
   /// Home route name should be '/home', and TaskDetails should be 'taskDetails.
-  String get routeName => when(
-        splash: () => '/',
-        login: () => '/login',
-        homelessUser: () => '/homelessUser',
-        createHome: () => '/createHome',
-        home: () => '/home',
-        homeProfile: () => '/homeProfile',
-        settings: () => '/settings',
-        addMember: () => 'addMember',
-        joinHome: () => 'joinHome',
-      );
+  String get routeName => switch (this) {
+        SplashRoute _ => '/',
+        LoginRoute _ => '/login',
+        HomelessUserRoute _ => '/homelessUser',
+        CreateHomeRoute _ => '/createHome',
+        HomeRoute _ => '/home',
+        HomeProfileRoute _ => '/homeProfile',
+        SettingsRoute _ => '/settings',
+        AddMemberRoute _ => 'addMember',
+        JoinHomeRoute _ => 'joinHome',
+      };
 
   /// Used in navigation service to provide full path to the destination
   /// should provide full path from the very first parent route separated with '/'
   /// for example if Home route contains nested route TaskDetails,
   /// path to taskDetails should be /home/taskDetails
-  String get routePath => when(
-        splash: () => '/',
-        login: () => '/login',
-        homelessUser: () => '/homelessUser',
-        createHome: () => '/createHome',
-        home: () => '/home',
-        homeProfile: () => '/homeProfile',
-        settings: () => '/settings',
-        addMember: () => '/homeProfile/$routeName',
-        joinHome: () => '/homelessUser/$routeName',
-      );
+  String get routePath => switch (this) {
+        SplashRoute _ => '/',
+        LoginRoute _ => '/login',
+        HomelessUserRoute _ => '/homelessUser',
+        CreateHomeRoute _ => '/createHome',
+        HomeRoute _ => '/home',
+        HomeProfileRoute _ => '/homeProfile',
+        SettingsRoute _ => '/settings',
+        AddMemberRoute _ => '/homeProfile/$routeName',
+        JoinHomeRoute _ => '/homelessUser/$routeName',
+      };
 }
