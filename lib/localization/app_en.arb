@@ -8,6 +8,7 @@
   "commonNext": "Next",
   "commonBack": "Back",
   "commonRetry": "Retry",
+  "commonFailedToObtainPhoto": "Failed to obtain photo!",
   "colorSelectorTitle": "Select your color",
   "colorSelectorDescription": "Your tasks, reminders and messages will be marked with this color.",
   "dynamicLinkInvalidUrl": "Invite expired",

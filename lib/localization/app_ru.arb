@@ -8,6 +8,7 @@
   "commonNext": "Далее",
   "commonBack": "Назад",
   "commonRetry": "Повторить",
+  "commonFailedToObtainPhoto": "Не получилось выбрать фото:(",
   "colorSelectorTitle": "Выберите свой цвет",
   "colorSelectorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом.",
   "dynamicLinkInvalidUrl": "Приглашение истекло",

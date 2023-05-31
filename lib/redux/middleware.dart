@@ -9,6 +9,7 @@ import 'package:nestify/redux/create_home/middleware/load_available_colors_middl
 import 'package:nestify/redux/dynamic_links/dynamic_links_epic.dart';
 import 'package:nestify/redux/home/middleware/init_home_middleware.dart';
 import 'package:nestify/redux/join_home/middleware/init_join_home_middleware.dart';
+import 'package:nestify/redux/join_home/middleware/join_home_pick_user_avatar_middleware.dart';
 import 'package:nestify/redux/logger/logger_middleware.dart';
 import 'package:nestify/redux/login/middleware/login_with_google_middleware.dart';
 import 'package:nestify/redux/middleware/logout_middleware.dart';
@@ -34,6 +35,10 @@ List<Middleware<AppState>> appMiddleware = [
   ObtainInviteUrlMiddleware(_serviceLocator.get()),
   ShareInviteMiddleware(_serviceLocator.get()),
   InitJoinHomeMiddleware(_serviceLocator.get()),
+  JoinHomePickUserAvatarMiddleware(
+    _serviceLocator.get(),
+    _serviceLocator.get(),
+  ),
 
   ///Epics
   EpicMiddleware<AppState>(DynamicLinksEpic(

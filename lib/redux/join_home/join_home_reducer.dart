@@ -7,6 +7,11 @@ final joinHomeStateReducer = combineReducers<JoinHomeState>([
   TypedReducer(_joinHomeInitialized),
   TypedReducer(_failedToInitJoinHome),
   TypedReducer(_changeStepAction),
+  TypedReducer(_pickedUserAvatar),
+  TypedReducer(_removeUserAvatar),
+  TypedReducer(_userNameChanged),
+  TypedReducer(_userBioChanged),
+  TypedReducer(_colorSelected),
   TypedReducer(_joinHome),
 ]);
 
@@ -44,11 +49,66 @@ JoinHomeState _failedToInitJoinHome(
 }
 
 JoinHomeState _changeStepAction(
-    JoinHomeState state,
-    JoinHomeChangeStepAction action,
-    ) {
+  JoinHomeState state,
+  JoinHomeChangeStepAction action,
+) {
   return state.copyWith(
     joinHomeStep: action.step,
+  );
+}
+
+JoinHomeState _pickedUserAvatar(
+  JoinHomeState state,
+  JoinHomeUserAvatarPickedAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      userAvatar: action.avatar,
+    ),
+  );
+}
+
+JoinHomeState _removeUserAvatar(
+  JoinHomeState state,
+  JoinHomeRemoveUserAvatarAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      userAvatar: null,
+    ),
+  );
+}
+
+JoinHomeState _userNameChanged(
+  JoinHomeState state,
+  JoinHomeUserNameChangedAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      userName: action.newName,
+    ),
+  );
+}
+
+JoinHomeState _userBioChanged(
+  JoinHomeState state,
+  JoinHomeUserBioChangedAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      userBio: action.newBio,
+    ),
+  );
+}
+
+JoinHomeState _colorSelected(
+  JoinHomeState state,
+  JoinHomeColorSelectedAction action,
+) {
+  return state.copyWith(
+    userProfileDraftState: state.userProfileDraftState.copyWith(
+      selectedColor: action.color,
+    ),
   );
 }
 
