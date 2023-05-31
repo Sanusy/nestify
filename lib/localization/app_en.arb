@@ -58,5 +58,8 @@
   "addMemberSharedInviteDescription": "You were invited to become a home member in Nestify. Scan QR code to accept invite.",
   "joinHomeTitle": "Join home",
   "joinHomeMembers": "Members",
-  "joinHomeCreateProfile": "Create profile"
+  "joinHomeCreateProfile": "Create profile",
+  "joinHomeJoin": "Join",
+  "createUserProfileNameHint": "Name",
+  "createUserProfileBioHint": "Bio"
 }

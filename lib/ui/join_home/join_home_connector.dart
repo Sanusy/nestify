@@ -91,7 +91,8 @@ final class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
                   isEnabled: !joinHomeState.homeUsers
                       .any((user) => user.colorId == color.id),
                   color: color.toColor))
-              .toList(),
+              .toList()
+            ..sort((firstColor, _) => firstColor.isEnabled ? -1 : 1),
           onJoin: Command.stub,
         ),
     };

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/ui/common/avatar_picker/avatar_picker.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field.dart';
-import 'package:nestify/ui/create_home/create_home_view_model.dart';
-import 'package:nestify/ui/create_home/user_profile_step/create_home_color_selector/create_home_color_selector_view.dart';
+import 'package:nestify/ui/join_home/components/join_home_user_color_selector.dart';
+import 'package:nestify/ui/join_home/join_home_view_model.dart';
 
-class CreateUserProfileStepView extends StatelessWidget {
-  final CreateUserProfileStepViewModel viewModel;
+class CreateProfileView extends StatelessWidget {
+  final JoinHomeUserProfileViewModel viewModel;
 
-  const CreateUserProfileStepView({
+  const CreateProfileView({
     Key? key,
     required this.viewModel,
   }) : super(key: key);
@@ -44,36 +44,21 @@ class CreateUserProfileStepView extends StatelessWidget {
                   height: 120,
                 ),
                 const SizedBox(height: 32),
-                CreateHomeColorSelectorView(
-                  viewModel: viewModel.colorSelectorViewModel,
-                ),
+                JoinHomeUserColorSelector(colors: viewModel.availableColors),
+                const SizedBox(height: 32),
                 const Spacer(),
-                Row(
-                  children: [
-                    Expanded(
-                      child: OutlinedButton(
-                        onPressed: viewModel.onBack?.command,
-                        child: Text(localization.commonBack),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: OutlinedButton(
-                        onPressed: viewModel.onCreate?.command,
-                        child: viewModel.isLoading
-                            ? const Center(
-                                child: SizedBox(
-                                  height: 24,
-                                  width: 24,
-                                  child:
-                                      CircularProgressIndicator(strokeWidth: 2),
-                                ),
-                              )
-                            : Text(localization.createHomeCreate),
-                      ),
-                    ),
-                  ],
-                ),
+                OutlinedButton(
+                  onPressed: viewModel.onJoin?.command,
+                  child: viewModel.isLoading
+                      ? const Center(
+                          child: SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          ),
+                        )
+                      : Text(localization.joinHomeJoin),
+                )
               ],
             ),
           ),

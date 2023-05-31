@@ -24,8 +24,6 @@
   "createHomeAddress": "Адрес",
   "createHomeAbout": "Про дом",
   "createHomeCreate": "Создать дом",
-  "createHomeUserProfileNameHint": "Имя",
-  "createHomeUserProfileBioHint": "О себе",
   "createHomeUserProfileSelectColorTitle": "Выберите свой цвет",
   "createHomeUserProfileSelectColorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом.",
   "bottomNavigationHome": "Дом",
@@ -58,5 +56,8 @@
   "addMemberSharedInviteDescription": "Вы были приглашены стать участником дома в Nestify. Просканируйте QR код что бы принять приглашение.",
   "joinHomeTitle": "Присоедениться к дому",
   "joinHomeMembers": "Участники",
-  "joinHomeCreateProfile": "Создать профиль"
+  "joinHomeCreateProfile": "Создать профиль",
+  "joinHomeJoin": "Присоедениться",
+  "createUserProfileNameHint": "Имя",
+  "createUserProfileBioHint": "О себе"
 }
