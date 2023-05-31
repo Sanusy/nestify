@@ -7,7 +7,7 @@ import 'package:nestify/ui/home/home_screen.dart';
 import 'package:nestify/ui/home/home_view_model.dart';
 import 'package:redux/redux.dart';
 
-class HomeConnector extends BaseConnector<HomeViewModel> {
+final class HomeConnector extends BaseConnector<HomeViewModel> {
   const HomeConnector({super.key});
 
   @override

@@ -1,6 +1,6 @@
 import 'package:image_picker/image_picker.dart';
 
-abstract class ExternalActivitiesService {
+abstract interface class ExternalActivitiesService {
   Future<void> mainTo(String email);
 
   Future<void> shareHomeInvite({

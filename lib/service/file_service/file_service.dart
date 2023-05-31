@@ -1,5 +1,5 @@
 import 'dart:io';
 
-abstract class FileService {
+abstract interface class FileService {
   Future<File?> pictureFromGallery();
 }

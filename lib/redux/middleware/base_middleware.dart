@@ -1,7 +1,7 @@
 import 'package:nestify/redux/app_state.dart';
 import 'package:redux/redux.dart';
 
-abstract class BaseMiddleware<Action> extends MiddlewareClass<AppState> {
+abstract base class BaseMiddleware<Action> extends MiddlewareClass<AppState> {
   void process(Store<AppState> store, Action action);
 
   @override

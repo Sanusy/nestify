@@ -7,7 +7,7 @@ import 'package:nestify/service/dynamic_links_service/dynamic_links_service.dart
 import 'package:nestify/service/network_error.dart';
 import 'package:redux/redux.dart';
 
-class ObtainInviteUrlMiddleware extends BaseMiddleware<ObtainInviteUrlAction> {
+final class ObtainInviteUrlMiddleware extends BaseMiddleware<ObtainInviteUrlAction> {
   final DynamicLinkService _dynamicLinkService;
 
   ObtainInviteUrlMiddleware(

@@ -11,7 +11,7 @@ import 'package:nestify/ui/home_profile/home_profile_screen.dart';
 import 'package:nestify/ui/home_profile/home_profile_view_model.dart';
 import 'package:redux/redux.dart';
 
-class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
+final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
   const HomeProfileConnector({super.key});
 
   @override

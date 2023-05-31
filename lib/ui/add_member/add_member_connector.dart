@@ -8,7 +8,7 @@ import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:redux/redux.dart';
 
-class AddMemberConnector extends BaseConnector<AddMemberViewModel> {
+final class AddMemberConnector extends BaseConnector<AddMemberViewModel> {
   const AddMemberConnector({super.key});
 
   @override

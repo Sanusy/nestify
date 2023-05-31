@@ -11,7 +11,7 @@ import 'package:nestify/ui/join_home/join_home_screen.dart';
 import 'package:nestify/ui/join_home/join_home_view_model.dart';
 import 'package:redux/redux.dart';
 
-class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
+final class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
   const JoinHomeConnector({super.key});
 
   @override

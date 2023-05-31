@@ -3,7 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:redux/redux.dart';
 
-abstract class BaseConnector<VM> extends StatelessWidget {
+abstract base class BaseConnector<VM> extends StatelessWidget {
   const BaseConnector({super.key});
 
   @override

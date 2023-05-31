@@ -13,7 +13,7 @@ import 'package:nestify/ui/create_home/create_home_view_model.dart';
 import 'package:nestify/ui/create_home/user_profile_step/create_home_color_selector/create_home_color_selector_view_model.dart';
 import 'package:redux/redux.dart';
 
-class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
+final class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
     with PopupMixin {
   const CreateHomeConnector({super.key});
 

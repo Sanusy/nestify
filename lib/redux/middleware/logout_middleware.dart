@@ -7,7 +7,7 @@ import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 import 'package:redux/redux.dart';
 
-class LogoutMiddleware extends BaseMiddleware<LogoutAction> {
+final class LogoutMiddleware extends BaseMiddleware<LogoutAction> {
   final UserService _userService;
 
   LogoutMiddleware(
