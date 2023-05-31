@@ -40,7 +40,7 @@ class AddMemberScreen extends StatelessWidget {
           ),
         ),
         loaded: (loadedViewModel) {
-          final qrCodeSize = MediaQuery.of(context).size.width - (80 * 2);
+          final qrCodeSize = MediaQuery.sizeOf(context).width - (80 * 2);
 
           return Padding(
             padding: const EdgeInsets.all(16),

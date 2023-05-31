@@ -69,7 +69,7 @@ class _ColorItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemSize = (MediaQuery.of(context).size.width - 32) / 6.1;
+    final itemSize = (MediaQuery.sizeOf(context).width - 32) / 6.1;
 
     return Container(
       width: itemSize,
