@@ -9,7 +9,7 @@ import 'package:nestify/ui/login/login_view_model.dart';
 import 'package:nestify/ui/login/view/login_button_view_model.dart';
 import 'package:redux/redux.dart';
 
-class LoginConnector extends BaseConnector<LoginViewModel> {
+final class LoginConnector extends BaseConnector<LoginViewModel> {
   const LoginConnector({super.key});
 
   @override

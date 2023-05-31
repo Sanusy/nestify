@@ -59,9 +59,9 @@ extension StoreCommandExtension on Store<AppState> {
   QuitConfirmationDialogViewModel get baseQuitConfirmationViewModel =>
       QuitConfirmationDialogViewModel(
         onQuit: Command(() {
-          dispatch(const NavigationAction.pop());
-          dispatch(const NavigationAction.pop());
+          dispatch(const PopNavigationAction());
+          dispatch(const PopNavigationAction());
         }),
-        onStay: createCommand(const NavigationAction.pop()),
+        onStay: createCommand(const PopNavigationAction()),
       );
 }

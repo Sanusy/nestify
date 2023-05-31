@@ -40,7 +40,7 @@ class AddMemberScreen extends StatelessWidget {
           ),
         ),
         loaded: (loadedViewModel) {
-          final qrCodeSize = MediaQuery.of(context).size.width - (80 * 2);
+          final qrCodeSize = MediaQuery.sizeOf(context).width - (80 * 2);
 
           return Padding(
             padding: const EdgeInsets.all(16),
@@ -56,7 +56,7 @@ class AddMemberScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 64),
-                  child: QrImage(
+                  child: QrImageView(
                     data: loadedViewModel.homeInviteViewModel.inviteUrl,
                     size: qrCodeSize,
                     // TODO: Replace with app icon

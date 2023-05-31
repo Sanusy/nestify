@@ -5,7 +5,7 @@ import 'package:nestify/service/file_error.dart';
 import 'package:nestify/service/file_service/file_service.dart';
 import 'package:redux/redux.dart';
 
-class CreateHomePickHomeAvatarMiddleware
+final class CreateHomePickHomeAvatarMiddleware
     extends BaseMiddleware<CreateHomePickHomeAvatarAction> {
   final FileService _fileService;
 

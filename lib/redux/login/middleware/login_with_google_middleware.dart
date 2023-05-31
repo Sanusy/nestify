@@ -7,7 +7,7 @@ import 'package:nestify/service/network_error.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 import 'package:redux/redux.dart';
 
-class LoginWithGoogleMiddleware extends BaseMiddleware<LoginWithGoogleAction> {
+final class LoginWithGoogleMiddleware extends BaseMiddleware<LoginWithGoogleAction> {
   final UserService _userService;
 
   LoginWithGoogleMiddleware(
@@ -23,7 +23,7 @@ class LoginWithGoogleMiddleware extends BaseMiddleware<LoginWithGoogleAction> {
       await _userService.logInWithGoogle();
 
       store.dispatch(LoginSuccessAction());
-      store.dispatch(const NavigationAction.setPath(AppRoute.splash()));
+      store.dispatch(SetPathNavigationAction(SplashRoute()));
     } on NetworkError {
       store.dispatch(FailedToLoginAction());
     }

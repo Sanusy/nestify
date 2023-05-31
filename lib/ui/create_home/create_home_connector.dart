@@ -13,7 +13,7 @@ import 'package:nestify/ui/create_home/create_home_view_model.dart';
 import 'package:nestify/ui/create_home/user_profile_step/create_home_color_selector/create_home_color_selector_view_model.dart';
 import 'package:redux/redux.dart';
 
-class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
+final class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
     with PopupMixin {
   const CreateHomeConnector({super.key});
 
@@ -21,11 +21,9 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
   CreateHomeViewModel convert(BuildContext context, Store<AppState> store) {
     final createHomeState = store.state.createHomeState;
 
-    final CreateHomeStepViewModel createHomeStepViewModel;
-
-    switch (createHomeState.createHomeStep) {
-      case CreateHomeStep.homeProfile:
-        createHomeStepViewModel = CreateHomeStepViewModel.homeProfile(
+    final CreateHomeStepViewModel createHomeStepViewModel =
+        switch (createHomeState.createHomeStep) {
+      CreateHomeStep.homeProfile => CreateHomeStepViewModel.homeProfile(
           homeAvatarViewModel: AvatarPickerViewModel(
               picture: createHomeState.homeProfileDraftState.homeAvatar,
               onClick: store.createCommand(
@@ -56,10 +54,8 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
                   CreateHomeStepChangedAction(CreateHomeStep.userProfile),
                 )
               : null,
-        );
-        break;
-      case CreateHomeStep.userProfile:
-        createHomeStepViewModel = CreateHomeStepViewModel.userProfile(
+        ),
+      CreateHomeStep.userProfile => CreateHomeStepViewModel.userProfile(
           userAvatarViewModel: AvatarPickerViewModel(
               picture: createHomeState.userProfileDraftState.userAvatar,
               onClick: createHomeState.isLoading
@@ -119,9 +115,8 @@ class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
               );
             },
           ),
-        );
-        break;
-    }
+        ),
+    };
 
     return CreateHomeViewModel(
       quitConfirmation: createHomeState.hasChanges

@@ -14,7 +14,7 @@ import 'package:nestify/service/user_service/user_service.dart';
 import 'package:redux_epics/redux_epics.dart';
 import 'package:rxdart/rxdart.dart';
 
-class DynamicLinksEpic implements EpicClass<AppState> {
+final class DynamicLinksEpic implements EpicClass<AppState> {
   final DynamicLinkService _dynamicLinkService;
   final SnackBarService _snackBarService;
   final UserService _userService;
@@ -54,7 +54,7 @@ class DynamicLinksEpic implements EpicClass<AppState> {
           .expand((homeToJoin) => homeToJoin != null
               ? List.of([
                   InitJoinHomeAction(homeToJoin: homeToJoin),
-                  const NavigationAction.setPath(AppRoute.joinHome()),
+                  SetPathNavigationAction(JoinHomeRoute()),
                 ])
               : [])
           .takeUntil(actions.whereType<StopListenDynamicLinksAction>());

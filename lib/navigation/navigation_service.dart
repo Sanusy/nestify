@@ -1,6 +1,6 @@
 import 'package:nestify/navigation/app_route.dart';
 
-abstract class NavigationService {
+abstract interface class NavigationService {
   void push(AppRoute routeToPush);
 
   void replace(AppRoute newRoute);

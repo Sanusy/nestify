@@ -1,32 +1,35 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+sealed class AppRoute {
+  bool get fullscreenDialog => false;
 
-part 'app_route.freezed.dart';
+  @override
+  bool operator ==(Object other) {
+    return runtimeType == other.runtimeType;
+  }
 
-@freezed
-class AppRoute with _$AppRoute {
-  const AppRoute._();
-
-  const factory AppRoute.splash() = _Splash;
-
-  const factory AppRoute.login() = _Login;
-
-  const factory AppRoute.homelessUser() = _HomelessUser;
-
-  const factory AppRoute.joinHome() = _JoinHome;
-
-  const factory AppRoute.createHome() = _CreateHome;
-
-  const factory AppRoute.home() = _Home;
-
-  const factory AppRoute.homeProfile() = _HomeProfile;
-
-  const factory AppRoute.settings() = _Settings;
-
-  const factory AppRoute.addMember() = _AddMember;
-
-  bool get fullscreenDialog => maybeWhen(
-        orElse: () => false,
-        createHome: () => true,
-        joinHome: () => true,
-      );
+  @override
+  int get hashCode => runtimeType.hashCode;
 }
+
+final class SplashRoute extends AppRoute {}
+
+class LoginRoute extends AppRoute {}
+
+class HomelessUserRoute extends AppRoute {}
+
+class JoinHomeRoute extends AppRoute {
+  @override
+  bool get fullscreenDialog => true;
+}
+
+class CreateHomeRoute extends AppRoute {
+  @override
+  bool get fullscreenDialog => true;
+}
+
+class HomeRoute extends AppRoute {}
+
+class HomeProfileRoute extends AppRoute {}
+
+class SettingsRoute extends AppRoute {}
+
+class AddMemberRoute extends AppRoute {}

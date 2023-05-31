@@ -14,12 +14,11 @@ class NetworkError with _$NetworkError {
 
 extension FirebaseExceptionExtension on FirebaseException {
   NetworkError toNetworkError() {
-    switch (code) {
-      case 'permission-denied':
-      case 'unauthenticated':
-        return const NetworkError.notAuthenticated();
-      default:
-        return const NetworkError.unknown();
-    }
+    return switch (code) {
+      'permission-denied' ||
+      'unauthenticated' =>
+        const NetworkError.notAuthenticated(),
+      _ => const NetworkError.unknown(),
+    };
   }
 }

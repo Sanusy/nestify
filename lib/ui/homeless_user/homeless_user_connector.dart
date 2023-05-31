@@ -10,7 +10,7 @@ import 'package:nestify/ui/homeless_user/homeless_user_screen.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_view_model.dart';
 import 'package:redux/redux.dart';
 
-class HomelessUserConnector extends BaseConnector<HomelessUserViewModel>
+final class HomelessUserConnector extends BaseConnector<HomelessUserViewModel>
     with PopupMixin {
   const HomelessUserConnector({super.key});
 
@@ -18,8 +18,8 @@ class HomelessUserConnector extends BaseConnector<HomelessUserViewModel>
   HomelessUserViewModel convert(BuildContext context, Store<AppState> store) {
     return HomelessUserViewModel(
       onCreateHome: store.createCommand(
-        const NavigationAction.push(
-          AppRoute.createHome(),
+        PushNavigationAction(
+          CreateHomeRoute(),
         ),
       ),
       onScanQrCode: Command.stub,

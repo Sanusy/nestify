@@ -1,3 +1,3 @@
-abstract class ConstantsService {
+abstract interface class ConstantsService {
   Future<String> supportEmail();
 }

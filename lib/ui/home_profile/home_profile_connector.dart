@@ -11,7 +11,7 @@ import 'package:nestify/ui/home_profile/home_profile_screen.dart';
 import 'package:nestify/ui/home_profile/home_profile_view_model.dart';
 import 'package:redux/redux.dart';
 
-class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
+final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
   const HomeProfileConnector({super.key});
 
   @override
@@ -41,7 +41,7 @@ class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
       onAddMember: homeState.home!.adminId == homeState.currentUserId &&
               homeState.homeUsers.length < homeState.colors.length
           ? store.createCommand(
-              const NavigationAction.setPath(AppRoute.addMember()),
+              SetPathNavigationAction(AddMemberRoute()),
             )
           : null,
       users: homeState.homeUsers

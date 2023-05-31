@@ -1,4 +1,4 @@
-abstract class UserService {
+abstract interface class UserService {
   String? currentUserId();
 
   Future<String?> homeId();

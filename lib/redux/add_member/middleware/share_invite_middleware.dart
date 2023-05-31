@@ -5,7 +5,7 @@ import 'package:nestify/redux/middleware/base_middleware.dart';
 import 'package:nestify/service/external_activities_service/external_activities_service.dart';
 import 'package:redux/redux.dart';
 
-class ShareInviteMiddleware extends BaseMiddleware<ShareInviteAction> {
+final class ShareInviteMiddleware extends BaseMiddleware<ShareInviteAction> {
   final ExternalActivitiesService _externalActivitiesService;
 
   ShareInviteMiddleware(

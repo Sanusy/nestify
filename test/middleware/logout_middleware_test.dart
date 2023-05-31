@@ -38,8 +38,7 @@ void main() {
         verify(() => mockUserService.logOut()).called(1);
         expect(store.actionLog[0],
             const TypeMatcher<StopListenDynamicLinksAction>());
-        expect(store.actionLog[1],
-            const NavigationAction.setPath(AppRoute.login()));
+        expect(store.actionLog[1], SetPathNavigationAction(LoginRoute()));
         expect(store.actionLog.length, 2);
       });
     },

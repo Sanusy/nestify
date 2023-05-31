@@ -71,7 +71,7 @@ class ShareInviteView extends StatelessWidget {
                 style: theme.textTheme.bodyLarge,
               ),
               const SizedBox(height: 16),
-              QrImage(
+              QrImageView(
                 data: viewModel.inviteUrl,
                 size: 226,
                 // TODO: Replace with app icon

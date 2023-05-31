@@ -10,7 +10,7 @@ import 'package:nestify/ui/settings/settings_screen.dart';
 import 'package:nestify/ui/settings/settings_view_model.dart';
 import 'package:redux/redux.dart';
 
-class SettingsConnector extends BaseConnector<SettingsViewModel>
+final class SettingsConnector extends BaseConnector<SettingsViewModel>
     with PopupMixin {
   const SettingsConnector({super.key});
 

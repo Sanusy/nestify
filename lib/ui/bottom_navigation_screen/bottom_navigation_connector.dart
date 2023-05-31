@@ -9,7 +9,7 @@ import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_view_model
 import 'package:nestify/ui/command.dart';
 import 'package:redux/redux.dart';
 
-class BottomNavigationConnector
+final class BottomNavigationConnector
     extends BaseConnector<BottomNavigationViewModel> {
   final BottomNavigationDestination currentDestination;
   final Widget currentScreen;
@@ -30,7 +30,7 @@ class BottomNavigationConnector
       currentScreen: currentScreen,
       onSelectDestination: CommandWith((selectedDestination) {
         if (selectedDestination == currentDestination) return;
-        store.dispatch(NavigationAction.setPath(selectedDestination.route));
+        store.dispatch(SetPathNavigationAction(selectedDestination.route));
       }),
     );
   }

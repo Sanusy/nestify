@@ -7,7 +7,7 @@ import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
 import 'package:redux/redux.dart';
 
-class InitJoinHomeMiddleware extends BaseMiddleware<InitJoinHomeAction> {
+final class InitJoinHomeMiddleware extends BaseMiddleware<InitJoinHomeAction> {
   final HomeService _homeService;
 
   InitJoinHomeMiddleware(
