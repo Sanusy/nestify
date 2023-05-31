@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/ui/common/avatar_picker/avatar_picker.dart';
+import 'package:nestify/ui/common/color_selector/color_selector_view.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field.dart';
-import 'package:nestify/ui/join_home/components/join_home_user_color_selector.dart';
 import 'package:nestify/ui/join_home/join_home_view_model.dart';
 
 class CreateProfileView extends StatelessWidget {
@@ -44,7 +44,7 @@ class CreateProfileView extends StatelessWidget {
                   height: 120,
                 ),
                 const SizedBox(height: 32),
-                JoinHomeUserColorSelector(colors: viewModel.availableColors),
+                ColorSelectorView(colors: viewModel.availableColors),
                 const SizedBox(height: 32),
                 const Spacer(),
                 OutlinedButton(

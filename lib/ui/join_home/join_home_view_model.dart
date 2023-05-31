@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/common/avatar_picker/avatar_picker_view_model.dart';
+import 'package:nestify/ui/common/color_selector/color_selector_item_view_model.dart';
 import 'package:nestify/ui/common/quit_confirmation_dialog/quit_confirmation_dialog_view_model.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field_view_model.dart';
 import 'package:nestify/ui/common/user_tile_view/user_tile_view_model.dart';
@@ -29,17 +30,8 @@ class JoinHomeViewModel with _$JoinHomeViewModel {
     required AvatarPickerViewModel userAvatarViewModel,
     required NestifyTextFieldViewModel userNameViewModel,
     required NestifyTextFieldViewModel userBioViewModel,
-    required List<ColorViewModel> availableColors,
+    required List<ColorSelectorItemViewModel> availableColors,
     required bool isLoading,
     required Command? onJoin,
   }) = JoinHomeUserProfileViewModel;
-}
-
-@Freezed(copyWith: false)
-class ColorViewModel with _$ColorViewModel {
-  const factory ColorViewModel({
-    required Command? onSelect,
-    required bool isEnabled,
-    required Color color,
-  }) = _ColorViewModel;
 }
