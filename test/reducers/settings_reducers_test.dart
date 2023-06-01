@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
-import 'package:nestify/redux/reducer.dart';
 import 'package:nestify/redux/settings/settings_action.dart';
 import 'package:nestify/redux/settings/settings_state.dart';
 import 'package:redux/redux.dart';

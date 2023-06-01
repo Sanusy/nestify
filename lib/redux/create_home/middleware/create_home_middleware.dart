@@ -1,7 +1,7 @@
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/common_middlewares/base_middleware.dart';
 import 'package:nestify/redux/create_home/create_home_action.dart';
-import 'package:nestify/redux/middleware/base_middleware.dart';
 import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/service/file_error.dart';
 import 'package:nestify/service/home_service/home_service.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
-import 'package:nestify/redux/reducer.dart';
 import 'package:nestify/redux/settings/middleware/contact_support_middleware.dart';
 import 'package:nestify/redux/settings/settings_action.dart';
 import 'package:nestify/service/constants_service/constants_service.dart';

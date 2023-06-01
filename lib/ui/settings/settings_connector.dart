@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/redux/app_state.dart';
-import 'package:nestify/redux/middleware/common_actions.dart';
+import 'package:nestify/redux/common_middlewares/common_actions.dart';
 import 'package:nestify/redux/settings/settings_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';

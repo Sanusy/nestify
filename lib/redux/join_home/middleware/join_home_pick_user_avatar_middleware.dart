@@ -1,6 +1,6 @@
 import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/common_middlewares/base_middleware.dart';
 import 'package:nestify/redux/join_home/join_home_action.dart';
-import 'package:nestify/redux/middleware/base_middleware.dart';
 import 'package:nestify/service/file_error.dart';
 import 'package:nestify/service/file_service/file_service.dart';
 import 'package:nestify/service/snack_bar_service/snack_bar_service.dart';
