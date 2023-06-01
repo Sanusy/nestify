@@ -3,4 +3,5 @@ abstract interface class SnackBarService {
   void showInvalidInviteError();
   void showAlreadyHomeMemberSnackBar();
   void showFailedToObtainPhoto();
+  void showCommonError();
 }

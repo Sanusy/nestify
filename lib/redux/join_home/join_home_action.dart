@@ -58,3 +58,7 @@ class JoinHomeColorSelectedAction {
 }
 
 class JoinHomeAction {}
+
+class FailedToJoinHomeAction {}
+
+class ResetJoinHomeStateAction {}

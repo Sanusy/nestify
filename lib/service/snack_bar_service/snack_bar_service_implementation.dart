@@ -58,6 +58,15 @@ class SnackBarServiceImplementation implements SnackBarService {
     }
   }
 
+  @override
+  void showCommonError() {
+    final context = _messengerKey.currentContext;
+    if (context != null) {
+      final localization = AppLocalizations.of(context)!;
+      _showSnackBar(localization.commonError);
+    }
+  }
+
   void _showSnackBar(String content) {
     final snackBar = SnackBar(
       content: Text(content),

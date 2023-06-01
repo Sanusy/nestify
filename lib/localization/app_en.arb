@@ -27,8 +27,6 @@
   "createHomeAddress": "Address",
   "createHomeAbout": "About",
   "createHomeCreate": "Create home",
-  "createHomeUserProfileNameHint": "Name",
-  "createHomeUserProfileBioHint": "Bio",
   "bottomNavigationHome": "Home",
   "bottomNavigationHomeProfile": "Home profile",
   "bottomNavigationSettings": "Settings",

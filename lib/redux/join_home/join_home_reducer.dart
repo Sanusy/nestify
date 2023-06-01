@@ -13,6 +13,8 @@ final joinHomeStateReducer = combineReducers<JoinHomeState>([
   TypedReducer(_userBioChanged),
   TypedReducer(_colorSelected),
   TypedReducer(_joinHome),
+  TypedReducer(_failedToJoinHome),
+  TypedReducer(_resetJoinHomeState),
 ]);
 
 JoinHomeState _initJoinHome(
@@ -117,7 +119,23 @@ JoinHomeState _joinHome(
   JoinHomeAction action,
 ) {
   return state.copyWith(
-    isLoading: true,
+    isJoinInProgress: true,
     error: null,
   );
+}
+
+JoinHomeState _failedToJoinHome(
+  JoinHomeState state,
+  FailedToJoinHomeAction action,
+) {
+  return state.copyWith(
+    isJoinInProgress: false,
+  );
+}
+
+JoinHomeState _resetJoinHomeState(
+  JoinHomeState state,
+  FailedToJoinHomeAction action,
+) {
+  return JoinHomeState.initial();
 }

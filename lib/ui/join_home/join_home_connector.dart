@@ -94,9 +94,16 @@ final class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
                   color: color.toColor))
               .toList()
             ..sort((firstColor, _) => firstColor.isEnabled ? -1 : 1),
-          onJoin: Command.stub,
+          onJoin: joinHomeState.canJoinHome
+              ? store.createCommand(JoinHomeAction())
+              : null,
         ),
     };
+  }
+
+  @override
+  void onDispose(Store<AppState> store) {
+    store.dispatch(ResetJoinHomeStateAction());
   }
 
   @override

@@ -11,6 +11,11 @@ abstract interface class HomeService {
     required UserProfileDraftState userDraft,
   });
 
+  Future<void> joinHome({
+    required String homeId,
+    required UserProfileDraftState userDraft,
+  });
+
   Future<Home> home(String homeId);
 
   Future<List<User>> homeUsers(List<String> userIds);
