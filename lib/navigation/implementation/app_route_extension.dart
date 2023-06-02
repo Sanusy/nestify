@@ -17,6 +17,7 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         SettingsRoute _ => '/settings',
         AddMemberRoute _ => 'addMember',
         JoinHomeRoute _ => 'joinHome',
+        ScanQrCodeRoute _ => 'scanQrCode',
       };
 
   /// Used in navigation service to provide full path to the destination
@@ -33,5 +34,6 @@ extension AppRouteExtensionForGoRouter on AppRoute {
         SettingsRoute _ => '/settings',
         AddMemberRoute _ => '/homeProfile/$routeName',
         JoinHomeRoute _ => '/homelessUser/$routeName',
+        ScanQrCodeRoute _ => '/homelessUser/$routeName',
       };
 }
