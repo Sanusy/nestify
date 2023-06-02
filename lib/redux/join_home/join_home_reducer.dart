@@ -135,7 +135,7 @@ JoinHomeState _failedToJoinHome(
 
 JoinHomeState _resetJoinHomeState(
   JoinHomeState state,
-  FailedToJoinHomeAction action,
+  ResetJoinHomeStateAction action,
 ) {
   return JoinHomeState.initial();
 }
