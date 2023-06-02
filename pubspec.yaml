@@ -40,12 +40,15 @@ dependencies:
   google_sign_in: ^6.1.2
   firebase_dynamic_links: ^5.3.1
 
+  # QR Codes
+  qr_code_dart_scan: ^0.7.1
+  qr_flutter: ^4.1.0
+
   # General
   flutter_svg: ^2.0.6
   image_picker: ^0.8.7
   url_launcher: ^6.1.11
   cached_network_image: ^3.2.3
-  qr_flutter: ^4.1.0
   share_plus: ^7.0.2
   screenshot: ^2.1.0
   uuid: ^3.0.7

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/ui/scan_qr_code/scan_qr_code_view_model.dart';
+import 'package:qr_code_dart_scan/qr_code_dart_scan.dart';
 
 class ScanQrCodeScreen extends StatelessWidget {
   final ScanQrCodeViewModel viewModel;
@@ -12,9 +13,7 @@ class ScanQrCodeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text('Scan QR code'),
-      ),
+      body: QRCodeDartScanView(),
     );
   }
 }

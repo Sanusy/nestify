@@ -54,7 +54,7 @@ android {
     defaultConfig {
         applicationId "com.gmail.ivan.morozyk.nestify"
 
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode 6
         versionName flutterVersionName
