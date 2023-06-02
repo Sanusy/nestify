@@ -3,8 +3,8 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nestify/redux/add_member/add_member_action.dart';
 import 'package:nestify/redux/add_member/add_member_state.dart';
+import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
-import 'package:nestify/redux/reducer.dart';
 import 'package:redux/redux.dart';
 
 void main() {

@@ -8,6 +8,9 @@
   "commonNext": "Next",
   "commonBack": "Back",
   "commonRetry": "Retry",
+  "commonFailedToObtainPhoto": "Failed to obtain photo!",
+  "colorSelectorTitle": "Select your color",
+  "colorSelectorDescription": "Your tasks, reminders and messages will be marked with this color.",
   "dynamicLinkInvalidUrl": "Invite expired",
   "dynamicLinkAlreadyHomeMember": "You're already home member",
   "dynamicLinkFailedToOpenInvite": "Failed to open invite",
@@ -24,10 +27,6 @@
   "createHomeAddress": "Address",
   "createHomeAbout": "About",
   "createHomeCreate": "Create home",
-  "createHomeUserProfileNameHint": "Name",
-  "createHomeUserProfileBioHint": "Bio",
-  "createHomeUserProfileSelectColorTitle": "Select your color",
-  "createHomeUserProfileSelectColorDescription": "Your tasks, reminders and messages will be marked with this color.",
   "bottomNavigationHome": "Home",
   "bottomNavigationHomeProfile": "Home profile",
   "bottomNavigationSettings": "Settings",
@@ -58,5 +57,8 @@
   "addMemberSharedInviteDescription": "You were invited to become a home member in Nestify. Scan QR code to accept invite.",
   "joinHomeTitle": "Join home",
   "joinHomeMembers": "Members",
-  "joinHomeCreateProfile": "Create profile"
+  "joinHomeCreateProfile": "Create profile",
+  "joinHomeJoin": "Join",
+  "createUserProfileNameHint": "Name",
+  "createUserProfileBioHint": "Bio"
 }

@@ -15,7 +15,7 @@ class QuitConfirmationDialog extends StatelessWidget {
     final localization = AppLocalizations.of(context)!;
 
     return AlertDialog(
-      contentPadding: EdgeInsets.all(24),
+      contentPadding: const EdgeInsets.all(24),
       content: Text(localization.commonQuitConfirmation),
       actions: [
         TextButton(

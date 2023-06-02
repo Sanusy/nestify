@@ -1,10 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:nestify/models/user_color.dart';
+import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/create_home/create_home_action.dart';
 import 'package:nestify/redux/create_home/middleware/load_available_colors_middleware.dart';
-import 'package:nestify/redux/reducer.dart';
 import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
 

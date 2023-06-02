@@ -8,6 +8,9 @@
   "commonNext": "Далее",
   "commonBack": "Назад",
   "commonRetry": "Повторить",
+  "commonFailedToObtainPhoto": "Не получилось выбрать фото:(",
+  "colorSelectorTitle": "Выберите свой цвет",
+  "colorSelectorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом.",
   "dynamicLinkInvalidUrl": "Приглашение истекло",
   "dynamicLinkAlreadyHomeMember": "Вы уже участник дома",
   "dynamicLinkFailedToOpenInvite": "Не получилось открыть приглашение:(",
@@ -24,10 +27,6 @@
   "createHomeAddress": "Адрес",
   "createHomeAbout": "Про дом",
   "createHomeCreate": "Создать дом",
-  "createHomeUserProfileNameHint": "Имя",
-  "createHomeUserProfileBioHint": "О себе",
-  "createHomeUserProfileSelectColorTitle": "Выберите свой цвет",
-  "createHomeUserProfileSelectColorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом.",
   "bottomNavigationHome": "Дом",
   "bottomNavigationHomeProfile": "Профиль дома",
   "bottomNavigationSettings": "Настройки",
@@ -58,5 +57,8 @@
   "addMemberSharedInviteDescription": "Вы были приглашены стать участником дома в Nestify. Просканируйте QR код что бы принять приглашение.",
   "joinHomeTitle": "Присоедениться к дому",
   "joinHomeMembers": "Участники",
-  "joinHomeCreateProfile": "Создать профиль"
+  "joinHomeCreateProfile": "Создать профиль",
+  "joinHomeJoin": "Присоедениться",
+  "createUserProfileNameHint": "Имя",
+  "createUserProfileBioHint": "О себе"
 }

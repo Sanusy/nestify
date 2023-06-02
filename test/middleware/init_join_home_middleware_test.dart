@@ -6,7 +6,7 @@ import 'package:nestify/models/user_color.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/join_home/join_home_action.dart';
 import 'package:nestify/redux/join_home/middleware/init_join_home_middleware.dart';
-import 'package:nestify/redux/reducer.dart';
+import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
 

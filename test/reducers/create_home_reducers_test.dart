@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nestify/models/user_color.dart';
+import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/create_home/create_home_action.dart';
 import 'package:nestify/redux/create_home/create_home_state.dart';
-import 'package:nestify/redux/reducer.dart';
 import 'package:redux/redux.dart';
 
 void main() {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/redux/app_state.dart';
-import 'package:nestify/redux/middleware/common_actions.dart';
+import 'package:nestify/redux/common_middlewares/common_actions.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/home/home_screen.dart';

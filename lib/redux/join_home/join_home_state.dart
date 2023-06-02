@@ -38,7 +38,7 @@ class JoinHomeState with _$JoinHomeState {
   bool get canJoinHome =>
       userProfileDraftState.userName.isNotEmpty &&
       userProfileDraftState.selectedColor != null &&
-      !isLoading;
+      !isJoinInProgress;
 }
 
 enum JoinHomeStep {

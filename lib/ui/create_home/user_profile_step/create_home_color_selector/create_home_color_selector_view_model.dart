@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/ui/command.dart';
+import 'package:nestify/ui/common/color_selector/color_selector_item_view_model.dart';
 
 part 'create_home_color_selector_view_model.freezed.dart';
 
@@ -13,14 +13,6 @@ class CreateHomeColorSelectorViewModel with _$CreateHomeColorSelectorViewModel {
   }) = _Error;
 
   const factory CreateHomeColorSelectorViewModel.loaded({
-    required List<ColorViewModel> availableColors,
+    required List<ColorSelectorItemViewModel> availableColors,
   }) = _Loaded;
-}
-
-@Freezed(copyWith: false)
-class ColorViewModel with _$ColorViewModel {
-  const factory ColorViewModel({
-    required Command? onSelect,
-    required Color color,
-  }) = _ColorViewModel;
 }

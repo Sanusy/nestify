@@ -92,6 +92,53 @@ class FirebaseHomeService implements HomeService {
     }
   }
 
+  @override
+  Future<void> joinHome({
+    required String homeId,
+    required UserProfileDraftState userDraft,
+  }) async {
+    final userId = _firebaseAuth.currentUser?.uid;
+
+    if (userId == null) throw const NetworkError.notAuthenticated();
+
+    try {
+      final userSnapshot =
+          _firestore.collection(_usersCollectionId).doc(userId);
+      final homeSnapshot =
+          _firestore.collection(_homesCollectionId).doc(homeId);
+
+      final userAvatarUrl = userDraft.userAvatar == null
+          ? null
+          : await _uploadPicture(
+              'Users/$userId/Avatar/Avatar_${DateTime.now().toString()}',
+              userDraft.userAvatar!,
+            );
+
+      final userModel = User(
+        id: userId,
+        userName: userDraft.userName,
+        homeId: homeId,
+        colorId: userDraft.selectedColor!.id,
+        bio: userDraft.userBio,
+        avatarUrl: userAvatarUrl,
+      );
+
+      final batch = _firestore.batch();
+
+      batch.update(
+        homeSnapshot,
+        {
+          'usersIds': FieldValue.arrayUnion([userId]),
+        },
+      );
+      batch.update(userSnapshot, userModel.toJson());
+
+      batch.commit();
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
+
   Future<String> _uploadPicture(String path, File picture) async {
     final storageRef = _storage.ref();
 
@@ -101,7 +148,7 @@ class FirebaseHomeService implements HomeService {
       final uploadedAvatar = await avatarRef.putFile(picture);
 
       return uploadedAvatar.ref.getDownloadURL();
-    } on FirebaseException catch (_) {
+    } on FirebaseException {
       throw const FileError.failedToUpload();
     }
   }

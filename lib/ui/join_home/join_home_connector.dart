@@ -5,6 +5,7 @@ import 'package:nestify/redux/join_home/join_home_state.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/common/avatar_picker/avatar_picker_view_model.dart';
+import 'package:nestify/ui/common/color_selector/color_selector_item_view_model.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field_view_model.dart';
 import 'package:nestify/ui/common/user_tile_view/user_tile_view_model.dart';
 import 'package:nestify/ui/join_home/join_home_screen.dart';
@@ -81,7 +82,7 @@ final class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
           ),
           isLoading: joinHomeState.isJoinInProgress,
           availableColors: joinHomeState.colors
-              .map((color) => ColorViewModel(
+              .map((color) => ColorSelectorItemViewModel(
                   onSelect: joinHomeState.userProfileDraftState.selectedColor ==
                               color ||
                           joinHomeState.homeUsers
@@ -91,10 +92,18 @@ final class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
                   isEnabled: !joinHomeState.homeUsers
                       .any((user) => user.colorId == color.id),
                   color: color.toColor))
-              .toList(),
-          onJoin: Command.stub,
+              .toList()
+            ..sort((firstColor, _) => firstColor.isEnabled ? -1 : 1),
+          onJoin: joinHomeState.canJoinHome
+              ? store.createCommand(JoinHomeAction())
+              : null,
         ),
     };
+  }
+
+  @override
+  void onDispose(Store<AppState> store) {
+    store.dispatch(ResetJoinHomeStateAction());
   }
 
   @override
