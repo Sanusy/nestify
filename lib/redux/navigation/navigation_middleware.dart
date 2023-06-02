@@ -4,23 +4,21 @@ import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:redux/redux.dart';
 
 class NavigationMiddleware extends TypedMiddleware<AppState, NavigationAction> {
-  final NavigationService _navigationService;
-
   NavigationMiddleware(
-    this._navigationService,
+    NavigationService navigationService,
   ) : super((store, navigationAction, next) {
           navigationAction.when(
             push: (route) {
-              _navigationService.push(route);
+              navigationService.push(route);
             },
             replace: (route) {
-              _navigationService.replace(route);
+              navigationService.replace(route);
             },
             setPath: (route) {
-              _navigationService.setPath(route);
+              navigationService.setPath(route);
             },
             pop: () {
-              _navigationService.pop();
+              navigationService.pop();
             },
           );
         });

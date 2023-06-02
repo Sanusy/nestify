@@ -148,8 +148,7 @@ class FirebaseHomeService implements HomeService {
       final uploadedAvatar = await avatarRef.putFile(picture);
 
       return uploadedAvatar.ref.getDownloadURL();
-    } on FirebaseException catch (e) {
-      print('error on upload ${e.message}');
+    } on FirebaseException {
       throw const FileError.failedToUpload();
     }
   }

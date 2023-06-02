@@ -1,4 +1,3 @@
-import 'package:image_picker/image_picker.dart';
 import 'package:nestify/service/external_activities_service/external_activities_service.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';

@@ -27,7 +27,7 @@ final class JoinHomePickUserAvatarMiddleware
       if (avatar != null) {
         store.dispatch(JoinHomeUserAvatarPickedAction(avatar));
       }
-    } on FileError catch (_) {
+    } on FileError {
       _snackBarService.showFailedToObtainPhoto();
     }
   }

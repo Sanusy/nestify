@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/common/avatar_picker/avatar_picker_view_model.dart';
@@ -13,8 +12,9 @@ part 'join_home_view_model.freezed.dart';
 class JoinHomeViewModel with _$JoinHomeViewModel {
   const factory JoinHomeViewModel.loading() = _JoinHomeLoading;
 
-  const factory JoinHomeViewModel.error({required Command onRetry}) =
-      _JoinHomeError;
+  const factory JoinHomeViewModel.error({
+    required Command onRetry,
+  }) = _JoinHomeError;
 
   const factory JoinHomeViewModel.homeDetails({
     required String? pictureUrl,

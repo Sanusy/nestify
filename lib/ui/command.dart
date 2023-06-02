@@ -50,8 +50,8 @@ extension StoreCommandExtension on Store<AppState> {
   }
 
   CommandWith<T> createCommandWith<T>(dynamic Function(T) action) {
-    return CommandWith((T) {
-      dispatch(action(T));
+    return CommandWith((value) {
+      dispatch(action(value));
     });
   }
 
