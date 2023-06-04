@@ -41,7 +41,7 @@ dependencies:
   firebase_dynamic_links: ^5.3.1
 
   # QR Codes
-  qr_code_dart_scan: ^0.7.1
+  mobile_scanner: ^3.2.0
   qr_flutter: ^4.1.0
 
   # General
