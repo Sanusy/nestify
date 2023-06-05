@@ -45,7 +45,7 @@ List<Middleware<AppState>> appMiddleware = [
     _serviceLocator.get(),
     _serviceLocator.get(),
   ),
-  CheckInviteMiddleware(_serviceLocator.get()),
+  CheckInviteMiddleware(_serviceLocator.get(), _serviceLocator.get()),
 
   ///Epics
   EpicMiddleware<AppState>(DynamicLinksEpic(
