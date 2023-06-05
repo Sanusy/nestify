@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nestify/redux/app_state.dart';
+import 'package:nestify/redux/scan_qr_code/scan_qr_code_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/scan_qr_code/scan_qr_code_screen.dart';
@@ -15,7 +16,11 @@ final class ScanQrCodeConnector extends BaseConnector<ScanQrCodeViewModel> {
     Store<AppState> store,
   ) {
     return ScanQrCodeViewModel(
-      onCheckInvite: CommandWith((invite) {}),
+      onCheckInvite: store.state.scanQrCodeState.isCheckingInvite
+          ? null
+          : store.createCommandWith(
+              (invite) => CheckInviteAction(invite: invite),
+            ),
     );
   }
 
