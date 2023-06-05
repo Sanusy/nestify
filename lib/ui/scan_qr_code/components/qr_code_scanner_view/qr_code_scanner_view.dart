@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/scan_qr_code/components/qr_code_scanner_view/qr_code_camera_overlay_paint.dart';
 
 class QrCodeScannerView extends StatefulWidget {
-  const QrCodeScannerView({super.key});
+  final CommandWith<String>? onCheckInvite;
+
+  const QrCodeScannerView({
+    super.key,
+    required this.onCheckInvite,
+  });
 
   @override
   State<QrCodeScannerView> createState() => _QrCodeScannerViewState();
@@ -54,9 +60,11 @@ class _QrCodeScannerViewState extends State<QrCodeScannerView> {
         },
         scanWindow: qrCodeRect,
         controller: _controller,
-        onDetect: (BarcodeCapture barcodes) {
-          for (final barcode in barcodes.barcodes) {
-            debugPrint('👹 ${barcode.rawValue}');
+        onDetect: (barcodes) {
+          final detectedBarCode = barcodes.barcodes.first;
+          if (widget.onCheckInvite != null &&
+              detectedBarCode.rawValue != null) {
+            widget.onCheckInvite?.call(detectedBarCode.rawValue!);
           }
         },
       ),
