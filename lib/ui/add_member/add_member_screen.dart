@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:nestify/gen/assets.gen.dart';
 import 'package:nestify/ui/add_member/add_member_view_model.dart';
 import 'package:nestify/ui/add_member/components/share_invite_view.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -59,8 +58,6 @@ class AddMemberScreen extends StatelessWidget {
                   child: QrImageView(
                     data: loadedViewModel.homeInviteViewModel.inviteUrl,
                     size: qrCodeSize,
-                    // TODO: Replace with app icon
-                    embeddedImage: Assets.images.qrCodePicture.provider(),
                   ),
                 ),
                 const SizedBox(height: 16),
