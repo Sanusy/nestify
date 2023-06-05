@@ -18,5 +18,7 @@ abstract interface class HomeService {
 
   Future<Home> home(String homeId);
 
+  Future<Home?> homeByInviteUrl(String inviteUrl);
+
   Future<List<User>> homeUsers(List<String> userIds);
 }

@@ -15,6 +15,7 @@ import 'package:nestify/redux/join_home/middleware/join_home_pick_user_avatar_mi
 import 'package:nestify/redux/logger/logger_middleware.dart';
 import 'package:nestify/redux/login/middleware/login_with_google_middleware.dart';
 import 'package:nestify/redux/navigation/navigation_middleware.dart';
+import 'package:nestify/redux/scan_qr_code/middleware/check_invite_middleware.dart';
 import 'package:nestify/redux/settings/middleware/contact_support_middleware.dart';
 import 'package:redux/redux.dart';
 import 'package:redux_epics/redux_epics.dart';
@@ -44,6 +45,7 @@ List<Middleware<AppState>> appMiddleware = [
     _serviceLocator.get(),
     _serviceLocator.get(),
   ),
+  CheckInviteMiddleware(_serviceLocator.get(), _serviceLocator.get()),
 
   ///Epics
   EpicMiddleware<AppState>(DynamicLinksEpic(

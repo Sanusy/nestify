@@ -60,5 +60,7 @@
   "joinHomeCreateProfile": "Создать профиль",
   "joinHomeJoin": "Присоедениться",
   "createUserProfileNameHint": "Имя",
-  "createUserProfileBioHint": "О себе"
+  "createUserProfileBioHint": "О себе",
+  "scanQrCodeTitle": "Сканировать QR код",
+  "scanQrCodeHint": "Просканируйте QR код с приглашением что бы присоедениться к дому"
 }

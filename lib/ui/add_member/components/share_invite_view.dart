@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nestify/gen/assets.gen.dart';
 import 'package:nestify/ui/add_member/add_member_view_model.dart';
 import 'package:nestify/ui/common/network_circle_avatar.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -74,8 +73,6 @@ class ShareInviteView extends StatelessWidget {
               QrImageView(
                 data: viewModel.inviteUrl,
                 size: 226,
-                // TODO: Replace with app icon
-                embeddedImage: Assets.images.qrCodePicture.provider(),
               ),
               const SizedBox(height: 16),
             ],

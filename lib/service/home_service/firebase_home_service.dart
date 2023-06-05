@@ -128,6 +128,8 @@ class FirebaseHomeService implements HomeService {
       batch.update(
         homeSnapshot,
         {
+          'inviteUrl': null,
+          'inviteId': null,
           'usersIds': FieldValue.arrayUnion([userId]),
         },
       );
@@ -161,6 +163,22 @@ class FirebaseHomeService implements HomeService {
           .doc(homeId)
           .get()
           .then((homeSnapshot) => Home.fromJson(homeSnapshot.data()!));
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
+
+  @override
+  Future<Home?> homeByInviteUrl(String inviteUrl) {
+    try {
+      return _firestore
+          .collection(_homesCollectionId)
+          .where('inviteUrl', isEqualTo: inviteUrl)
+          .get()
+          .then((homesSnapshot) {
+        final homeSnapshot = homesSnapshot.docs.firstOrNull;
+        return homeSnapshot == null ? null : Home.fromJson(homeSnapshot.data());
+      });
     } on FirebaseException catch (error) {
       throw error.toNetworkError();
     }

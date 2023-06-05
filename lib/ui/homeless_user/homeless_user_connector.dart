@@ -22,7 +22,11 @@ final class HomelessUserConnector extends BaseConnector<HomelessUserViewModel>
           CreateHomeRoute(),
         ),
       ),
-      onScanQrCode: Command.stub,
+      onScanQrCode: store.createCommand(
+        SetPathNavigationAction(
+          ScanQrCodeRoute(),
+        ),
+      ),
       onLogout: store.createCommand(LogoutAction()),
     );
   }

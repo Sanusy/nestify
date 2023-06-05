@@ -4,6 +4,7 @@ import 'package:nestify/redux/create_home/create_home_state.dart';
 import 'package:nestify/redux/home/home_state.dart';
 import 'package:nestify/redux/join_home/join_home_state.dart';
 import 'package:nestify/redux/login/login_state.dart';
+import 'package:nestify/redux/scan_qr_code/scan_qr_code_state.dart';
 import 'package:nestify/redux/settings/settings_state.dart';
 
 part 'app_state.freezed.dart';
@@ -12,6 +13,7 @@ part 'app_state.freezed.dart';
 class AppState with _$AppState {
   const factory AppState({
     required LoginState loginState,
+    required ScanQrCodeState scanQrCodeState,
     required CreateHomeState createHomeState,
     required SettingsState settingsState,
     required HomeState homeState,
@@ -21,6 +23,7 @@ class AppState with _$AppState {
 
   factory AppState.initial() => AppState(
         loginState: LoginState.initial(),
+        scanQrCodeState: ScanQrCodeState.initial(),
         createHomeState: CreateHomeState.initial(),
         settingsState: SettingsState.initial(),
         homeState: HomeState.initial(),

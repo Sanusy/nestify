@@ -60,5 +60,9 @@
     </array>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>Photo library permission is required for uploading photos</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Camera usage permission is required for scanning QR codes</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Microphone usage permission is required to make camera work while scanning QR codes</string>
 </dict>
 </plist>

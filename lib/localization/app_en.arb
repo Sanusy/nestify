@@ -60,5 +60,7 @@
   "joinHomeCreateProfile": "Create profile",
   "joinHomeJoin": "Join",
   "createUserProfileNameHint": "Name",
-  "createUserProfileBioHint": "Bio"
+  "createUserProfileBioHint": "Bio",
+  "scanQrCodeTitle": "Scan QR code",
+  "scanQrCodeHint": "Scan QR code invitation to join home"
 }

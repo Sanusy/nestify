@@ -33,3 +33,5 @@ class HomeProfileRoute extends AppRoute {}
 class SettingsRoute extends AppRoute {}
 
 class AddMemberRoute extends AppRoute {}
+
+class ScanQrCodeRoute extends AppRoute {}
