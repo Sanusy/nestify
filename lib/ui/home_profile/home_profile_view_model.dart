@@ -13,6 +13,7 @@ class HomeProfileViewModel with _$HomeProfileViewModel {
   }) = _Failed;
 
   const factory HomeProfileViewModel.loaded({
+    required Command? onDeleteHome,
     required String? pictureUrl,
     required String homeName,
     required String? homeAddress,

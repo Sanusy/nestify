@@ -29,7 +29,10 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
       );
     }
 
+    final isUserAdmin = homeState.home!.adminId == homeState.currentUserId;
+
     return HomeProfileViewModel.loaded(
+      onDeleteHome: isUserAdmin ? Command.stub : null,
       pictureUrl: homeState.home!.avatarUrl,
       homeName: homeState.home!.homeName,
       homeAddress: homeState.home!.address,
@@ -38,12 +41,12 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
         homeState.homeUsers.length,
         homeState.colors.length,
       ),
-      onAddMember: homeState.home!.adminId == homeState.currentUserId &&
-              homeState.homeUsers.length < homeState.colors.length
-          ? store.createCommand(
-              SetPathNavigationAction(AddMemberRoute()),
-            )
-          : null,
+      onAddMember:
+          isUserAdmin && homeState.homeUsers.length < homeState.colors.length
+              ? store.createCommand(
+                  SetPathNavigationAction(AddMemberRoute()),
+                )
+              : null,
       users: homeState.homeUsers
           .map((user) => UserTileViewModel(
                 userPictureUrl: user.avatarUrl,
