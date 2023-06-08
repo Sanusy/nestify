@@ -37,6 +37,9 @@
   "settingsTermsAndConditions": "Условия использования",
   "homeProfileTitle": "Профиль дома",
   "homeProfileMembers": "Участники({currentMembersAmount}/{maxMembersAmount})",
+  "homeProfileDeleteHome": "Удалить дом",
+  "homeProfileDeleteHomeConfirmationTitle": "Удалить дом?",
+  "homeProfileDeleteHomeConfirmationDescription": "Вы уверены что хотите удалить дом? Вы и все члены этого дома больше не сможете его открыть. Все данные будут удалены.",
   "@homeProfileMembers": {
     "placeholders": {
       "currentMembersAmount": {

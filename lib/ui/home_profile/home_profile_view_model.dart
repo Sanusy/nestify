@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/ui/command.dart';
+import 'package:nestify/ui/common/app_bar_actions_view/app_bar_action_view_model.dart';
 import 'package:nestify/ui/common/user_tile_view/user_tile_view_model.dart';
 
 part 'home_profile_view_model.freezed.dart';
@@ -13,7 +14,7 @@ class HomeProfileViewModel with _$HomeProfileViewModel {
   }) = _Failed;
 
   const factory HomeProfileViewModel.loaded({
-    required Command? onDeleteHome,
+    required List<AppBarActionViewModel> appBarActions,
     required String? pictureUrl,
     required String homeName,
     required String? homeAddress,

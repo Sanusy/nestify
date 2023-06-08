@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nestify/ui/common/app_bar_actions_view/app_bar_actions_view.dart';
 import 'package:nestify/ui/home_profile/components/home_profile_loaded_body_view.dart';
 import 'package:nestify/ui/home_profile/home_profile_view_model.dart';
 
@@ -16,6 +17,13 @@ class HomeProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(localization.homeProfileTitle),
+        actions: viewModel.mapOrNull(
+          loaded: (loadedHomeProfileViewModel) => [
+            AppBarActionsView(
+              actions: loadedHomeProfileViewModel.appBarActions,
+            ),
+          ],
+        ),
       ),
       body: viewModel.map(
         loading: (_) => const Center(
