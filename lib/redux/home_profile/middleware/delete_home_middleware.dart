@@ -33,6 +33,7 @@ final class DeleteHomeMiddleware extends BaseMiddleware<DeleteHomeAction> {
       store.dispatch(HomeDeletedAction());
     } on NetworkError {
       _snackBarService.showCommonError();
+      store.dispatch(FailedToDeleteHomeAction());
     } on FileError {
       debugPrint('Failed to clean storage after home delete');
     }

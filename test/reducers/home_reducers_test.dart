@@ -6,10 +6,11 @@ import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/home/home_action.dart';
 import 'package:nestify/redux/home/home_state.dart';
+import 'package:nestify/redux/home_profile/home_profile_action.dart';
 import 'package:redux/redux.dart';
 
 void main() {
-  group('Create home reducers test group', () {
+  group('Home reducers test group', () {
     late Store<AppState> store;
 
     setUp(() {
@@ -97,6 +98,15 @@ void main() {
         availableColors,
       );
       expect(store.state.homeState.currentUserId, userId);
+    });
+
+    test('on home deletion state resets to initial', () {
+      store.dispatch(HomeDeletedAction());
+
+      expect(
+        store.state.homeState,
+        HomeState.initial(),
+      );
     });
   });
 }
