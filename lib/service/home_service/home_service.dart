@@ -16,6 +16,8 @@ abstract interface class HomeService {
     required UserProfileDraftState userDraft,
   });
 
+  Future<void> deleteHome({required Home homeToDelete});
+
   Future<Home> home(String homeId);
 
   Future<Home?> homeByInviteUrl(String inviteUrl);

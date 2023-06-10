@@ -1,11 +1,13 @@
 import 'package:nestify/redux/home/home_action.dart';
 import 'package:nestify/redux/home/home_state.dart';
+import 'package:nestify/redux/home_profile/home_profile_action.dart';
 import 'package:redux/redux.dart';
 
 final homeStateReducer = combineReducers<HomeState>([
   TypedReducer(_initHome),
   TypedReducer(_failedToInitHome),
   TypedReducer(_homeInitialized),
+  TypedReducer(_homeDeleted),
 ]);
 
 HomeState _initHome(HomeState state, InitHomeAction action) {
@@ -31,4 +33,8 @@ HomeState _homeInitialized(HomeState state, HomeInitializedAction action) {
     isLoading: false,
     error: null,
   );
+}
+
+HomeState _homeDeleted(HomeState state, HomeDeletedAction action) {
+  return HomeState.initial();
 }

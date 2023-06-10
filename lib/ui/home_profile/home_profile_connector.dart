@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/home/home_action.dart';
+import 'package:nestify/redux/home_profile/home_profile_action.dart';
 import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
@@ -20,7 +21,8 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
     final localization = AppLocalizations.of(context)!;
     final homeState = store.state.homeState;
 
-    if (homeState.isLoading) {
+    if (homeState.isLoading ||
+        store.state.homeProfileState.isLoading || homeState.home == null) {
       return const HomeProfileViewModel.loading();
     }
 
@@ -30,13 +32,13 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
       );
     }
 
-    final isUserAdmin = homeState.home!.adminId == homeState.currentUserId;
+    final isUserAdmin = homeState.home?.adminId == homeState.currentUserId;
 
     return HomeProfileViewModel.loaded(
       appBarActions: [
         if (isUserAdmin)
           AppBarActionViewModel(
-            onClick: Command.stub,
+            onClick: store.createCommand(DeleteHomeAction()),
             title: localization.homeProfileDeleteHome,
             icon: Icons.delete_forever_outlined,
             isDestructive: true,

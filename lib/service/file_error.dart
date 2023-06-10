@@ -7,4 +7,6 @@ class FileError with _$FileError {
   const factory FileError.failedToUpload() = _FailedToUpload;
 
   const factory FileError.failedToObtain() = _FailedToObtain;
+
+  const factory FileError.failedToDelete() = _FailedToDelete;
 }

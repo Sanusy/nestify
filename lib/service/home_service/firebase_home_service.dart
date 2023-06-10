@@ -93,6 +93,35 @@ class FirebaseHomeService implements HomeService {
   }
 
   @override
+  Future<void> deleteHome({required Home homeToDelete}) async {
+    final batch = _firestore.batch();
+
+    try {
+      for (final user in homeToDelete.usersIds) {
+        final userDoc = _firestore.collection(_usersCollectionId).doc(user);
+        batch.update(userDoc, {'homeId': null});
+      }
+
+      final homeDoc =
+          _firestore.collection(_homesCollectionId).doc(homeToDelete.id);
+      batch.delete(homeDoc);
+
+      await batch.commit();
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+
+    // TODO: Consider removing it to Cloud Functions after they are available
+    if (homeToDelete.avatarUrl != null) {
+      try {
+        _storage.refFromURL(homeToDelete.avatarUrl!).delete();
+      } on FirebaseException {
+        throw const FileError.failedToDelete();
+      }
+    }
+  }
+
+  @override
   Future<void> joinHome({
     required String homeId,
     required UserProfileDraftState userDraft,
