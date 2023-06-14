@@ -39,6 +39,13 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
 
     return HomeProfileViewModel.loaded(
       appBarActions: [
+        if(home.usersIds.length > 1)
+          AppBarActionViewModel(
+            onClick: Command.stub,
+            title: localization.homeProfileLeaveHome,
+            icon: Icons.logout_outlined,
+            isDestructive: false,
+          ),
         if (isUserAdmin)
           AppBarActionViewModel(
             onClick: store.createCommand(DeleteHomeAction()),

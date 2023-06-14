@@ -36,6 +36,7 @@
   "settingsPrivacyPolicy": "Privacy policy",
   "settingsTermsAndConditions": "Terms and Conditions",
   "homeProfileTitle": "Home profile",
+  "homeProfileLeaveHome": "Leave home",
   "homeProfileDeleteHome": "Delete home",
   "homeProfileDeleteHomeConfirmationTitle": "Delete home?",
   "homeProfileDeleteHomeConfirmationDescription": "Are you sure you want to delete home? You and all the home members won’t be able to enter home again. All data will be lost.",
