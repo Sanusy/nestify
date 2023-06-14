@@ -22,7 +22,8 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
     final homeState = store.state.homeState;
 
     if (homeState.isLoading ||
-        store.state.homeProfileState.isLoading || homeState.home == null) {
+        store.state.homeProfileState.isLoading ||
+        homeState.home == null) {
       return const HomeProfileViewModel.loading();
     }
 
@@ -34,6 +35,8 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
 
     final isUserAdmin = homeState.home?.adminId == homeState.currentUserId;
 
+    final home = homeState.home!;
+
     return HomeProfileViewModel.loaded(
       appBarActions: [
         if (isUserAdmin)
@@ -44,10 +47,10 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
             isDestructive: true,
           ),
       ],
-      pictureUrl: homeState.home!.avatarUrl,
-      homeName: homeState.home!.homeName,
-      homeAddress: homeState.home!.address,
-      about: homeState.home!.about,
+      pictureUrl: home.avatarUrl,
+      homeName: home.homeName,
+      homeAddress: home.address,
+      about: home.about,
       membersDescription: localization.homeProfileMembers(
         homeState.homeUsers.length,
         homeState.colors.length,
@@ -62,7 +65,7 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
           .map((user) => UserTileViewModel(
                 userPictureUrl: user.avatarUrl,
                 userName: user.userName,
-                isAdmin: homeState.home!.adminId == user.id,
+                isAdmin: home.adminId == user.id,
                 onOpenUser: Command.stub,
               ))
           .toList(),
