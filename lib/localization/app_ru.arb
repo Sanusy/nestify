@@ -8,6 +8,7 @@
   "commonNext": "Далее",
   "commonBack": "Назад",
   "commonRetry": "Повторить",
+  "commonCancel": "Отмена",
   "commonFailedToObtainPhoto": "Не получилось выбрать фото:(",
   "colorSelectorTitle": "Выберите свой цвет",
   "colorSelectorDescription": "Ваши задачи, напоминания и сообщения будут выделяться вашим цветом.",
@@ -53,6 +54,18 @@
   },
   "homeProfileAdminMember": "админ",
   "homeProfileAddMember": "Добавить",
+  "homeProfileLeaveDialogTitle": "Покинуть дом?",
+  "homeProfileLeaveDialogUserDescription": "Вы уверены что хотите покинуть этот дом? Вы больше не сможете открыть этот дом снова.",
+  "homeProfileLeaveDialogAdminSingleUserDescription": "Вы уверены что хотите покинуть этот дом? Вы больше не сможете открыть этот дом снова. {newAdminName} станет новым администратором.",
+  "@homeProfileLeaveDialogAdminSingleUserDescription": {
+    "placeholders": {
+      "newAdminName": {
+        "type": "String"
+      }
+    }
+  },
+  "homeProfileLeaveDialogMultipleUsersDescription": "Вы уверены что хотите покинуть этот дом? Вы больше не сможете открыть этот дом снова. Выбраный пользователь станет новым администратором.",
+  "homeProfileLeaveDialogLeave": "Покинуть дом",
   "addMemberTitle": "Пригласить участника",
   "addMemberDisclaimer": "Покажите этот QR код пользователю которого вы хотите добавить.",
   "addMemberDisclaimerSubtitle": "Так же вы можете поделиться приглажением через другое приложение.",
