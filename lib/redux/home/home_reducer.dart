@@ -35,6 +35,6 @@ HomeState _homeInitialized(HomeState state, HomeInitializedAction action) {
   );
 }
 
-HomeState _homeDeleted(HomeState state, HomeDeletedAction action) {
+HomeState _homeDeleted(HomeState state, LeavedHomeAction action) {
   return HomeState.initial();
 }

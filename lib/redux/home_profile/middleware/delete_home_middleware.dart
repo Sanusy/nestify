@@ -30,7 +30,7 @@ final class DeleteHomeMiddleware extends BaseMiddleware<DeleteHomeAction> {
       await _homeService.deleteHome(homeToDelete: store.state.homeState.home!);
 
       store.dispatch(SetPathNavigationAction(HomelessUserRoute()));
-      store.dispatch(HomeDeletedAction());
+      store.dispatch(LeavedHomeAction());
     } on NetworkError {
       _snackBarService.showCommonError();
       store.dispatch(FailedToDeleteHomeAction());

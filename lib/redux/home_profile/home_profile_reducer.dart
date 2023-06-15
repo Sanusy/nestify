@@ -32,7 +32,7 @@ HomeProfileState _failedToDeleteHome(
 
 HomeProfileState _homeDeleted(
   HomeProfileState state,
-  HomeDeletedAction action,
+  LeavedHomeAction action,
 ) {
   return HomeProfileState.initial();
 }

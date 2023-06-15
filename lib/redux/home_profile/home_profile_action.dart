@@ -2,7 +2,7 @@ import 'package:nestify/models/user.dart';
 
 class DeleteHomeAction {}
 
-class HomeDeletedAction {}
+class LeavedHomeAction {}
 
 class FailedToDeleteHomeAction {}
 
@@ -15,7 +15,5 @@ class SelectNewAdminAction {
 class ClosedLeaveHomeDialogAction {}
 
 class LeaveHomeAction {}
-
-class LeavedHomeAction {}
 
 class FailedToLeaveHomeAction {}

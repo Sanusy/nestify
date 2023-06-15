@@ -101,7 +101,7 @@ void main() {
     });
 
     test('on home deletion state resets to initial', () {
-      store.dispatch(HomeDeletedAction());
+      store.dispatch(LeavedHomeAction());
 
       expect(
         store.state.homeState,
