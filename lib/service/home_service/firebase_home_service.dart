@@ -86,7 +86,7 @@ class FirebaseHomeService implements HomeService {
       batch.set(homeSnapshot, homeModel.toJson());
       batch.update(userSnapshot, userModel.toJson());
 
-      batch.commit();
+      return batch.commit();
     } on FirebaseException catch (error) {
       throw error.toNetworkError();
     }
@@ -164,7 +164,7 @@ class FirebaseHomeService implements HomeService {
       );
       batch.update(userSnapshot, userModel.toJson());
 
-      batch.commit();
+      return batch.commit();
     } on FirebaseException catch (error) {
       throw error.toNetworkError();
     }
@@ -225,6 +225,41 @@ class FirebaseHomeService implements HomeService {
             .map((userSnapshot) => User.fromJson(userSnapshot.data()))
             .toList();
       });
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
+
+  @override
+  Future<void> leaveHome({
+    required String homeId,
+    String? newAdminId,
+  }) {
+    final userId = _firebaseAuth.currentUser?.uid;
+
+    if (userId == null) throw const NetworkError.notAuthenticated();
+
+    try {
+      final userSnapshot =
+          _firestore.collection(_usersCollectionId).doc(userId);
+      final homeSnapshot =
+          _firestore.collection(_homesCollectionId).doc(homeId);
+
+      final batch = _firestore.batch();
+
+      batch.update(
+        homeSnapshot,
+        {
+          'usersIds': FieldValue.arrayRemove([userId]),
+          if (newAdminId != null) 'adminId': newAdminId,
+        },
+      );
+
+      batch.update(userSnapshot, {
+        'homeId': null,
+      });
+
+      return batch.commit();
     } on FirebaseException catch (error) {
       throw error.toNetworkError();
     }

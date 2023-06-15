@@ -23,4 +23,9 @@ abstract interface class HomeService {
   Future<Home?> homeByInviteUrl(String inviteUrl);
 
   Future<List<User>> homeUsers(List<String> userIds);
+
+  Future<void> leaveHome({
+    required String homeId,
+    String? newAdminId,
+  });
 }

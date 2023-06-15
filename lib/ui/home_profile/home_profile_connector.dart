@@ -9,6 +9,7 @@ import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/common/app_bar_actions_view/app_bar_action_view_model.dart';
 import 'package:nestify/ui/common/user_tile_view/user_tile_view_model.dart';
+import 'package:nestify/ui/home_profile/components/leave_home_dialog/leave_home_dialog_connector.dart';
 import 'package:nestify/ui/home_profile/home_profile_screen.dart';
 import 'package:nestify/ui/home_profile/home_profile_view_model.dart';
 import 'package:redux/redux.dart';
@@ -22,7 +23,8 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
     final homeState = store.state.homeState;
 
     if (homeState.isLoading ||
-        store.state.homeProfileState.isLoading || homeState.home == null) {
+        store.state.homeProfileState.isLoading ||
+        homeState.home == null) {
       return const HomeProfileViewModel.loading();
     }
 
@@ -34,8 +36,22 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
 
     final isUserAdmin = homeState.home?.adminId == homeState.currentUserId;
 
+    final home = homeState.home!;
+
     return HomeProfileViewModel.loaded(
       appBarActions: [
+        if (home.usersIds.length > 1)
+          AppBarActionViewModel(
+            onClick: Command(() {
+              showDialog(
+                context: context,
+                builder: (_) => const LeaveHomeDialogConnector(),
+              );
+            }),
+            title: localization.homeProfileLeaveHome,
+            icon: Icons.logout_outlined,
+            isDestructive: false,
+          ),
         if (isUserAdmin)
           AppBarActionViewModel(
             onClick: store.createCommand(DeleteHomeAction()),
@@ -44,10 +60,10 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
             isDestructive: true,
           ),
       ],
-      pictureUrl: homeState.home!.avatarUrl,
-      homeName: homeState.home!.homeName,
-      homeAddress: homeState.home!.address,
-      about: homeState.home!.about,
+      pictureUrl: home.avatarUrl,
+      homeName: home.homeName,
+      homeAddress: home.address,
+      about: home.about,
       membersDescription: localization.homeProfileMembers(
         homeState.homeUsers.length,
         homeState.colors.length,
@@ -62,7 +78,7 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
           .map((user) => UserTileViewModel(
                 userPictureUrl: user.avatarUrl,
                 userName: user.userName,
-                isAdmin: homeState.home!.adminId == user.id,
+                isAdmin: home.adminId == user.id,
                 onOpenUser: Command.stub,
               ))
           .toList(),

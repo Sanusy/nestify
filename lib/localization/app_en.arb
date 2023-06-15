@@ -8,6 +8,7 @@
   "commonNext": "Next",
   "commonBack": "Back",
   "commonRetry": "Retry",
+  "commonCancel": "Cancel",
   "commonFailedToObtainPhoto": "Failed to obtain photo!",
   "colorSelectorTitle": "Select your color",
   "colorSelectorDescription": "Your tasks, reminders and messages will be marked with this color.",
@@ -36,6 +37,7 @@
   "settingsPrivacyPolicy": "Privacy policy",
   "settingsTermsAndConditions": "Terms and Conditions",
   "homeProfileTitle": "Home profile",
+  "homeProfileLeaveHome": "Leave home",
   "homeProfileDeleteHome": "Delete home",
   "homeProfileDeleteHomeConfirmationTitle": "Delete home?",
   "homeProfileDeleteHomeConfirmationDescription": "Are you sure you want to delete home? You and all the home members won’t be able to enter home again. All data will be lost.",
@@ -52,6 +54,18 @@
   },
   "homeProfileAdminMember": "admin",
   "homeProfileAddMember": "Add member",
+  "homeProfileLeaveDialogTitle": "Leave home?",
+  "homeProfileLeaveDialogUserDescription": "Are you sure you want to leave home? You won’t be able to visit this home again.",
+  "homeProfileLeaveDialogAdminSingleUserDescription": "Are you sure you want to leave home? You won’t be able to visit this home again. {newAdminName} will become an admin.",
+  "@homeProfileLeaveDialogAdminSingleUserDescription": {
+    "placeholders": {
+      "newAdminName": {
+        "type": "String"
+      }
+    }
+  },
+  "homeProfileLeaveDialogMultipleUsersDescription": "Are you sure you want to leave home? You won’t be able to visit this home again. Selected user will become an admin of this home.",
+  "homeProfileLeaveDialogLeave": "Leave",
   "addMemberTitle": "Invite member",
   "addMemberDisclaimer": "Show this QR code to user you want to add.",
   "addMemberDisclaimerSubtitle": "Alternatively you can share this invite through any app you want.",
