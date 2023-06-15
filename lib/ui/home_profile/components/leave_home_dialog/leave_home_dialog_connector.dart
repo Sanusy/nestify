@@ -24,7 +24,10 @@ final class LeaveHomeDialogConnector
     final homeState = store.state.homeState;
     final isUserAdmin = homeState.home?.adminId == homeState.currentUserId;
 
-    final onLeaveHomeCommand = store.createCommand(LeaveHomeAction());
+    final onLeaveHomeCommand = Command(() {
+      store.dispatch(LeaveHomeAction());
+      store.dispatch(const PopNavigationAction());
+    });
 
     /// Pops leave home dialog
     final onCancelCommand = store.createCommand(const PopNavigationAction());
@@ -56,6 +59,7 @@ final class LeaveHomeDialogConnector
         onLeaveHome: Command(() {
           store.dispatch(SelectNewAdminAction(newAdmin));
           store.dispatch(LeaveHomeAction());
+          store.dispatch(const PopNavigationAction());
         }),
         onCancel: onCancelCommand,
       );

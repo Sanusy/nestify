@@ -15,3 +15,7 @@ class SelectNewAdminAction {
 class ClosedLeaveHomeDialogAction {}
 
 class LeaveHomeAction {}
+
+class LeavedHomeAction {}
+
+class FailedToLeaveHomeAction {}

@@ -7,6 +7,7 @@ final homeProfileStateReducer = combineReducers<HomeProfileState>([
   TypedReducer(_failedToDeleteHome),
   TypedReducer(_homeDeleted),
   TypedReducer(_leaveHome),
+  TypedReducer(_failedToLeaveHome),
   TypedReducer(_selectNewAdmin),
   TypedReducer(_closeLeaveHome),
 ]);
@@ -42,6 +43,15 @@ HomeProfileState _leaveHome(
 ) {
   return state.copyWith(
     isLoading: true,
+  );
+}
+
+HomeProfileState _failedToLeaveHome(
+  HomeProfileState state,
+  FailedToLeaveHomeAction action,
+) {
+  return state.copyWith(
+    isLoading: false,
   );
 }
 
