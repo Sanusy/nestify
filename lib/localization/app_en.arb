@@ -66,6 +66,7 @@
   },
   "homeProfileLeaveDialogMultipleUsersDescription": "Are you sure you want to leave home? You won’t be able to visit this home again. Selected user will become an admin of this home.",
   "homeProfileLeaveDialogLeave": "Leave",
+  "homeProfileEditHome": "Edit home",
   "addMemberTitle": "Invite member",
   "addMemberDisclaimer": "Show this QR code to user you want to add.",
   "addMemberDisclaimerSubtitle": "Alternatively you can share this invite through any app you want.",
