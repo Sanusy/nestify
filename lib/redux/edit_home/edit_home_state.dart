@@ -17,7 +17,7 @@ class EditHomeState with _$EditHomeState {
   }) = _EditHomeState;
 
   factory EditHomeState.initial() => const EditHomeState(
-        isLoading: false,
+        isLoading: true,
         initialHome: null,
         editedHome: null,
         pickedAvatar: null,

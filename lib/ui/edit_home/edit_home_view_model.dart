@@ -7,11 +7,13 @@ part 'edit_home_view_model.freezed.dart';
 
 @Freezed(copyWith: false)
 class EditHomeViewModel with _$EditHomeViewModel {
-  const factory EditHomeViewModel({
+  const factory EditHomeViewModel.loading() = _LoadingEditHomeViewModel;
+
+  const factory EditHomeViewModel.loaded({
     required Command? onEdit,
     required AvatarPickerViewModel homeAvatarViewModel,
     required NestifyTextFieldViewModel homeNameViewModel,
     required NestifyTextFieldViewModel homeAddressViewModel,
     required NestifyTextFieldViewModel homeAboutViewModel,
-  }) = _EditHomeViewModel;
+  }) = _LoadedEditHomeViewModel;
 }
