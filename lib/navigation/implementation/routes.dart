@@ -105,6 +105,7 @@ final goRouter = GoRouter(
                 child: const AddMemberConnector(),
               ),
               NestifyGoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
                 appRoute: EditHomeRoute(),
                 child: const EditHomeConnector(),
               ),
