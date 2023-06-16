@@ -17,6 +17,7 @@ import 'package:nestify/ui/add_member/add_member_connector.dart';
 import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_connector.dart';
 import 'package:nestify/ui/bottom_navigation_screen/bottom_navigation_destinations.dart';
 import 'package:nestify/ui/create_home/create_home_connector.dart';
+import 'package:nestify/ui/edit_home/edit_home_connector.dart';
 import 'package:nestify/ui/home/home_connector.dart';
 import 'package:nestify/ui/home_profile/home_profile_connector.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
@@ -102,6 +103,10 @@ final goRouter = GoRouter(
               NestifyGoRoute(
                 appRoute: AddMemberRoute(),
                 child: const AddMemberConnector(),
+              ),
+              NestifyGoRoute(
+                appRoute: EditHomeRoute(),
+                child: const EditHomeConnector(),
               ),
             ]),
         NestifyGoRoute(
