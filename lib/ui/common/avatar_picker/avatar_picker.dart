@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:nestify/ui/common/avatar_picker/avatar_picker_view_model.dart';
 
@@ -23,7 +24,14 @@ class AvatarPicker extends StatelessWidget {
             radius: 90,
             foregroundImage: viewModel.picture == null
                 ? null
-                : FileImage(viewModel.picture!),
+                : viewModel.map(
+                    url: (urlViewModel) => CachedNetworkImageProvider(
+                      urlViewModel.picture,
+                    ),
+                    file: (fileViewModel) => FileImage(
+                      fileViewModel.picture!,
+                    ),
+                  ),
             child: Icon(
               backgroundIcon,
               size: 120,

@@ -23,107 +23,102 @@ final class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
     final createHomeState = store.state.createHomeState;
 
     final CreateHomeStepViewModel createHomeStepViewModel =
-    switch (createHomeState.createHomeStep) {
-      CreateHomeStep.homeProfile =>
-          CreateHomeStepViewModel.homeProfile(
-            homeAvatarViewModel: AvatarPickerViewModel(
-                picture: createHomeState.homeProfileDraftState.homeAvatar,
-                onClick: store.createCommand(
-                  createHomeState.homeProfileDraftState.homeAvatar == null
-                      ? CreateHomePickHomeAvatarAction()
-                      : RemoveCreateHomeAvatarAction(),
-                )),
-            homeNameViewModel: NestifyTextFieldViewModel(
-              text: createHomeState.homeProfileDraftState.homeName,
-              onTextChanged: store.createCommandWith(
-                    (newName) => CreateHomeNameChangedAction(newName),
-              ),
+        switch (createHomeState.createHomeStep) {
+      CreateHomeStep.homeProfile => CreateHomeStepViewModel.homeProfile(
+          homeAvatarViewModel: AvatarPickerViewModel.file(
+              picture: createHomeState.homeProfileDraftState.homeAvatar,
+              onClick: store.createCommand(
+                createHomeState.homeProfileDraftState.homeAvatar == null
+                    ? CreateHomePickHomeAvatarAction()
+                    : RemoveCreateHomeAvatarAction(),
+              )),
+          homeNameViewModel: NestifyTextFieldViewModel(
+            text: createHomeState.homeProfileDraftState.homeName,
+            onTextChanged: store.createCommandWith(
+              (newName) => CreateHomeNameChangedAction(newName),
             ),
-            homeAddressViewModel: NestifyTextFieldViewModel(
-              text: createHomeState.homeProfileDraftState.homeAddress,
-              onTextChanged: store.createCommandWith(
-                    (newAddress) => CreateHomeAddressChangedAction(newAddress),
-              ),
-            ),
-            homeAboutViewModel: NestifyTextFieldViewModel(
-              text: createHomeState.homeProfileDraftState.homeAbout,
-              onTextChanged: store.createCommandWith(
-                    (newAbout) => CreateHomeAboutChangedAction(newAbout),
-              ),
-            ),
-            onNext: createHomeState.homeProfileDraftState.homeName.isNotEmpty
-                ? store.createCommand(
-              CreateHomeStepChangedAction(CreateHomeStep.userProfile),
-            )
-                : null,
           ),
-      CreateHomeStep.userProfile =>
-          CreateHomeStepViewModel.userProfile(
-            userAvatarViewModel: AvatarPickerViewModel(
-                picture: createHomeState.userProfileDraftState.userAvatar,
-                onClick: createHomeState.isLoading
-                    ? null
-                    : store.createCommand(
-                  createHomeState.userProfileDraftState.userAvatar == null
-                      ? CreateHomePickUserAvatarAction()
-                      : CreateHomeRemoveUserAvatarAction(),
-                )),
-            userNameViewModel: NestifyTextFieldViewModel(
-              text: createHomeState.userProfileDraftState.userName,
-              onTextChanged: createHomeState.isLoading
-                  ? null
-                  : store.createCommandWith(
-                    (newName) => CreateHomeUserNameChangedAction(newName),
-              ),
+          homeAddressViewModel: NestifyTextFieldViewModel(
+            text: createHomeState.homeProfileDraftState.homeAddress,
+            onTextChanged: store.createCommandWith(
+              (newAddress) => CreateHomeAddressChangedAction(newAddress),
             ),
-            userBioViewModel: NestifyTextFieldViewModel(
-              text: createHomeState.userProfileDraftState.userBio,
-              onTextChanged: createHomeState.isLoading
-                  ? null
-                  : store.createCommandWith(
-                    (newBio) => CreateHomeUserBioChangedAction(newBio),
-              ),
+          ),
+          homeAboutViewModel: NestifyTextFieldViewModel(
+            text: createHomeState.homeProfileDraftState.homeAbout,
+            onTextChanged: store.createCommandWith(
+              (newAbout) => CreateHomeAboutChangedAction(newAbout),
             ),
-            isLoading: createHomeState.isLoading,
-            onBack: createHomeState.isLoading
+          ),
+          onNext: createHomeState.homeProfileDraftState.homeName.isNotEmpty
+              ? store.createCommand(
+                  CreateHomeStepChangedAction(CreateHomeStep.userProfile),
+                )
+              : null,
+        ),
+      CreateHomeStep.userProfile => CreateHomeStepViewModel.userProfile(
+          userAvatarViewModel: AvatarPickerViewModel.file(
+              picture: createHomeState.userProfileDraftState.userAvatar,
+              onClick: createHomeState.isLoading
+                  ? null
+                  : store.createCommand(
+                      createHomeState.userProfileDraftState.userAvatar == null
+                          ? CreateHomePickUserAvatarAction()
+                          : CreateHomeRemoveUserAvatarAction(),
+                    )),
+          userNameViewModel: NestifyTextFieldViewModel(
+            text: createHomeState.userProfileDraftState.userName,
+            onTextChanged: createHomeState.isLoading
                 ? null
-                : store.createCommand(
-              CreateHomeStepChangedAction(CreateHomeStep.homeProfile),
-            ),
-            onCreate: createHomeState.canCreateHome
-                ? store.createCommand(CreateHomeAction())
-                : null,
-            colorSelectorViewModel: createHomeState.colorsState.map(
-              loading: (_) => const CreateHomeColorSelectorViewModel.loading(),
-              error: (_) =>
-                  CreateHomeColorSelectorViewModel.error(
-                      onRetry: store.createCommand(
-                          LoadAvailableColorsAction())),
-              loaded: (availableColors) {
-                return CreateHomeColorSelectorViewModel.loaded(
-                  availableColors: availableColors.availableColors
-                      .map(
-                        (availableColor) =>
-                        ColorSelectorItemViewModel(
-                          onSelect: createHomeState
-                              .userProfileDraftState.selectedColor ==
-                              availableColor
-                              ? null
-                              : store.createCommand(
-                            CreateHomeColorSelectedAction(
-                              availableColor,
-                            ),
-                          ),
-                          color: availableColor.toColor,
-                          isEnabled: true,
-                        ),
-                  )
-                      .toList()
-                    ..sort((firstColor, _) => firstColor.isEnabled ? -1 : 1),
-                );
-              },
-            ),
+                : store.createCommandWith(
+                    (newName) => CreateHomeUserNameChangedAction(newName),
+                  ),
           ),
+          userBioViewModel: NestifyTextFieldViewModel(
+            text: createHomeState.userProfileDraftState.userBio,
+            onTextChanged: createHomeState.isLoading
+                ? null
+                : store.createCommandWith(
+                    (newBio) => CreateHomeUserBioChangedAction(newBio),
+                  ),
+          ),
+          isLoading: createHomeState.isLoading,
+          onBack: createHomeState.isLoading
+              ? null
+              : store.createCommand(
+                  CreateHomeStepChangedAction(CreateHomeStep.homeProfile),
+                ),
+          onCreate: createHomeState.canCreateHome
+              ? store.createCommand(CreateHomeAction())
+              : null,
+          colorSelectorViewModel: createHomeState.colorsState.map(
+            loading: (_) => const CreateHomeColorSelectorViewModel.loading(),
+            error: (_) => CreateHomeColorSelectorViewModel.error(
+                onRetry: store.createCommand(LoadAvailableColorsAction())),
+            loaded: (availableColors) {
+              return CreateHomeColorSelectorViewModel.loaded(
+                availableColors: availableColors.availableColors
+                    .map(
+                      (availableColor) => ColorSelectorItemViewModel(
+                        onSelect: createHomeState
+                                    .userProfileDraftState.selectedColor ==
+                                availableColor
+                            ? null
+                            : store.createCommand(
+                                CreateHomeColorSelectedAction(
+                                  availableColor,
+                                ),
+                              ),
+                        color: availableColor.toColor,
+                        isEnabled: true,
+                      ),
+                    )
+                    .toList()
+                  ..sort((firstColor, _) => firstColor.isEnabled ? -1 : 1),
+              );
+            },
+          ),
+        ),
     };
 
     return CreateHomeViewModel(
@@ -132,18 +127,16 @@ final class CreateHomeConnector extends BaseConnector<CreateHomeViewModel>
           : null,
       createHomeStepViewModel: createHomeStepViewModel,
       event: createHomeState.error?.whenOrNull(
-        failedToObtainPhoto: () =>
-            CreateHomeEvent.failedToObtainPhoto(
-              onProcessed: store.createCommand(
-                CreateHomeErrorProcessedAction(),
-              ),
-            ),
-        failedToCreate: () =>
-            CreateHomeEvent.failedToCreateHome(
-              onProcessed: store.createCommand(
-                CreateHomeErrorProcessedAction(),
-              ),
-            ),
+        failedToObtainPhoto: () => CreateHomeEvent.failedToObtainPhoto(
+          onProcessed: store.createCommand(
+            CreateHomeErrorProcessedAction(),
+          ),
+        ),
+        failedToCreate: () => CreateHomeEvent.failedToCreateHome(
+          onProcessed: store.createCommand(
+            CreateHomeErrorProcessedAction(),
+          ),
+        ),
       ),
     );
   }

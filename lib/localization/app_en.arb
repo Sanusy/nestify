@@ -80,5 +80,10 @@
   "createUserProfileNameHint": "Name",
   "createUserProfileBioHint": "Bio",
   "scanQrCodeTitle": "Scan QR code",
-  "scanQrCodeHint": "Scan QR code invitation to join home"
+  "scanQrCodeHint": "Scan QR code invitation to join home",
+  "editHomeTitle": "Edit home",
+  "editHomeSave": "Save",
+  "editHomeHomeName": "Home name",
+  "editHomeAddress": "Address",
+  "editHomeAbout": "About"
 }

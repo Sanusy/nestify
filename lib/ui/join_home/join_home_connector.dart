@@ -55,7 +55,7 @@ final class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
           quitConfirmation: joinHomeState.hasChanges
               ? store.baseQuitConfirmationViewModel
               : null,
-          userAvatarViewModel: AvatarPickerViewModel(
+          userAvatarViewModel: AvatarPickerViewModel.file(
               picture: joinHomeState.userProfileDraftState.userAvatar,
               onClick: joinHomeState.isLoading
                   ? null
