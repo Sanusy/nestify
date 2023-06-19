@@ -5,6 +5,10 @@ import 'package:redux/redux.dart';
 final editHomeStateReducer = combineReducers<EditHomeState>([
   TypedReducer(_initHome),
   TypedReducer(_pickedHomeAvatar),
+  TypedReducer(_removeHomeAvatar),
+  TypedReducer(_homeNameChanged),
+  TypedReducer(_homeAddressChanged),
+  TypedReducer(_homeAboutChanged),
 ]);
 
 EditHomeState _initHome(EditHomeState state, InitEditHomeAction action) {
@@ -21,5 +25,50 @@ EditHomeState _pickedHomeAvatar(
 ) {
   return state.copyWith(
     pickedAvatar: action.pickedAvatar,
+  );
+}
+
+EditHomeState _removeHomeAvatar(
+  EditHomeState state,
+  RemoveEditHomeAvatarAction action,
+) {
+  return state.copyWith(
+    editedHome: state.editedHome?.copyWith(
+      avatarUrl: null,
+    ),
+    pickedAvatar: null,
+  );
+}
+
+EditHomeState _homeNameChanged(
+  EditHomeState state,
+  EditHomeNameChangedAction action,
+) {
+  return state.copyWith(
+    editedHome: state.editedHome?.copyWith(
+      homeName: action.newName,
+    ),
+  );
+}
+
+EditHomeState _homeAddressChanged(
+  EditHomeState state,
+  EditHomeAddressChangedAction action,
+) {
+  return state.copyWith(
+    editedHome: state.editedHome?.copyWith(
+      address: action.newAddress,
+    ),
+  );
+}
+
+EditHomeState _homeAboutChanged(
+  EditHomeState state,
+  EditHomeAboutChangedAction action,
+) {
+  return state.copyWith(
+    editedHome: state.editedHome?.copyWith(
+      about: action.newAbout,
+    ),
   );
 }

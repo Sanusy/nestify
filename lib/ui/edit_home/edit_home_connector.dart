@@ -29,23 +29,42 @@ final class EditHomeConnector extends BaseConnector<EditHomeViewModel> {
       return const EditHomeViewModel.loading();
     }
 
+    final editedHome = editHomeState.editedHome!;
+
     return EditHomeViewModel.loaded(
-      onEdit: Command.stub,
-      homeAvatarViewModel: AvatarPickerViewModel.file(
-        picture: null,
-        onClick: Command.stub,
-      ),
+      onEdit: editHomeState.hasChanges ? Command.stub : null,
+      homeAvatarViewModel: editedHome.avatarUrl == null
+          ? AvatarPickerViewModel.file(
+              picture: editHomeState.pickedAvatar,
+              onClick: store.createCommand(
+                editHomeState.pickedAvatar == null
+                    ? EditHomePickHomeAvatarAction()
+                    : RemoveEditHomeAvatarAction(),
+              ),
+            )
+          : AvatarPickerViewModel.url(
+              picture: editedHome.avatarUrl!,
+              onClick: store.createCommand(
+                RemoveEditHomeAvatarAction(),
+              ),
+            ),
       homeNameViewModel: NestifyTextFieldViewModel(
-        text: '',
-        onTextChanged: CommandWith((_) {}),
+        text: editedHome.homeName,
+        onTextChanged: store.createCommandWith(
+          (newName) => EditHomeNameChangedAction(newName),
+        ),
       ),
       homeAddressViewModel: NestifyTextFieldViewModel(
-        text: '',
-        onTextChanged: CommandWith((_) {}),
+        text: editedHome.address,
+        onTextChanged: store.createCommandWith(
+          (newAddress) => EditHomeAddressChangedAction(newAddress),
+        ),
       ),
       homeAboutViewModel: NestifyTextFieldViewModel(
-        text: '',
-        onTextChanged: CommandWith((_) {}),
+        text: editedHome.about,
+        onTextChanged: store.createCommandWith(
+          (newAbout) => EditHomeAboutChangedAction(newAbout),
+        ),
       ),
     );
   }

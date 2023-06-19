@@ -11,8 +11,8 @@ class Home with _$Home {
     required String homeName,
     required String adminId,
     required List<String> usersIds,
-    required String? address,
-    required String? about,
+    required String address,
+    required String about,
     required String? avatarUrl,
     String? inviteId,
   }) = _Home;

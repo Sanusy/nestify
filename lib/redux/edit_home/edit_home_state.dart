@@ -16,6 +16,10 @@ class EditHomeState with _$EditHomeState {
     required File? pickedAvatar,
   }) = _EditHomeState;
 
+  bool get hasChanges => editedHome != initialHome || pickedAvatar != null;
+
+  bool get canEditHome => editedHome?.homeName.isNotEmpty == true;
+
   factory EditHomeState.initial() => const EditHomeState(
         isLoading: true,
         initialHome: null,
