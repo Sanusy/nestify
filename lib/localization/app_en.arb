@@ -85,5 +85,6 @@
   "editHomeSave": "Save",
   "editHomeHomeName": "Home name",
   "editHomeAddress": "Address",
-  "editHomeAbout": "About"
+  "editHomeAbout": "About",
+  "editHomeEmptyNameError": "Name can't be empty"
 }

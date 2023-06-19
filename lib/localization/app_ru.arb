@@ -85,5 +85,6 @@
   "editHomeSave": "Сохранить",
   "editHomeHomeName": "Название дома",
   "editHomeAddress": "Адрес",
-  "editHomeAbout": "Про дом"
+  "editHomeAbout": "Про дом",
+  "editHomeEmptyNameError": "Имя не может быть пустым"
 }

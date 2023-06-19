@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/edit_home/edit_home_action.dart';
 import 'package:nestify/ui/base_connector.dart';
@@ -36,11 +37,14 @@ final class EditHomeConnector extends BaseConnector<EditHomeViewModel> {
     }
 
     final editedHome = editHomeState.editedHome!;
+    final localization = AppLocalizations.of(context)!;
 
     return EditHomeViewModel.loaded(
       quitConfirmation:
           editHomeState.hasChanges ? store.baseQuitConfirmationViewModel : null,
-      onEdit: editHomeState.hasChanges ? Command.stub : null,
+      onEdit: editHomeState.hasChanges && editHomeState.canEditHome
+          ? Command.stub
+          : null,
       homeAvatarViewModel: editedHome.avatarUrl == null
           ? AvatarPickerViewModel.file(
               picture: editHomeState.pickedAvatar,
@@ -61,6 +65,9 @@ final class EditHomeConnector extends BaseConnector<EditHomeViewModel> {
         onTextChanged: store.createCommandWith(
           (newName) => EditHomeNameChangedAction(newName),
         ),
+        errorText: editedHome.homeName.isEmpty
+            ? localization.editHomeEmptyNameError
+            : null,
       ),
       homeAddressViewModel: NestifyTextFieldViewModel(
         text: editedHome.address,
