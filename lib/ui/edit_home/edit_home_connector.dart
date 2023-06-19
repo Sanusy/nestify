@@ -16,6 +16,12 @@ final class EditHomeConnector extends BaseConnector<EditHomeViewModel> {
     super.onInit(store);
   }
 
+  @override
+  void onDispose(Store<AppState> store) {
+    store.dispatch(CloseEditHomeAction());
+    super.onDispose(store);
+  }
+
   const EditHomeConnector({super.key});
 
   @override

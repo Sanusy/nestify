@@ -3,7 +3,8 @@ import 'package:nestify/redux/edit_home/edit_home_state.dart';
 import 'package:redux/redux.dart';
 
 final editHomeStateReducer = combineReducers<EditHomeState>([
-  TypedReducer(_initHome),
+  TypedReducer(_initEditHome),
+  TypedReducer(_closeEditHome),
   TypedReducer(_pickedHomeAvatar),
   TypedReducer(_removeHomeAvatar),
   TypedReducer(_homeNameChanged),
@@ -11,12 +12,22 @@ final editHomeStateReducer = combineReducers<EditHomeState>([
   TypedReducer(_homeAboutChanged),
 ]);
 
-EditHomeState _initHome(EditHomeState state, InitEditHomeAction action) {
+EditHomeState _initEditHome(
+  EditHomeState state,
+  InitEditHomeAction action,
+) {
   return state.copyWith(
     initialHome: action.homeToEdit,
     editedHome: action.homeToEdit,
     isLoading: false,
   );
+}
+
+EditHomeState _closeEditHome(
+  EditHomeState state,
+  CloseEditHomeAction action,
+) {
+  return EditHomeState.initial();
 }
 
 EditHomeState _pickedHomeAvatar(

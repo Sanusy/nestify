@@ -8,6 +8,8 @@ class InitEditHomeAction {
   InitEditHomeAction(this.homeToEdit);
 }
 
+class CloseEditHomeAction {}
+
 class EditHomePickHomeAvatarAction {}
 
 class EditHomeAvatarPickedAction {
