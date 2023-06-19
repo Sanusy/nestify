@@ -21,7 +21,7 @@ class SelectAdminTile extends StatelessWidget {
         radius: 20,
         avatarUrl: viewModel.userPictureUrl,
         placeholder: Text(
-          viewModel.userName.characters.first,
+          viewModel.userName.characters.first.toUpperCase(),
           style:
               theme.textTheme.titleMedium?.copyWith(color: theme.primaryColor),
         ),
