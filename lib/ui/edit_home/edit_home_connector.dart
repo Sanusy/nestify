@@ -32,6 +32,8 @@ final class EditHomeConnector extends BaseConnector<EditHomeViewModel> {
     final editedHome = editHomeState.editedHome!;
 
     return EditHomeViewModel.loaded(
+      quitConfirmation:
+          editHomeState.hasChanges ? store.baseQuitConfirmationViewModel : null,
       onEdit: editHomeState.hasChanges ? Command.stub : null,
       homeAvatarViewModel: editedHome.avatarUrl == null
           ? AvatarPickerViewModel.file(
