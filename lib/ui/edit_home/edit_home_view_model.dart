@@ -17,5 +17,5 @@ class EditHomeViewModel with _$EditHomeViewModel {
     required NestifyTextFieldViewModel homeNameViewModel,
     required NestifyTextFieldViewModel homeAddressViewModel,
     required NestifyTextFieldViewModel homeAboutViewModel,
-  }) = _LoadedEditHomeViewModel;
+  }) = EditHomeBodyViewModel;
 }
