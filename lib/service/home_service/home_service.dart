@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:nestify/models/home.dart';
 import 'package:nestify/models/user.dart';
 import 'package:nestify/models/user_color.dart';
@@ -27,5 +29,10 @@ abstract interface class HomeService {
   Future<void> leaveHome({
     required String homeId,
     String? newAdminId,
+  });
+
+  Future<Home> editHome({
+    required Home homeToEdit,
+    File? newAvatar,
   });
 }

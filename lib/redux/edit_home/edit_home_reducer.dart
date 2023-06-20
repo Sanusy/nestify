@@ -98,7 +98,7 @@ EditHomeState _editHome(
 
 EditHomeState _homeEdited(
   EditHomeState state,
-  EditHomeAction action,
+  HomeEditedAction action,
 ) {
   return state.copyWith(
     isLoading: false,
@@ -107,7 +107,7 @@ EditHomeState _homeEdited(
 
 EditHomeState _failedToEditHome(
   EditHomeState state,
-  EditHomeAction action,
+  FailedToEditHomeAction action,
 ) {
   return state.copyWith(
     isLoading: false,

@@ -8,6 +8,7 @@ import 'package:nestify/redux/create_home/middleware/create_home_pick_home_avata
 import 'package:nestify/redux/create_home/middleware/create_home_pick_user_avatar_middleware.dart';
 import 'package:nestify/redux/create_home/middleware/load_available_colors_middleware.dart';
 import 'package:nestify/redux/dynamic_links/dynamic_links_epic.dart';
+import 'package:nestify/redux/edit_home/middleware/edit_home_middleware.dart';
 import 'package:nestify/redux/edit_home/middleware/edit_home_pick_avatar_middleware.dart';
 import 'package:nestify/redux/home/middleware/init_home_middleware.dart';
 import 'package:nestify/redux/home_profile/middleware/delete_home_middleware.dart';
@@ -52,6 +53,11 @@ List<Middleware<AppState>> appMiddleware = [
   DeleteHomeMiddleware(_serviceLocator.get(), _serviceLocator.get()),
   LeaveHomeMiddleware(_serviceLocator.get(), _serviceLocator.get()),
   EditHomePickHomeAvatarMiddleware(
+    _serviceLocator.get(),
+    _serviceLocator.get(),
+  ),
+  EditHomeMiddleware(
+    _serviceLocator.get(),
     _serviceLocator.get(),
     _serviceLocator.get(),
   ),
