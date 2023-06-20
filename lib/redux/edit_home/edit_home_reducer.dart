@@ -10,6 +10,9 @@ final editHomeStateReducer = combineReducers<EditHomeState>([
   TypedReducer(_homeNameChanged),
   TypedReducer(_homeAddressChanged),
   TypedReducer(_homeAboutChanged),
+  TypedReducer(_editHome),
+  TypedReducer(_homeEdited),
+  TypedReducer(_failedToEditHome),
 ]);
 
 EditHomeState _initEditHome(
@@ -81,5 +84,32 @@ EditHomeState _homeAboutChanged(
     editedHome: state.editedHome?.copyWith(
       about: action.newAbout,
     ),
+  );
+}
+
+EditHomeState _editHome(
+  EditHomeState state,
+  EditHomeAction action,
+) {
+  return state.copyWith(
+    isLoading: true,
+  );
+}
+
+EditHomeState _homeEdited(
+  EditHomeState state,
+  EditHomeAction action,
+) {
+  return state.copyWith(
+    isLoading: false,
+  );
+}
+
+EditHomeState _failedToEditHome(
+  EditHomeState state,
+  EditHomeAction action,
+) {
+  return state.copyWith(
+    isLoading: false,
   );
 }

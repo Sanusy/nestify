@@ -43,7 +43,7 @@ final class EditHomeConnector extends BaseConnector<EditHomeViewModel> {
       quitConfirmation:
           editHomeState.hasChanges ? store.baseQuitConfirmationViewModel : null,
       onEdit: editHomeState.hasChanges && editHomeState.canEditHome
-          ? Command.stub
+          ? store.createCommand(EditHomeAction())
           : null,
       homeAvatarViewModel: editedHome.avatarUrl == null
           ? AvatarPickerViewModel.file(

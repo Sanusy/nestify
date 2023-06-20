@@ -37,3 +37,13 @@ class EditHomeAboutChangedAction {
 
   EditHomeAboutChangedAction(this.newAbout);
 }
+
+class EditHomeAction {}
+
+class HomeEditedAction {
+  final Home editedHome;
+
+  HomeEditedAction(this.editedHome);
+}
+
+class FailedToEditHomeAction {}
