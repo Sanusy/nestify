@@ -25,6 +25,7 @@ final class ObtainInviteUrlMiddleware
 
       if (homeState.home == null) {
         store.dispatch(SetPathNavigationAction(HomelessUserRoute()));
+        return;
       }
 
       final inviteUrl =
