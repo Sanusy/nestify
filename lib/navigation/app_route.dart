@@ -35,3 +35,8 @@ class SettingsRoute extends AppRoute {}
 class AddMemberRoute extends AppRoute {}
 
 class ScanQrCodeRoute extends AppRoute {}
+
+class EditHomeRoute extends AppRoute {
+  @override
+  bool get fullscreenDialog => true;
+}

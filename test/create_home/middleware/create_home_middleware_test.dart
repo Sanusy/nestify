@@ -11,7 +11,7 @@ import 'package:nestify/service/file_error.dart';
 import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
 
-import '../test_store.dart';
+import '../../test_store.dart';
 
 class MockHomeService extends Mock implements HomeService {}
 

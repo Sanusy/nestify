@@ -8,5 +8,6 @@ class NestifyTextFieldViewModel with _$NestifyTextFieldViewModel {
   const factory NestifyTextFieldViewModel({
     required String text,
     required CommandWith<String>? onTextChanged,
+    String? errorText,
   }) = _NestifyTextFieldViewModel;
 }

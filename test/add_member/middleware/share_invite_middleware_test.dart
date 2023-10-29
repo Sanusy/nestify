@@ -10,7 +10,7 @@ import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/service/external_activities_service/external_activities_service.dart';
 
-import '../test_store.dart';
+import '../../test_store.dart';
 
 class MockExternalActivitiesService extends Mock
     implements ExternalActivitiesService {}

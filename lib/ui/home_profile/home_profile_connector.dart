@@ -40,6 +40,14 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
 
     return HomeProfileViewModel.loaded(
       appBarActions: [
+        if (isUserAdmin)
+          AppBarActionViewModel(
+            onClick: store.createCommand(
+              SetPathNavigationAction(EditHomeRoute()),
+            ),
+            title: localization.homeProfileEditHome,
+            icon: Icons.edit_outlined,
+          ),
         if (home.usersIds.length > 1)
           AppBarActionViewModel(
             onClick: Command(() {
@@ -50,7 +58,6 @@ final class HomeProfileConnector extends BaseConnector<HomeProfileViewModel> {
             }),
             title: localization.homeProfileLeaveHome,
             icon: Icons.logout_outlined,
-            isDestructive: false,
           ),
         if (isUserAdmin)
           AppBarActionViewModel(

@@ -7,8 +7,13 @@ part 'avatar_picker_view_model.freezed.dart';
 
 @Freezed(copyWith: false)
 class AvatarPickerViewModel with _$AvatarPickerViewModel {
-  const factory AvatarPickerViewModel({
+  const factory AvatarPickerViewModel.url({
+    required String picture,
+    required Command onClick,
+  }) = _UrlAvatarPickerViewModel;
+
+  const factory AvatarPickerViewModel.file({
     required File? picture,
     required Command? onClick,
-  }) = _AvatarPickerViewModel;
+  }) = _FileAvatarPickerViewModel;
 }

@@ -4,24 +4,32 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
-import 'package:nestify/redux/create_home/create_home_action.dart';
-import 'package:nestify/redux/create_home/middleware/create_home_pick_user_avatar_middleware.dart';
+import 'package:nestify/redux/edit_home/edit_home_action.dart';
+import 'package:nestify/redux/edit_home/middleware/edit_home_pick_avatar_middleware.dart';
 import 'package:nestify/service/file_error.dart';
 import 'package:nestify/service/file_service/file_service.dart';
+import 'package:nestify/service/snack_bar_service/snack_bar_service.dart';
 
-import '../test_store.dart';
+import '../../test_store.dart';
 
 class MockFileService extends Mock implements FileService {}
 
+class MockSnackBarService extends Mock implements SnackBarService {}
+
 void main() {
-  group('Pick user avatar on create home', () {
+  group('Pick home avatar on edit home', () {
     late TestStore<AppState> store;
     late FileService fileService;
-    late CreateHomePickUserAvatarMiddleware middleware;
+    late SnackBarService snackBarService;
+    late EditHomePickHomeAvatarMiddleware middleware;
 
     setUp(() {
       fileService = MockFileService();
-      middleware = CreateHomePickUserAvatarMiddleware(fileService);
+      snackBarService = MockSnackBarService();
+      middleware = EditHomePickHomeAvatarMiddleware(
+        fileService,
+        snackBarService,
+      );
       store = TestStore<AppState>(
         appReducer,
         initialState: AppState.initial(),
@@ -35,12 +43,12 @@ void main() {
       when(() => fileService.pictureFromGallery())
           .thenAnswer((_) => Future.value(pickedAvatar));
 
-      await middleware.process(store, CreateHomePickUserAvatarAction());
+      await middleware.process(store, EditHomePickHomeAvatarAction());
 
       verify(() => fileService.pictureFromGallery()).called(1);
-      expect(store.actionLog[0],
-          const TypeMatcher<CreateHomeUserAvatarPickedAction>());
-      expect(store.actionLog[0].avatar, pickedAvatar);
+      expect(
+          store.actionLog[0], const TypeMatcher<EditHomeAvatarPickedAction>());
+      expect(store.actionLog[0].pickedAvatar, pickedAvatar);
       expect(store.actionLog.length, 1);
     });
 
@@ -49,25 +57,23 @@ void main() {
         (_) => Future.value(),
       );
 
-      await middleware.process(store, CreateHomePickUserAvatarAction());
+      await middleware.process(store, EditHomePickHomeAvatarAction());
 
       verify(() => fileService.pictureFromGallery()).called(1);
+      verifyZeroInteractions(snackBarService);
       expect(store.actionLog.length, 0);
     });
 
-    test('Check avatar pick failed dispatches fail action', () async {
+    test('Check avatar pick failed shows error', () async {
       when(() => fileService.pictureFromGallery()).thenThrow(
         const FileError.failedToObtain(),
       );
 
-      await middleware.process(store, CreateHomePickUserAvatarAction());
+      await middleware.process(store, EditHomePickHomeAvatarAction());
 
       verify(() => fileService.pictureFromGallery()).called(1);
-      expect(
-        store.actionLog[0],
-        const TypeMatcher<CreateHomeFailedToPickAvatarAction>(),
-      );
-      expect(store.actionLog.length, 1);
+      verify(() => snackBarService.showFailedToObtainPhoto()).called(1);
+      expect(store.actionLog.length, 0);
     });
   });
 }

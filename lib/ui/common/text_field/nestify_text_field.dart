@@ -29,6 +29,7 @@ class NestifyTextField extends StatelessWidget {
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         labelText: label,
+        errorText: viewModel.errorText,
         isDense: true,
       ),
     );
@@ -68,6 +69,7 @@ class NestifyMultilineTextField extends StatelessWidget {
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           labelText: label,
+          errorText: viewModel.errorText,
           isDense: true,
           alignLabelWithHint: true,
         ),

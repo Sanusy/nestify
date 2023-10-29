@@ -264,4 +264,38 @@ class FirebaseHomeService implements HomeService {
       throw error.toNetworkError();
     }
   }
+
+  @override
+  Future<Home> editHome({
+    required Home homeToEdit,
+    File? newAvatar,
+  }) async {
+    final userId = _firebaseAuth.currentUser?.uid;
+
+    if (userId == null) throw const NetworkError.notAuthenticated();
+
+    try {
+      final homeSnapshot =
+          _firestore.collection(_homesCollectionId).doc(homeToEdit.id);
+
+      final homeAvatarUrl = newAvatar == null
+          ? homeToEdit.avatarUrl
+          : await _uploadPicture(
+              'Homes/${homeSnapshot.id}/Avatar/Avatar_${DateTime.now().toString()}',
+              newAvatar,
+            );
+
+      final homeModel = homeToEdit.copyWith(avatarUrl: homeAvatarUrl);
+
+      final batch = _firestore.batch();
+
+      batch.update(homeSnapshot, homeModel.toJson());
+
+      await batch.commit();
+
+      return homeModel;
+    } on FirebaseException catch (error) {
+      throw error.toNetworkError();
+    }
+  }
 }

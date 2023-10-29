@@ -66,6 +66,7 @@
   },
   "homeProfileLeaveDialogMultipleUsersDescription": "Вы уверены что хотите покинуть этот дом? Вы больше не сможете открыть этот дом снова. Выбраный пользователь станет новым администратором.",
   "homeProfileLeaveDialogLeave": "Покинуть дом",
+  "homeProfileEditHome": "Редактировать дом",
   "addMemberTitle": "Пригласить участника",
   "addMemberDisclaimer": "Покажите этот QR код пользователю которого вы хотите добавить.",
   "addMemberDisclaimerSubtitle": "Так же вы можете поделиться приглажением через другое приложение.",
@@ -79,5 +80,11 @@
   "createUserProfileNameHint": "Имя",
   "createUserProfileBioHint": "О себе",
   "scanQrCodeTitle": "Сканировать QR код",
-  "scanQrCodeHint": "Просканируйте QR код с приглашением что бы присоедениться к дому"
+  "scanQrCodeHint": "Просканируйте QR код с приглашением что бы присоедениться к дому",
+  "editHomeTitle": "Редактировать дом",
+  "editHomeSave": "Сохранить",
+  "editHomeHomeName": "Название дома",
+  "editHomeAddress": "Адрес",
+  "editHomeAbout": "Про дом",
+  "editHomeEmptyNameError": "Имя не может быть пустым"
 }
