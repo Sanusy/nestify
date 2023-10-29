@@ -8,7 +8,7 @@ import 'package:nestify/service/constants_service/constants_service.dart';
 import 'package:nestify/service/external_activities_service/external_activities_service.dart';
 import 'package:nestify/service/network_error.dart';
 
-import '../test_store.dart';
+import '../../test_store.dart';
 
 class MockConstantsService extends Mock implements ConstantsService {}
 

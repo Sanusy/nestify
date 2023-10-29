@@ -9,7 +9,7 @@ import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/service/network_error.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 
-import '../test_store.dart';
+import '../../test_store.dart';
 
 class MockUserService extends Mock implements UserService {}
 

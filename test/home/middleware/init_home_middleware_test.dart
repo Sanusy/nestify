@@ -13,7 +13,7 @@ import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
 import 'package:nestify/service/user_service/user_service.dart';
 
-import '../test_store.dart';
+import '../../test_store.dart';
 
 class MockUserService extends Mock implements UserService {}
 
