@@ -6,6 +6,7 @@ import 'package:nestify/redux/home/home_reducer.dart';
 import 'package:nestify/redux/home_profile/home_profile_reducer.dart';
 import 'package:nestify/redux/join_home/join_home_reducer.dart';
 import 'package:nestify/redux/login/login_reducer.dart';
+import 'package:nestify/redux/my_profile/my_profile_reducer.dart';
 import 'package:nestify/redux/scan_qr_code/scan_qr_code_reducer.dart';
 import 'package:nestify/redux/settings/settings_reducer.dart';
 
@@ -22,4 +23,5 @@ AppState appReducer(AppState state, dynamic action) => state.copyWith(
       addMemberState: addMemberStateReducer(state.addMemberState, action),
       joinHomeState: joinHomeStateReducer(state.joinHomeState, action),
       editHomeState: editHomeStateReducer(state.editHomeState, action),
+      myProfileState: myProfileStateReducer(state.myProfileState, action),
     );
