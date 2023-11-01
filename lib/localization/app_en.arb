@@ -87,5 +87,8 @@
   "editHomeAddress": "Address",
   "editHomeAbout": "About",
   "editHomeEmptyNameError": "Name can't be empty",
-  "myProfileScreenTitle": "My profile"
+  "myProfileScreenTitle": "My profile",
+  "myProfileNameHint": "Name",
+  "myProfileNameError": "Name can't be empty",
+  "myProfileBioHint": "Bio"
 }

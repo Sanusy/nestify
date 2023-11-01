@@ -11,7 +11,7 @@ class User with _$User {
     required String userName,
     required String homeId,
     required String colorId,
-    required String? bio,
+    required String bio,
     required String? avatarUrl,
   }) = _User;
 

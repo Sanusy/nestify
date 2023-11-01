@@ -87,5 +87,8 @@
   "editHomeAddress": "Адрес",
   "editHomeAbout": "Про дом",
   "editHomeEmptyNameError": "Имя не может быть пустым",
-  "myProfileScreenTitle": "Мой профиль"
+  "myProfileScreenTitle": "Мой профиль",
+  "myProfileNameHint": "Имя",
+  "myProfileNameError": "Имя не может быть пустым",
+  "myProfileBioHint": "О себе"
 }

@@ -15,6 +15,6 @@ sealed class MyProfileViewModel with _$MyProfileViewModel {
     required Command? onSave,
     required AvatarPickerViewModel userAvatarViewModel,
     required NestifyTextFieldViewModel userNameViewModel,
-    required NestifyTextFieldViewModel serBioViewModel,
+    required NestifyTextFieldViewModel userBioViewModel,
   }) = MyProfileBodyViewModel;
 }
