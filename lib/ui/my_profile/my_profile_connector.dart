@@ -5,6 +5,7 @@ import 'package:nestify/redux/my_profile/my_profile_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/common/avatar_picker/avatar_picker_view_model.dart';
+import 'package:nestify/ui/common/color_selector/color_selector_item_view_model.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field_view_model.dart';
 import 'package:nestify/ui/my_profile/my_profile_screen.dart';
 import 'package:nestify/ui/my_profile/my_profile_view_model.dart';
@@ -34,6 +35,7 @@ final class MyProfileConnector extends BaseConnector<MyProfileViewModel> {
     Store<AppState> store,
   ) {
     final myProfileState = store.state.myProfileState;
+    final homeState = store.state.homeState;
 
     if (myProfileState.isLoading || myProfileState.editedProfile == null) {
       return const MyProfileViewModel.loading();
@@ -79,6 +81,18 @@ final class MyProfileConnector extends BaseConnector<MyProfileViewModel> {
           (newAddress) => MyProfileBioChangedAction(newAddress),
         ),
       ),
+      availableColors: homeState.colors.map((color) {
+        final isEnabled = !homeState.homeUsers.any((user) =>
+            user.id != homeState.currentUserId && user.colorId == color.id);
+        return ColorSelectorItemViewModel(
+          onSelect: editedProfile.colorId == color.id
+              ? null
+              : store.createCommand(MyProfileColorChangedAction(color)),
+          isEnabled: isEnabled,
+          color: color.toColor,
+        );
+      }).toList()
+        ..sort(ColorSelectorItemViewModel.colorSorting),
     );
   }
 

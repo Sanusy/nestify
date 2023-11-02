@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/ui/command.dart';
 import 'package:nestify/ui/common/avatar_picker/avatar_picker_view_model.dart';
+import 'package:nestify/ui/common/color_selector/color_selector_item_view_model.dart';
 import 'package:nestify/ui/common/quit_confirmation_dialog/quit_confirmation_dialog_view_model.dart';
 import 'package:nestify/ui/common/text_field/nestify_text_field_view_model.dart';
 
@@ -16,5 +17,6 @@ sealed class MyProfileViewModel with _$MyProfileViewModel {
     required AvatarPickerViewModel userAvatarViewModel,
     required NestifyTextFieldViewModel userNameViewModel,
     required NestifyTextFieldViewModel userBioViewModel,
+    required List<ColorSelectorItemViewModel> availableColors,
   }) = MyProfileBodyViewModel;
 }
