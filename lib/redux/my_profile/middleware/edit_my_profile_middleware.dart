@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/common_middlewares/base_middleware.dart';
-import 'package:nestify/redux/edit_home/edit_home_action.dart';
 import 'package:nestify/redux/my_profile/my_profile_action.dart';
 import 'package:nestify/service/file_error.dart';
 import 'package:nestify/service/file_service/file_service.dart';
@@ -48,9 +47,9 @@ final class EditMyProfileMiddleware
 
       store.dispatch(MyProfileEditedAction(editedProfile));
     } on NetworkError {
-      _failedToEditHome(store);
+      _failedToEditProfile(store);
     } on FileError {
-      _failedToEditHome(store);
+      _failedToEditProfile(store);
     }
   }
 
@@ -62,8 +61,8 @@ final class EditMyProfileMiddleware
     }
   }
 
-  void _failedToEditHome(Store<AppState> store) {
+  void _failedToEditProfile(Store<AppState> store) {
     _snackBarService.showCommonError();
-    store.dispatch(FailedToEditHomeAction());
+    store.dispatch(FailedToEditMyProfileAction());
   }
 }
