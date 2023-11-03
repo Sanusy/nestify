@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:nestify/models/home.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/models/user_color.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/join_home/join_home_action.dart';
@@ -41,7 +41,7 @@ void main() {
       ),
     ];
     final homeUsers = [
-      const User(
+      const NestifyUser(
         id: userId,
         userName: 'userName',
         homeId: 'homeId',

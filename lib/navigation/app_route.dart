@@ -40,3 +40,8 @@ class EditHomeRoute extends AppRoute {
   @override
   bool get fullscreenDialog => true;
 }
+
+class MyProfileRoute extends AppRoute {
+  @override
+  bool get fullscreenDialog => true;
+}

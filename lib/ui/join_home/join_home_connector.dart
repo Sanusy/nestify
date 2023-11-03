@@ -93,7 +93,7 @@ final class JoinHomeConnector extends BaseConnector<JoinHomeViewModel> {
                       .any((user) => user.colorId == color.id),
                   color: color.toColor))
               .toList()
-            ..sort((firstColor, _) => firstColor.isEnabled ? -1 : 1),
+            ..sort(ColorSelectorItemViewModel.colorSorting),
           onJoin: joinHomeState.canJoinHome
               ? store.createCommand(JoinHomeAction())
               : null,

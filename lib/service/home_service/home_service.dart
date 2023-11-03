@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:nestify/models/home.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/models/user_color.dart';
 import 'package:nestify/redux/create_home/create_home_state.dart';
 
@@ -24,7 +24,7 @@ abstract interface class HomeService {
 
   Future<Home?> homeByInviteUrl(String inviteUrl);
 
-  Future<List<User>> homeUsers(List<String> userIds);
+  Future<List<NestifyUser>> homeUsers(List<String> userIds);
 
   Future<void> leaveHome({
     required String homeId,

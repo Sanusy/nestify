@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/home_profile/home_profile_action.dart';
@@ -60,7 +60,7 @@ void main() {
     });
 
     test('new potential admin selects correctly', () {
-      const potentialAdmin = User(
+      const potentialAdmin = NestifyUser(
         id: 'id',
         userName: 'userName',
         homeId: 'homeId',

@@ -133,5 +133,30 @@ void main() {
 
       expect(store.state.editHomeState.isLoading, isFalse);
     });
+
+    test('on make any change, has changes is true, on removing changes false',
+        () {
+      store.dispatch(EditHomeNameChangedAction('new Name'));
+
+      expect(store.state.editHomeState.hasChanges, isTrue);
+
+      store.dispatch(EditHomeNameChangedAction(initialHome.homeName));
+
+      expect(store.state.editHomeState.hasChanges, isFalse);
+
+      final avatar = File('');
+
+      store.dispatch(EditHomeAvatarPickedAction(avatar));
+
+      expect(store.state.editHomeState.hasChanges, isTrue);
+    });
+
+    test('on empty name can save home is false', () {
+      expect(store.state.editHomeState.canEditHome, isTrue);
+
+      store.dispatch(EditHomeNameChangedAction(''));
+
+      expect(store.state.editHomeState.canEditHome, isFalse);
+    });
   });
 }

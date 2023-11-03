@@ -6,6 +6,7 @@ import 'package:nestify/redux/home/home_state.dart';
 import 'package:nestify/redux/home_profile/home_profile_state.dart';
 import 'package:nestify/redux/join_home/join_home_state.dart';
 import 'package:nestify/redux/login/login_state.dart';
+import 'package:nestify/redux/my_profile/my_profile_state.dart';
 import 'package:nestify/redux/scan_qr_code/scan_qr_code_state.dart';
 import 'package:nestify/redux/settings/settings_state.dart';
 
@@ -23,6 +24,7 @@ class AppState with _$AppState {
     required AddMemberState addMemberState,
     required JoinHomeState joinHomeState,
     required EditHomeState editHomeState,
+    required MyProfileState myProfileState,
   }) = _AppState;
 
   factory AppState.initial() => AppState(
@@ -35,5 +37,6 @@ class AppState with _$AppState {
         addMemberState: AddMemberState.initial(),
         joinHomeState: JoinHomeState.initial(),
         editHomeState: EditHomeState.initial(),
+        myProfileState: MyProfileState.initial(),
       );
 }

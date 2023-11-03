@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/redux/app_state.dart';
 import 'package:nestify/redux/common_middlewares/common_actions.dart';
+import 'package:nestify/redux/navigation/navigation_action.dart';
 import 'package:nestify/redux/settings/settings_action.dart';
 import 'package:nestify/ui/base_connector.dart';
 import 'package:nestify/ui/command.dart';
@@ -18,7 +20,9 @@ final class SettingsConnector extends BaseConnector<SettingsViewModel>
   SettingsViewModel convert(BuildContext context, Store<AppState> store) {
     final settingsState = store.state.settingsState;
     return SettingsViewModel(
-      onOpenProfile: settingsState.loading == null ? Command.stub : null,
+      onOpenProfile: settingsState.loading == null
+          ? store.createCommand(PushNavigationAction(MyProfileRoute()))
+          : null,
       onContactSupport: settingsState.loading == null
           ? store.createCommand(ContactSupportAction())
           : null,

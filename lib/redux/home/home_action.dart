@@ -1,5 +1,5 @@
 import 'package:nestify/models/home.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/models/user_color.dart';
 
 class InitHomeAction {}
@@ -10,7 +10,7 @@ class HomeInitializedAction {
   final String currentUserId;
   final List<UserColor> colors;
   final Home home;
-  final List<User> users;
+  final List<NestifyUser> users;
 
   HomeInitializedAction({
     required this.currentUserId,

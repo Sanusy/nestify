@@ -18,6 +18,8 @@ import 'package:nestify/redux/join_home/middleware/join_home_middleware.dart';
 import 'package:nestify/redux/join_home/middleware/join_home_pick_user_avatar_middleware.dart';
 import 'package:nestify/redux/logger/logger_middleware.dart';
 import 'package:nestify/redux/login/middleware/login_with_google_middleware.dart';
+import 'package:nestify/redux/my_profile/middleware/edit_my_profile_middleware.dart';
+import 'package:nestify/redux/my_profile/middleware/my_profile_pick_avatar_middleware.dart';
 import 'package:nestify/redux/navigation/navigation_middleware.dart';
 import 'package:nestify/redux/scan_qr_code/middleware/check_invite_middleware.dart';
 import 'package:nestify/redux/settings/middleware/contact_support_middleware.dart';
@@ -57,6 +59,15 @@ List<Middleware<AppState>> appMiddleware = [
     _serviceLocator.get(),
   ),
   EditHomeMiddleware(
+    _serviceLocator.get(),
+    _serviceLocator.get(),
+    _serviceLocator.get(),
+  ),
+  MyProfilePickAvatarMiddleware(
+    _serviceLocator.get(),
+    _serviceLocator.get(),
+  ),
+  EditMyProfileMiddleware(
     _serviceLocator.get(),
     _serviceLocator.get(),
     _serviceLocator.get(),

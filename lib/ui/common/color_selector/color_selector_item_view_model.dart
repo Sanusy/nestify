@@ -11,4 +11,10 @@ class ColorSelectorItemViewModel with _$ColorSelectorItemViewModel {
     required bool isEnabled,
     required Color color,
   }) = _ColorSelectorItemViewModel;
+
+  static int colorSorting(
+    ColorSelectorItemViewModel firstColor,
+    ColorSelectorItemViewModel _,
+  ) =>
+      firstColor.isEnabled ? -1 : 1;
 }

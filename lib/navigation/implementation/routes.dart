@@ -23,6 +23,7 @@ import 'package:nestify/ui/home_profile/home_profile_connector.dart';
 import 'package:nestify/ui/homeless_user/homeless_user_connector.dart';
 import 'package:nestify/ui/join_home/join_home_connector.dart';
 import 'package:nestify/ui/login/login_connector.dart';
+import 'package:nestify/ui/my_profile/my_profile_connector.dart';
 import 'package:nestify/ui/scan_qr_code/scan_qr_code_connector.dart';
 import 'package:nestify/ui/settings/settings_connector.dart';
 import 'package:redux/redux.dart';
@@ -111,9 +112,15 @@ final goRouter = GoRouter(
               ),
             ]),
         NestifyGoRoute(
-          appRoute: SettingsRoute(),
-          child: const SettingsConnector(),
-        ),
+            appRoute: SettingsRoute(),
+            child: const SettingsConnector(),
+            routes: [
+              NestifyGoRoute(
+                parentNavigatorKey: _rootNavigatorKey,
+                appRoute: MyProfileRoute(),
+                child: const MyProfileConnector(),
+              ),
+            ]),
       ],
     ),
     NestifyGoRoute(

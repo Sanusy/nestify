@@ -2,6 +2,7 @@ import 'package:nestify/redux/edit_home/edit_home_action.dart';
 import 'package:nestify/redux/home/home_action.dart';
 import 'package:nestify/redux/home/home_state.dart';
 import 'package:nestify/redux/home_profile/home_profile_action.dart';
+import 'package:nestify/redux/my_profile/my_profile_action.dart';
 import 'package:redux/redux.dart';
 
 final homeStateReducer = combineReducers<HomeState>([
@@ -10,6 +11,7 @@ final homeStateReducer = combineReducers<HomeState>([
   TypedReducer(_homeInitialized),
   TypedReducer(_homeDeleted),
   TypedReducer(_homeEdited),
+  TypedReducer(_myProfileEdited),
 ]);
 
 HomeState _initHome(
@@ -60,4 +62,16 @@ HomeState _homeEdited(
   return state.copyWith(
     home: action.editedHome,
   );
+}
+
+HomeState _myProfileEdited(
+  HomeState state,
+  MyProfileEditedAction action,
+) {
+  return state.copyWith(
+      homeUsers: state.homeUsers
+          .map((homeUser) => homeUser.id == action.editedUser.id
+              ? action.editedUser
+              : homeUser)
+          .toList());
 }
