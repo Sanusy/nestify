@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/models/home.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/models/user_color.dart';
 
 part 'home_state.freezed.dart';
@@ -14,7 +14,7 @@ class HomeState with _$HomeState {
     required HomeError? error,
     required Home? home,
     required String? currentUserId,
-    required List<User> homeUsers,
+    required List<NestifyUser> homeUsers,
     required List<UserColor> colors,
   }) = _HomeState;
 

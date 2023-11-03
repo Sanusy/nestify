@@ -4,14 +4,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:nestify/models/home.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/models/user_color.dart';
 import 'package:nestify/redux/create_home/create_home_state.dart';
 import 'package:nestify/service/file_error.dart';
+import 'package:nestify/service/firebase_file_mixin.dart';
 import 'package:nestify/service/home_service/home_service.dart';
 import 'package:nestify/service/network_error.dart';
 
-class FirebaseHomeService implements HomeService {
+class FirebaseHomeService  with FirebaseFileMixin implements HomeService {
   final _usersCollectionId = 'Users';
   final _homesCollectionId = 'Homes';
   final _colorsCollectionId = 'Colors';
@@ -50,14 +51,14 @@ class FirebaseHomeService implements HomeService {
 
       final userAvatarUrl = userDraft.userAvatar == null
           ? null
-          : await _uploadPicture(
+          : await uploadPicture(
               'Users/$userId/Avatar/Avatar_${DateTime.now().toString()}',
               userDraft.userAvatar!,
             );
 
       final homeAvatarUrl = homeDraft.homeAvatar == null
           ? null
-          : await _uploadPicture(
+          : await uploadPicture(
               'Homes/${homeSnapshot.id}/Avatar/Avatar_${DateTime.now().toString()}',
               userDraft.userAvatar!,
             );
@@ -72,7 +73,7 @@ class FirebaseHomeService implements HomeService {
         avatarUrl: homeAvatarUrl,
       );
 
-      final userModel = User(
+      final userModel = NestifyUser(
         id: userId,
         userName: userDraft.userName,
         homeId: homeModel.id,
@@ -138,12 +139,12 @@ class FirebaseHomeService implements HomeService {
 
       final userAvatarUrl = userDraft.userAvatar == null
           ? null
-          : await _uploadPicture(
+          : await uploadPicture(
               'Users/$userId/Avatar/Avatar_${DateTime.now().toString()}',
               userDraft.userAvatar!,
             );
 
-      final userModel = User(
+      final userModel = NestifyUser(
         id: userId,
         userName: userDraft.userName,
         homeId: homeId,
@@ -167,20 +168,6 @@ class FirebaseHomeService implements HomeService {
       return batch.commit();
     } on FirebaseException catch (error) {
       throw error.toNetworkError();
-    }
-  }
-
-  Future<String> _uploadPicture(String path, File picture) async {
-    final storageRef = _storage.ref();
-
-    final avatarRef = storageRef.child(path);
-
-    try {
-      final uploadedAvatar = await avatarRef.putFile(picture);
-
-      return uploadedAvatar.ref.getDownloadURL();
-    } on FirebaseException {
-      throw const FileError.failedToUpload();
     }
   }
 
@@ -214,7 +201,7 @@ class FirebaseHomeService implements HomeService {
   }
 
   @override
-  Future<List<User>> homeUsers(List<String> usersIds) {
+  Future<List<NestifyUser>> homeUsers(List<String> usersIds) {
     try {
       return _firestore
           .collection(_usersCollectionId)
@@ -222,7 +209,7 @@ class FirebaseHomeService implements HomeService {
           .get()
           .then((usersSnapshot) {
         return usersSnapshot.docs
-            .map((userSnapshot) => User.fromJson(userSnapshot.data()))
+            .map((userSnapshot) => NestifyUser.fromJson(userSnapshot.data()))
             .toList();
       });
     } on FirebaseException catch (error) {
@@ -280,7 +267,7 @@ class FirebaseHomeService implements HomeService {
 
       final homeAvatarUrl = newAvatar == null
           ? homeToEdit.avatarUrl
-          : await _uploadPicture(
+          : await uploadPicture(
               'Homes/${homeSnapshot.id}/Avatar/Avatar_${DateTime.now().toString()}',
               newAvatar,
             );

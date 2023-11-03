@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:nestify/models/home.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/models/user_color.dart';
 import 'package:nestify/redux/join_home/join_home_state.dart';
 
@@ -13,7 +13,7 @@ class InitJoinHomeAction {
 
 class JoinHomeInitializedAction {
   final List<UserColor> colors;
-  final List<User> users;
+  final List<NestifyUser> users;
 
   JoinHomeInitializedAction({
     required this.colors,

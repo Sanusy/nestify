@@ -98,10 +98,13 @@ MyProfileState _editMyProfile(
 
 MyProfileState _myProfileEdited(
   MyProfileState state,
-    MyProfileEditedAction action,
+  MyProfileEditedAction action,
 ) {
   return state.copyWith(
     isLoading: false,
+    pickedAvatar: null,
+    initialProfile: action.editedUser,
+    editedProfile: action.editedUser,
   );
 }
 

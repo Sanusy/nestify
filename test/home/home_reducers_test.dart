@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nestify/models/home.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/models/user_color.dart';
 import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
@@ -67,7 +67,7 @@ void main() {
         avatarUrl: 'avatarUrl',
       );
       final loadedUsers = [
-        const User(
+        const NestifyUser(
           id: userId,
           userName: 'userName',
           homeId: homeId,

@@ -1,4 +1,4 @@
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 
 class DeleteHomeAction {}
 
@@ -7,7 +7,7 @@ class LeavedHomeAction {}
 class FailedToDeleteHomeAction {}
 
 class SelectNewAdminAction {
-  final User newAdmin;
+  final NestifyUser newAdmin;
 
   SelectNewAdminAction(this.newAdmin);
 }

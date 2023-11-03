@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nestify/models/home.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/models/user_color.dart';
 import 'package:nestify/redux/create_home/create_home_state.dart';
 
@@ -13,7 +13,7 @@ class JoinHomeState with _$JoinHomeState {
   const factory JoinHomeState({
     required JoinHomeStep joinHomeStep,
     required Home? homeToJoin,
-    required List<User> homeUsers,
+    required List<NestifyUser> homeUsers,
     required List<UserColor> colors,
     required UserProfileDraftState userProfileDraftState,
     required bool isLoading,

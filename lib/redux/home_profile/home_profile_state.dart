@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 
 part 'home_profile_state.freezed.dart';
 
@@ -19,7 +19,7 @@ class HomeProfileState with _$HomeProfileState {
 @freezed
 class LeaveHomeState with _$LeaveHomeState {
   const factory LeaveHomeState({
-    required User? newAdmin,
+    required NestifyUser? newAdmin,
   }) = _LeaveHomeState;
 
   factory LeaveHomeState.initial() => const LeaveHomeState(

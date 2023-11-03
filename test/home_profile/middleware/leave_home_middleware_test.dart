@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:nestify/models/home.dart';
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/navigation/app_route.dart';
 import 'package:nestify/redux/app_reducer.dart';
 import 'package:nestify/redux/app_state.dart';
@@ -95,7 +95,7 @@ void main() {
       test('''on leave home with new admin, 
           new admin id passed to leave home''', () async {
         const newAdminId = 'new admin id';
-        const newAdmin = User(
+        const newAdmin = NestifyUser(
           id: newAdminId,
           userName: 'userName',
           homeId: homeId,

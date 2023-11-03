@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:nestify/models/user.dart';
+import 'package:nestify/models/nestify_user.dart';
 import 'package:nestify/models/user_color.dart';
 
 class InitMyProfileAction {
-  final User myProfile;
+  final NestifyUser myProfile;
 
   InitMyProfileAction(this.myProfile);
 }
@@ -42,7 +42,7 @@ class MyProfileColorChangedAction {
 class EditMyProfileAction {}
 
 class MyProfileEditedAction {
-  final User editedUser;
+  final NestifyUser editedUser;
 
   MyProfileEditedAction(this.editedUser);
 }
